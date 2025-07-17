@@ -1,0 +1,54 @@
+  SELECT u.Id as UserId, u.UserName, c.Id as ClientId
+  FROM [LEGALCONNECTION].[dbo].[AspNetUsers] u
+  inner join [LEGALCONNECTION].[dbo].Clients c
+  on c.UserId = u.Id
+  where UserName = 'delacruzjunior03@gmail.com';
+
+  --para saber el id y poder eliminar los campos de LegalOservation
+SELECT *
+  FROM [LEGALCONNECTION].[dbo].[LegalCases]
+  where ClientId = '24EFD379-2A02-47C9-9913-08D880E8BA13';
+
+--1ro SI EN CASO TUVO OBSERVACIONES en base a todos los id q bote el de arriba LegalCaseId
+  delete 
+  FROM [LEGALCONNECTION].[dbo].[LegalCaseObservations]
+  WHERE LegalCaseId in
+  (
+	SELECT Id
+	FROM [LEGALCONNECTION].[dbo].[LegalCases] 
+	where ClientId = '24EFD379-2A02-47C9-9913-08D880E8BA13'
+  );
+
+--2do en base a todos los id q bote el de arriba LegalCaseId
+  delete 
+  FROM [LEGALCONNECTION].[dbo].LegalCaseApplicantLawyers
+  WHERE LegalCaseId in
+  (
+	SELECT Id
+	FROM [LEGALCONNECTION].[dbo].[LegalCases] 
+	where ClientId = '24EFD379-2A02-47C9-9913-08D880E8BA13'
+  );
+
+--3ro en base a todos los id q bote arriba, se elimina
+  delete 
+  FROM LEGALCONNECTION.DBO.LegalCaseSpecialityThemes
+  WHERE LegalCaseId in
+  (
+	SELECT Id
+	FROM [LEGALCONNECTION].[dbo].[LegalCases] 
+	where ClientId = '24EFD379-2A02-47C9-9913-08D880E8BA13'
+  );
+
+--4to en base a todos los id q bote arriba, se elimina
+  delete
+  from LegalCaseDelayedTasks 
+    WHERE LegalCaseId in
+  (
+	SELECT Id
+	FROM [LEGALCONNECTION].[dbo].[LegalCases] 
+	where ClientId = '24EFD379-2A02-47C9-9913-08D880E8BA13'
+  );
+
+--5to eliminar el caso
+  delete from LEGALCONNECTION.dbo.LegalCases
+  where ClientId = '24EFD379-2A02-47C9-9913-08D880E8BA13';

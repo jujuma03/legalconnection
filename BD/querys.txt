@@ -1,0 +1,25 @@
+query - clientes
+SELECT 
+      u.[Email]
+      ,u.[PhoneNumber]
+      ,u.[CreatedAt]
+      ,u.[Name]
+      ,u.[Surnames]
+      ,u.[Document],
+	  'Cliente' as 'Cliente'
+  FROM [LEGALCONNECTION].[dbo].[AspNetUsers] u
+  inner join [LEGALCONNECTION].[dbo].Clients c
+  on u.Id = c.UserId
+
+query - abogados
+SELECT 
+      u.[Email]
+      ,u.[PhoneNumber]
+      ,u.[CreatedAt]
+      ,u.[Name]
+      ,u.[Surnames]
+      ,u.[Document],
+	  'Abogado' as 'Abogado'
+  FROM [LEGALCONNECTION].[dbo].[AspNetUsers] u
+  inner join [LEGALCONNECTION].[dbo].Lawyers l
+  on u.Id = l.UserId

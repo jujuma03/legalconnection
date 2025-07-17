@@ -10093,11 +10093,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.SERVICE\\LC.SERVICE.csproj",
+      "projectUniqueName": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.SERVICE\\LC.SERVICE.csproj",
       "projectName": "LC.SERVICE",
-      "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.SERVICE\\LC.SERVICE.csproj",
+      "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.SERVICE\\LC.SERVICE.csproj",
       "packagesPath": "C:\\Users\\JuMa\\.nuget\\packages\\",
-      "outputPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.SERVICE\\obj\\",
+      "outputPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.SERVICE\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\JuMa\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -10115,8 +10115,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.REPOSITORY\\LC.REPOSITORY.csproj": {
-              "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.REPOSITORY\\LC.REPOSITORY.csproj"
+            "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.REPOSITORY\\LC.REPOSITORY.csproj": {
+              "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.REPOSITORY\\LC.REPOSITORY.csproj"
             }
           }
         }
@@ -10146,20 +10146,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[3.1.10, 3.1.10]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[3.1.0, 3.1.0]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[3.1.0, 3.1.0]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"

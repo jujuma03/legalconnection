@@ -10106,11 +10106,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.DATABASE\\LC.DATABASE.csproj",
+      "projectUniqueName": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.DATABASE\\LC.DATABASE.csproj",
       "projectName": "LC.DATABASE",
-      "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.DATABASE\\LC.DATABASE.csproj",
+      "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.DATABASE\\LC.DATABASE.csproj",
       "packagesPath": "C:\\Users\\JuMa\\.nuget\\packages\\",
-      "outputPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.DATABASE\\obj\\",
+      "outputPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.DATABASE\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\JuMa\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -10128,8 +10128,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.ENTITIES\\LC.ENTITIES.csproj": {
-              "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.ENTITIES\\LC.ENTITIES.csproj"
+            "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.ENTITIES\\LC.ENTITIES.csproj": {
+              "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.ENTITIES\\LC.ENTITIES.csproj"
             }
           }
         }
@@ -10175,20 +10175,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[3.1.10, 3.1.10]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[3.1.0, 3.1.0]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[3.1.0, 3.1.0]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"

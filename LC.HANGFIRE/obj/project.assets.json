@@ -10374,11 +10374,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.HANGFIRE\\LC.HANGFIRE.csproj",
+      "projectUniqueName": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.HANGFIRE\\LC.HANGFIRE.csproj",
       "projectName": "LC.HANGFIRE",
-      "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.HANGFIRE\\LC.HANGFIRE.csproj",
+      "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.HANGFIRE\\LC.HANGFIRE.csproj",
       "packagesPath": "C:\\Users\\JuMa\\.nuget\\packages\\",
-      "outputPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.HANGFIRE\\obj\\",
+      "outputPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.HANGFIRE\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\JuMa\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -10396,11 +10396,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.CORE.VIEW\\LC.CORE.VIEW.csproj": {
-              "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.CORE.VIEW\\LC.CORE.VIEW.csproj"
+            "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.CORE.VIEW\\LC.CORE.VIEW.csproj": {
+              "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.CORE.VIEW\\LC.CORE.VIEW.csproj"
             },
-            "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.DATABASE\\LC.DATABASE.csproj": {
-              "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.DATABASE\\LC.DATABASE.csproj"
+            "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.DATABASE\\LC.DATABASE.csproj": {
+              "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.DATABASE\\LC.DATABASE.csproj"
             }
           }
         }
@@ -10452,24 +10452,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[3.1.10, 3.1.10]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[3.1.32, 3.1.32]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[3.1.0, 3.1.0]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[3.1.0, 3.1.0]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"

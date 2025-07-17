@@ -8438,11 +8438,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.CORE.VIEW\\LC.CORE.VIEW.csproj",
+      "projectUniqueName": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.CORE.VIEW\\LC.CORE.VIEW.csproj",
       "projectName": "LC.CORE.VIEW",
-      "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.CORE.VIEW\\LC.CORE.VIEW.csproj",
+      "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.CORE.VIEW\\LC.CORE.VIEW.csproj",
       "packagesPath": "C:\\Users\\JuMa\\.nuget\\packages\\",
-      "outputPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.CORE.VIEW\\obj\\",
+      "outputPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.CORE.VIEW\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\JuMa\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8460,8 +8460,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.CORE\\LC.CORE.csproj": {
-              "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\LC.CORE\\LC.CORE.csproj"
+            "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.CORE\\LC.CORE.csproj": {
+              "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.CORE\\LC.CORE.csproj"
             }
           }
         }
@@ -8491,20 +8491,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[3.1.10, 3.1.10]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[3.1.0, 3.1.0]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[3.1.0, 3.1.0]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"

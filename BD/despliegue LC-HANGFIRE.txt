@@ -1,0 +1,33 @@
+RUTA-PUBLICA:
+http://209.50.57.151:82/
+
+BD-SQLSERVER:
+server name:   209.50.57.151
+usuario:           sa
+password:        LegalConnection
+
+BITVISE:
+Server: centos-1cpu-1gb-us-chi1 (00772c4e-a444-443d-a8a6-26edb3ecc267)
+IP address: 209.50.57.151
+Username: root
+Password: 2495dkqd
+
+
+1. Despliegar localmente en un folder el proyecto
+2. Zipear la carpeta donde se publico todo
+3. Abrir bitvise y conectarse al servidor de aplicaciones de la UPCLOUD
+4. En el ftp se van a la carpeta
+
+LC-HANGFIRE-   /usr/share/nginx/html/
+
+5. Arrastran el zip a esa carpeta
+6. Descomprimen el zip usando el comando unzip
+7. Renombrar la actual carpeta del sistema (ej. LC-HANGFIRE a LC-HANGFIRE2)
+8. Renombran la carpeta descomprimida (ej. LC-HANGFIRE)
+9. Corren el comando:
+
+ systemctl restart kestrel-lc-hangfire.service
+
+(10.) Si hay algun problema usen el comando:
+
+journalctl -fu kestrel-lc-hangfire.service

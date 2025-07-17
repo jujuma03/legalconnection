@@ -1,0 +1,41 @@
+--clientId
+  SELECT u.Id as UserId, u.UserName, c.Id as ClientId
+  FROM [LEGALCONNECTION].[dbo].[AspNetUsers] u
+  inner join [LEGALCONNECTION].[dbo].Clients c
+  on c.UserId = u.Id
+  where UserName = 'cordoneze231@pucp.pe';
+
+  SELECT *
+  FROM [LEGALCONNECTION].[dbo].[LegalCases]
+  where ClientId = '4DB384F0-FECA-4CF7-FD37-08D88D87998F';
+
+--1ro borras en caso los legalcase que bota arriba
+  delete 
+  FROM [LEGALCONNECTION].[dbo].[LegalCaseObservations]
+  where LegalCaseId = '4437D298-0552-45DC-B196-08D88D879AB5';
+
+--2do borras en caso los legalcase que bota arriba
+    delete
+  FROM [LEGALCONNECTION].[dbo].[LegalCaseSpecialityThemes]
+  where LegalCaseId = '4437D298-0552-45DC-B196-08D88D879AB5';
+
+--3ro
+  delete 
+  from LegalCases where ClientId = '4DB384F0-FECA-4CF7-FD37-08D88D87998F';
+
+--4to
+  delete   FROM [LEGALCONNECTION].[dbo].Clients
+  where UserId = 'b3424ddf-b9af-4aab-9f44-57d7399d7a12';
+
+--5to
+  delete   FROM [LEGALCONNECTION].[dbo].[AspNetUserRoles]
+  where UserId = 'b3424ddf-b9af-4aab-9f44-57d7399d7a12';
+
+--6to
+ delete 
+  FROM [LEGALCONNECTION].[dbo].[UserNotifications]
+  where UserId = 'b3424ddf-b9af-4aab-9f44-57d7399d7a12';
+
+--7to
+  delete from [LEGALCONNECTION].[dbo].[AspNetUsers]
+  where Id = 'b3424ddf-b9af-4aab-9f44-57d7399d7a12';

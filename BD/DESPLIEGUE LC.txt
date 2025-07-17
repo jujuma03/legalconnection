@@ -1,0 +1,65 @@
+RUTA-PUBLICA:
+http://209.94.56.49:81/login
+
+Sistema LC:    81
+Sistema HFIRE: 82
+DB:            1433
+
+====================================================================================
+
+Connection a SQL Server 2 :
+ 
+server name:   209.94.56.49
+usuario:           sa
+password:        lc2020++
+
+====================================================================================
+
+Server: ubuntu-1cpu-2gb-us-nyc1 (00731dde-ee0d-47a2-92eb-c259f3f5bc5a)
+Storage: ubuntu-1cpu-2gb-us-nyc1 Device 1 (01f67805-0801-46de-b13f-f4fea1441305)
+IP address: 209.94.56.49
+Username: root
+Password: up6326c8
+
+====================================================================================
+
+1. Despliegar localmente en un folder el proyecto
+2. Zipear la carpeta donde se publico todo
+3. Abrir bitvise y conectarse al servidor de aplicaciones de la UPCLOUD
+4. En el ftp se van a la carpeta
+/usr/share/nginx/html/
+
+5. Arrastran el zip a esa carpeta
+6. Descomprimen el zip usando el comando unzip
+7. Renombrar la actual carpeta del sistema (ej. LEGALCONNECTION a LEGALCONNECTION2 )
+8. Renombran la carpeta descomprimida (ej. LEGALCONNECTION )
+9. Corren el comando:
+
+systemctl restart kestrel-legal-connection.service && systemctl restart nginx
+systemctl restart kestrel-lc-hangfire.service && systemctl restart nginx
+
+(10.) Si hay algun problema usen el comando:
+journalctl -fu kestrel-legal-connection.service
+
+rm -rf FOLDER
+chmod -r unap
+chmod 777 files
+
+
+/usr/local/bin
+
+sudo nano /etc/nginx/conf.d/legalconnection_pe*-ssl.conf
+
+server {
+
+listen 443 ssl;
+
+ssl_certificate /usr/local/bin/certificate/legalconnection_pe_chain.crt;
+
+ssl_certificate_key /usr/local/bin/certificate/legalconnection_pe.key;
+
+root /usr/share/nginx/html;
+
+server_name legalconnection_pe.com;
+
+}

@@ -1,0 +1,26 @@
+--layerid
+  SELECT u.Id as UserId, u.UserName, l.Id as LawyerId
+  FROM [LEGALCONNECTION].[dbo].[AspNetUsers] u
+  inner join [LEGALCONNECTION].[dbo].[Lawyers] l
+  on l.UserId = u.Id
+  where UserName = 'ormeno.gm@gmail.com';
+
+--1ro
+delete   FROM [LEGALCONNECTION].[dbo].[LawyerPlanDetails]
+where LawyerId = '4EDA779B-B784-45B7-E0B9-08D8A03FF716';
+
+--2do
+delete   FROM [LEGALCONNECTION].[dbo].[LawyerSpecialityThemes]
+where LawyerId = '4EDA779B-B784-45B7-E0B9-08D8A03FF716';
+
+--3ro
+  delete   FROM [LEGALCONNECTION].[dbo].[Lawyers]
+  where UserId = '1c6a4a2e-0728-40e3-a7bd-2f398ff610b4';
+
+--4to
+  delete   FROM [LEGALCONNECTION].[dbo].[AspNetUserRoles]
+  where UserId = '1c6a4a2e-0728-40e3-a7bd-2f398ff610b4';
+
+--5to
+  delete FROM [LEGALCONNECTION].[dbo].[AspNetUsers]
+  where Id = '1c6a4a2e-0728-40e3-a7bd-2f398ff610b4';

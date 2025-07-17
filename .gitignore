@@ -1,0 +1,36 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+bin/
+obj/
+[Bb]uild/
+[Dd]ebug*/
+[Rr]elease*/
+
+# Others
+*.log
+*.tlog
+*.cache
+*.pdb
+*.db
+*.exe
+*.dll
+*.ncb
+*.ipch
+*.aps
+*.sdf
+*.opensdf
+*.vssscc
+*.vssscc
+*.scc
+*.class
+*.psess
+*.vsp
+*.pidb
+*.tmp
+*.csproj.user
