@@ -1,0 +1,60 @@
+﻿@{
+    @if (User.IsInRole(ConstantHelpers.ROLES.LAWYER) || User.IsInRole(ConstantHelpers.ROLES.CLIENT))
+    {
+        Layout = "_Layout";
+    }
+    else
+    {
+        Layout = "_AdminLayout";
+        ViewData["Breadcrumbs"] = new[] {
+        new BreadcrumbViewModel { Name = "Inicio" }
+        };
+    }
+}
+
+@section Styles{
+    <style>
+        .m-portlet .m-portlet__head {
+            border-bottom: 0px !important;
+        }
+
+        .m-portlet .m-portlet__foot:not(.m-portlet__no-border) {
+            border-top: 0px !important;
+        }
+    </style>
+}
+@if (!(bool)ViewBag.TermsAndConditions)
+{
+    <div class="row" style="margin:auto !important;">
+        <div class="m-portlet m-portlet--mobile m-portlet--body-progress-">
+            <div class="m-portlet__body">
+                <h4 class="m--font-boldest2 mb-4">¡Bienvenido(a) a LegalConnection!</h4>
+                <p class="m--icon-font-size-sm1 text-justify">
+                    Estamos muy felices de que ahora formes parte de esta comunidad de abogados(as) que buscan brindar servicios legales de forma disruptiva e innovadora.
+                </p>
+                <p class="m--icon-font-size-sm1 text-justify">
+                    Estamos dispuestos a ayudarte en lo que necesites a través de nuestros correos de contacto. Cualquier comentario, duda o consulta, por favor, escríbenos a soporte@legalconnection.pe para apoyarte.
+                </p>
+                <p class="m--icon-font-size-sm1 text-justify">
+                    Para culminar el proceso de validación del perfil, acepta los Términos y Condiciones de la Plataforma y ¡listo!
+                </p>
+                <p class="m--icon-font-size-sm1 text-justify">
+                    Gracias por tu preferencia y esperamos poder brindarte la mejor experiencia.
+                </p>
+                <a asp-action="TermAndConditions" asp-controller="Portal" class="m-link m--font-boldest">Ver T&eacute;rminos y condiciones</a>
+            </div>
+            <div class="m-portlet__foot">
+                <div class="row align-items-end">
+                    <div class="col-lg-12 m--align-right">
+                        <button id="accept_terms_conditions" class="btn btn-primary">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script src="~/js/views/home/index.js" asp-append-version="true"></script>
+}
+

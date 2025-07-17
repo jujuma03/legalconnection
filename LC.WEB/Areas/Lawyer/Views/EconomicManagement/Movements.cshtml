@@ -1,0 +1,64 @@
+﻿@section Styles{
+    <link href="~/css/areas/lawyer/economicmanagement/economicmanagement.css" rel="stylesheet" />
+}
+
+<h3 class="m--font-boldest2 mb-4">Mis Finanzas</h3>
+
+<div class="mb-4" role="group" aria-label="Default button group">
+    <a asp-action="Index" asp-controller="EconomicManagement" asp-area="Lawyer" class="btn btn-lg btn-secondary m--font-boldest2 btn-nav2">Reporte General de Casos</a>
+    <a asp-action="CashWithdrawal" asp-controller="EconomicManagement" asp-area="Lawyer" class="btn btn-lg btn-secondary m--font-boldest2 btn-nav2">Retirar Efectivo</a>
+    <a asp-action="Movements" asp-controller="EconomicManagement" asp-area="Lawyer" class="btn btn-primary btn-lg m--font-boldest2 btn-nav2">Movimientos</a>
+</div>
+
+
+<input type="hidden" value="@ViewBag.LawyerId" />
+
+<div class="row">
+    @*<div class="col-4">
+        <h4 class="m--font-boldest2 mb-4">Mis finanzas</h4>
+
+        <div class="col-12 p-2 text-center div_detail">
+            <div class="m--font-boldest2 m--icon-font-size-sm2 mb-2">SALDO DISPONIBLE</div>
+            <span class="m--icon-font-size-lg5 m--font-bolder" id="available_balance_span">S/.0.00</span>
+        </div>
+
+
+        <div class="col-12 p-2 text-center div_detail_2 mt-4">
+            <div class="col-12 mb-4">
+                <div class="m--font-boldest2 m--icon-font-size-sm2 mb-2 text-2-c">SALDO TOTAL</div>
+                <span class="m--icon-font-size-lg5 m--font-bolder text-2-c" id="possible_available_balance_span">S/.0.00</span>
+            </div>
+            <div class="col-12 row div_detailed">
+                <div class="col-6">
+                    <div class="m--font-boldest2 m--icon-font-size-sm2 mb-2">EN CURSO</div>
+                    <span class="m--icon-font-size-lg5 m--font-bolder">0</span>
+                </div>
+                <div class="col-6">
+                    <div class="m--font-boldest2 m--icon-font-size-sm2 mb-2">SALDO</div>
+                    <span class="m--icon-font-size-lg5 m--font-bolder">S/.0.00</span>
+                </div>
+            </div>
+            <div class="col-12 row div_detailed">
+                <div class="col-6">
+                    <div class="m--font-boldest2 m--icon-font-size-sm2 mb-2">CONCLUIDOS</div>
+                    <span class="m--icon-font-size-lg5 m--font-bolder">0</span>
+                </div>
+                <div class="col-6">
+                    <div class="m--font-boldest2 m--icon-font-size-sm2 mb-2">SALDO</div>
+                    <span class="m--icon-font-size-lg5 m--font-bolder">S/.0.00</span>
+                </div>
+            </div>
+        </div>
+    </div>*@
+    <div class="col-12">
+        <h4 class="m--font-boldest2 mb-4">Mis movimientos</h4>
+
+        <div class="movements-partial">
+            <div id="movements-partial"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/areas/lawyer/economicmanagement/movements.js" asp-append-version="true"></script>
+}

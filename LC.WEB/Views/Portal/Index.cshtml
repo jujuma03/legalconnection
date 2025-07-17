@@ -1,0 +1,148 @@
+﻿@model LC.WEB.Models.Home.HomeViewModel
+@{
+    Layout = "~/Views/Shared/_TransparentLayout.cshtml";
+}
+@section Styles{
+    <link href="~/assets/css/owl_carousel/owl.carousel.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/views/portal/index.css" rel="stylesheet" asp-append-version="true" />
+}
+
+@if (Model.Banner != null && Model.Banner.Count() > 0)
+{
+    <section class="">
+        <div id="carouselExampleIndicators" class="carousel slide m-main-carousel" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-overlay"></div>
+
+                @{
+                    var count = 1;
+                }
+                @foreach (var item in Model.Banner.OrderBy(i => i.SequenceOrderId))
+                {
+                    <div class="carousel-item @(count == 1 ? "active" : string.Empty)">
+                        <img class="img-fluid d-block w-100" src="/documentos/@item.UrlImage" slide />
+                        <div class="carousel-caption">
+                            <div class="carousel-caption-container">
+                                <div class="row">
+                                    <div class="col-12 col-md-6" style="margin:auto;text-align:center">
+                                        @if (item.StatusId)
+                                        {
+                                            <div class="inner-parallax">
+                                                <div class="" style="text-align:center">
+                                                    <h1>@item.Headline</h1>
+                                                    <div class="text-center">
+                                                        <a class="btn btn-lg btn-lc-green m-btn--pill" target="_blank" href="@(item.RouteTypeId? item.UrlDirection:$"//{item.UrlDirection}")"> @item.NameDirection</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="order m--hide">@count</span>
+                        </div>
+                    </div>
+                    count++;
+                }
+            </div>
+            <div class="m-container m-container--responsive m-container--xxl m-page__container" style="position: absolute; z-index: 9998;">
+                <span class="m-main-carousel__indicators h4">
+                    <span class="m-main-carousel__indicators-page">1</span>
+                    <span id="totalCount" class="m-main-carousel__indicators-total">/@Model.Banner.Count()</span>
+                </span>
+                <a class="btn btn-secondary btn-slider-prev m-btn--icon-only prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <i class="fas fa-angle-left"></i>
+                </a>
+                <a class="btn btn-secondary btn-slider-next m-btn--icon-only next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+}
+<div id="how-it-works">
+
+</div>
+<div id="services">
+
+</div>
+
+<div class="d-flex justify-content-center">
+    <a class="btn btn-lg btn-lc-transparent m-btn--pill" href="https://wa.link/k21laj" target="_blank">
+        MAYOR INFORMACI&Oacute;N
+    </a>
+</div>
+
+<div class="" id="lawyer-banner">
+
+</div>
+
+@if (ConstantHelpers.ENABLED_DIRECTORY)
+{
+    <section class="m-section m-section--gray m-section-banner m-section--gray">
+        <div class="m-section-banner__content">
+            <div class="m-container m-container--responsive m-container--xxl m-page__container">
+                <h1 class="toast-title portal-title">ABOGADOS DESTACADOS</h1>
+                <h5 class="text-center m--padding-bottom-20">Los mejores de nuestra firma digital</h5>
+                <div class="m-section-banner__content-link-group">
+                    <div class="owl-carousel owl-theme carousel-top-lawyers-owl" id="owl2">
+                        @foreach (var item in Model.TopLawyers)
+                        {
+                            <div class="item">
+                                <div class="col-lg-8 col-md-8" style="margin:auto">
+                                    @await Html.PartialAsync("Partials/_LawyerCard", item)
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @if (Model.Specialties != null && Model.Specialties.Count() > 0)
+    {
+        <div class="lc-background-gradient" style="">
+            <h2 class="toast-title portal-title text-white">Principales habilidades de nuestros ABOGADOS</h2>
+            <div class="container text-white m--padding-bottom-80">
+                <div class="row">
+                    @foreach (var item in Model.Specialties)
+                    {
+                        <div class="col-lg-4" style="margin-bottom:10px;">
+                            <i class="la la-dot-circle-o"></i>@item
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}
+
+else
+{
+
+    @if (Model.Specialties != null && Model.Specialties.Count() > 0)
+    {
+        <div class="" style="background-color: #f2f6f9;">
+            <h2 class="toast-title portal-title">Principales habilidades de nuestros ABOGADOS</h2>
+            <div class="container m--padding-bottom-80">
+                <div class="row">
+                    @foreach (var item in Model.Specialties)
+                    {
+                        <div class="col-lg-4" style="margin-bottom:10px;">
+                            <i class="la la-dot-circle-o"></i>@item
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}
+
+
+
+@section Scripts{
+    <script src="~/assets/js/ow_carousel/owl.carousel.js" asp-append-version="true"></script>
+    <script src="~/js/views/portal/index.js" asp-append-version="true"></script>
+}

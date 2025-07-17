@@ -1,0 +1,155 @@
+﻿@model LC.WEB.Areas.Admin.Models.Blog.ExternalPublicationViewModel
+@{
+    ViewData["Title"] = "Detalle Publicacion Externa";
+    ViewData["Breadcrumbs"] = new[] {
+    new BreadcrumbViewModel { Name = "Blog" , Action = "Index" , Area="Admin", Controller="Blog"},
+    new BreadcrumbViewModel { Name = "Publicaciones Externas" , Action = "ExternalPublication" , Area="Admin", Controller="Blog"},
+    new BreadcrumbViewModel { Name = ViewData["Title"].ToString() }
+    };
+}
+<div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+    <div class="m-alert__icon">
+        <i class="la la-info-circle"></i>
+    </div>
+    @if (!Model.IsInBlog)
+    {
+        <div class="m-alert__text">
+            <strong>Opciones</strong>
+        </div>
+        <div class="m-alert__actions">
+            <button id="add_blog" data-id="@Model.Id" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                Agregar al Blog
+            </button>
+        </div>
+    }
+    else
+    {
+        <div class="m-alert__text">
+            <strong>Informaci&oacute;n!</strong> La publicaci&oacute;n ya se encuentra en el blog.
+        </div>
+    }
+</div>
+
+<div class="m-portlet">
+    @*@if (!string.IsNullOrEmpty(Model.LawyerPhotoUrl) || !string.IsNullOrEmpty(Model.PhotoUrl))
+    {
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text m--font-brand">
+                        &emsp;
+                    </h3>
+                </div>
+            </div>
+            <div class="m-portlet__head-tools">
+                @if (!string.IsNullOrEmpty(Model.LawyerPhotoUrl))
+                {
+                    <button class="btn btn-primary btn-sm m-btn m-btn m-btn--icon" data-toggle="modal" data-target="#modal_lawyer_profile">
+                        <span>
+                            <i class="la la-image"></i>
+                            <span>Foto de Abogado</span>
+                        </span>
+                    </button>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.PhotoUrl))
+                {
+                    <button class="ml-2 btn btn-primary btn-sm m-btn m-btn m-btn--icon" data-toggle="modal" data-target="#modal_publication_photo">
+                        <span>
+                            <i class="la la-image"></i>
+                            <span>Foto de Publicaci&oacute;n</span>
+                        </span>
+                    </button>
+                }
+            </div>
+        </div>
+    }*@
+
+    <div class="m-portlet__body">
+        <div class="m-portlet__body">
+            <div class="form-group m-form__group row">
+                <div class="col-lg-12">
+                    <label>T&iacute;tulo:</label>
+                    <input class="form-control m-input" asp-for="Title" readonly>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <div class="col-lg-4">
+                    <label>Asunto:</label>
+                    <input class="form-control m-input" asp-for="Topic" readonly>
+                </div>
+                <div class="col-lg-4">
+                    <label>Abogado:</label>
+                    <input class="form-control m-input" asp-for="LawyerFullName" readonly>
+                </div>
+                <div class="col-lg-4">
+                    <label>Fec. Publicación:</label>
+                    <input class="form-control m-input datepicker_input" asp-for="PublicationDate">
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <label>Imagen de la publicaci&oacute;n:</label>
+
+                <div style="text-align:center">
+                    <img id="" src="/documentos/@Model.PhotoUrl" />
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <label>Imagen del abogado:</label>
+
+                <div style="text-align:center">
+                    <img id="" src="/documentos/@Model.LawyerPhotoUrl" />
+                </div>
+            </div>           
+            <div class="form-group m-form__group row">
+                <div class="col-lg-12">
+                    <label>Descripci&oacute;n:</label>
+                    <p>
+                        @Html.Raw(Model.Description)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="modal_lawyer_profile">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Foto del Perfil del Abogado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row d-flex justify-content-center">
+                    <img src="@Model.LawyerPhotoUrl" alt="Foto de Perfil del Abogado" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="modal_publication_photo">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Foto de la Publicación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row d-flex justify-content-center">
+                    <img src="@Model.PhotoUrl" alt="Foto de Publicación" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/js/areas/admin/blog/externalpublicationdetail.js" asp-append-version="true"></script>
+}

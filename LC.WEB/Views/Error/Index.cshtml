@@ -1,0 +1,56 @@
+﻿@model int
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ConstantHelpers.PROJECT | Error @Model</title>
+    <meta name="description" content="Latest updates and statistic charts">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: { "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"] },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+    <link href="~/assets/css/vendors.admin.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/style.admin.bundle.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="m--skin- m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+    <div class="m-grid m-grid--hor m-grid--root m-page">
+        <div class="m-grid__item m-grid__item--fluid m-grid  m-error-1" style="background-image: url(/images/background/error.jpg);">
+            <div class="m-error_container">
+                <span class="m-error_number">
+                    <h1>@Model</h1>
+                </span>
+                <p class="m-error_desc">
+                    @if (Model == 404)
+                    {
+                        @Html.Raw("OOPS! No se encontró la pagina solicitada.");
+                    }
+                    else if (Model == 500)
+                    {
+                        @Html.Raw("OOPS! Ha ocurrido un error al procesar la solicitud.");
+                    }
+                    else if (Model == 423)
+                    {
+                        @Html.Raw("OOPS! El enlace ha caducado.");
+                    }
+                    else
+                    {
+                        @Html.Raw("OOPS! Ha ocurrido un error al procesar la solicitud.");
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

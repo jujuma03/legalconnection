@@ -1,0 +1,52 @@
+﻿<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="publication_detail">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Detalles de la Publicaci&oacute;n</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="PublicationId" />
+                <div style="text-align:center">
+                    <img id="Image" name="Image" src="http://ipsumimage.appspot.com/525x305" style="max-height:70vh;max-width:40vw"/>
+                </div>
+                <div class="row">
+                    <div class="form-group m-form__group col-lg-12">
+                        <label>Abogado</label>
+                        <input class="form-control m-input" name="Lawyer" readonly />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group m-form__group col-lg-12">
+                        <label>Titulo</label>
+                        <input class="form-control m-input" name="Title" readonly />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group m-form__group col-lg-12">
+                        <label>Asunto</label>
+                        <input class="form-control m-input" name="Topic" readonly />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group m-form__group col-lg-12">
+                        <label>Fec. Publicaci&oacute;n</label>
+                        <input class="form-control m-input" name="PublicationDate" readonly />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group m-form__group col-lg-12">
+                        <label>Descripci&oacute;n</label>
+                        <textarea class="form-control m-input" rows="5" name="Description" readonly></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger reject_publication">Rechazar</button>
+                <button type="button" class="btn btn-primary validate_publication">Validar </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+﻿@model List<LC.WEB.Models.Home.SectionItemViewModel>
+
+@if (Model != null && Model.Count()>0)
+{
+    <div class="m-section--gray" style="background-color:#f2f6f9">
+        <div class="container">
+            <h1 class="toast-title portal-title">Un nuevo concepto de contactar con abogados</h1>
+            <h6 class="text-center m--padding-bottom-20"><a asp-action="HowItWorks" asp-controller="Portal">Ver más +</a></h6>
+            <div>
+                @{
+                    var rows = Model.Count() <= 4 ? 1 : Math.Ceiling((decimal)Model.Count()/(decimal)4);
+                    var take = Math.Ceiling((decimal)Model.Count()/rows);
+                    var size = 12/take;
+                    var col_lg = $"col-lg-{size} col-sm-6 col-xs-12";
+                } 
+                @for (int i = 0; i < rows; i++)
+                {
+                    var taking = Model.Skip((int)take*i).Take((int)take);
+                    <div class="row">
+                        <div class="@(taking.Count() ==1 ? "col-lg-6":"col-lg-12")" style="display:contents;margin:@(taking.Count() ==1 ? "auto":"0")">
+
+                            @foreach (var benefit in Model)
+                            {
+                                <div class="@col_lg">
+                                    <div class="m-portlet m-portlet--unair m-card-profile" style="background-color:#f2f6f9">
+                                        <div class="m-card-profile__pic">
+                                            <div class="">
+                                                <img src="/documentos/@benefit.UrlImage" style="width:100%;border-radius:0px;" />
+                                            </div>
+                                        </div>
+                                        <div class="m-card-profile__details">
+                                            <span class="m-card-profile__name">@benefit.Headline</span>
+                                            <span class="m-card-profile__email m-link m--padding-15 hidde-extra-content">@benefit.Description</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="row">
+                <div style="text-align:center;width:100%;padding:20px">
+                    @if (!User.Identity.IsAuthenticated || User.IsInRole(ConstantHelpers.ROLES.CLIENT))
+                    {
+                        <a class="btn btn-lc-blue m-btn--pill btn-lg " asp-action="Add" asp-controller="LegalCase" asp-area="Client" target="_blank">
+                            REGISTRA TU CASO
+                        </a>
+                    }
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <a class="btn btn-lc-transparent m-btn--pill btn-lg" href="/registrar-abogado" target="_blank">
+                            SOY ABOGADO
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}

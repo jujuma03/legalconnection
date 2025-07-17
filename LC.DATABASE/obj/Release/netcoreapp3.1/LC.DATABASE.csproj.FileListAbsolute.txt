@@ -1,0 +1,17 @@
+D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\bin\Release\netcoreapp3.1\LC.DATABASE.deps.json
+D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\bin\Release\netcoreapp3.1\LC.DATABASE.runtimeconfig.json
+D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\bin\Release\netcoreapp3.1\LC.DATABASE.runtimeconfig.dev.json
+D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\bin\Release\netcoreapp3.1\LC.DATABASE.dll
+D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\bin\Release\netcoreapp3.1\LC.DATABASE.pdb
+D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\bin\Release\netcoreapp3.1\LC.CORE.dll
+D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\bin\Release\netcoreapp3.1\LC.ENTITIES.dll
+D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\bin\Release\netcoreapp3.1\LC.ENTITIES.pdb
+D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\bin\Release\netcoreapp3.1\LC.CORE.pdb
+D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.csprojAssemblyReference.cache
+D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.AssemblyInfoInputs.cache
+D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.AssemblyInfo.cs
+D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.csproj.CoreCompileInputs.cache
+D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.csproj.CopyComplete
+D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.dll
+D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.pdb
+D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.genruntimeconfig.cache

@@ -1,0 +1,105 @@
+﻿@model LC.WEB.Areas.Client.Models.LegalCase.LegalCaseDetailViewModel
+
+@if (Model.LegalCaseLawyers.Any())
+{
+<div class="portlet_lawyer_detail">
+    <h4 class="m--font-boldest2 mb-3">Abogado Seleccionado</h4>
+
+    @foreach (var lawyer in Model.LegalCaseLawyers)
+        {
+    <div class="m-portlet m-portlet--mobile ">
+        <div class="m-portlet__body">
+            <div class="row">
+                <div class="m-widget3 col-xl-8 col-lg-12 col-md-12 col-sm-12">
+                    <div class="m-widget3__item">
+                        <div class="m-widget3__header">
+                            <div class="m-widget3__user-img">
+                                @if (string.IsNullOrEmpty(lawyer.PhotoUrl))
+                                        {
+                                <img class="m-widget3__img" src="~/images/general/profile.jpg" alt="">
+                                        }
+                                        else
+                                        {
+                                <img class="m-widget3__img" src="/documentos/@lawyer.PhotoUrl" alt="">
+                                        }
+                            </div>
+                            <div class="m-widget3__info">
+                                <span class="m-widget3__username">
+                                    @lawyer.FullName
+                                </span><br>
+                                <span class="m-widget3__time">Especialidad : @lawyer.Specialities</span><br />
+                                <span class="m-widget3__time">
+                                    @for (int i = 1; i <= 5; i++)
+                                            {
+                                    @if (i <= lawyer.Qualification)
+                                                {
+                                    <i class="fa fa-star start-graff"></i>
+                                                }
+                                                else
+                                                {
+                                    <i class="fa fa-star"></i>
+                                                }
+                                            }
+                                </span><br />
+                            </div>
+                            <span class="m-widget3__status">
+                                Tiempo M&aacute;ximo de Respuesta : @lawyer.ResponseTime horas
+                            </span>
+                        </div>
+                        <div class="m-widget3__body">
+                            @foreach (var item in lawyer.SpecialityThemes)
+                                    {
+                            <span class="m-badge m-badge--@(ConstantHelpers.HTML.COLOR.RANDOM_COLOR()) m-badge--wide">@item</span>
+                                    }
+                            <p class="m-widget3__text mt-3">
+                                @(lawyer.Description?.Length > 140 ? $"{lawyer.Description?.Substring(0, 140)}..." : lawyer.Description)
+                                <a class="m-link m--font-boldest" asp-controller="LawyerProfile" asp-action="Index" asp-route-lawyerId="@lawyer.LawyerId">Ver perfil</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 card_lawyer_detail mt-xl-0 mt-lg-4 mt-md-4 mt-sm-4">
+                    @if (lawyer.Fee == 0 || lawyer.FreeFirst || lawyer.IsFree)
+                            {
+                    <div class="col-12">
+                        <h3 class="m--font-boldest2">PRIMERA CONSULTA GRATIS</h3><br />
+                    </div>
+                            }
+                            else
+                            {
+                    <div class="col-12">
+                        <span>Precio por Consulta</span>
+                        <h3  class="m--font-boldest2">S/@($"{lawyer.Fee:0.00}")</h3>
+                        @*@{
+                                        var igv = (ConstantHelpers.IGV_PERCENTAGE / 100M) * lawyer.Fee;
+                        }
+                        <small>IGV: S/@($"{igv:0.00}")</small><br />
+                        Total a pagar:<h5 class="m--font-boldest2">S/@($"{igv+lawyer.Fee:F}")</h5><br />
+                        <span>Casos contratados : @lawyer.HiredCases</span><br />*@
+                    </div>
+                            }
+
+                    <div class="col-12 text-center mb-5">
+                        @if (lawyer.Status == ConstantHelpers.ENTITIES.LEGAL_CASE_LAWYER.STATUS.PENDING && !lawyer.IsDirected)
+                                {
+                        @*<button data-id="@lawyer.LawyerId" type="button" class="btn btn-primary m-btn m-btn--custom @(lawyer.IsFree ? "proccess_lawyer" : "proccess_payment")">@(lawyer.IsFree ? "SELECCIONAR" : "PROCESAR PAGO")</button>*@
+                        <button data-id="@lawyer.LawyerId" type="button" class="btn btn-danger m-btn m-btn--custom delete_lawyer">Eliminar</button>
+                        @if (lawyer.IsFree)
+                                    {
+                        <div class="mt-2">
+                            <small>*Primera Consulta Gratis</small>
+                        </div>
+                                    }
+                                }
+                                else if (lawyer.Status == ConstantHelpers.ENTITIES.LEGAL_CASE_LAWYER.STATUS.PAYMENT_MADE)
+                                {
+                        @*<button data-id="@lawyer.LawyerId" type="button" class="btn btn-primary m-btn m-btn--custom contact_lawyer">CONTACTAR</button>*@
+                                }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        }
+</div>
+}

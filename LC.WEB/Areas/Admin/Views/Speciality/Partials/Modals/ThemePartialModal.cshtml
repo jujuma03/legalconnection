@@ -1,0 +1,41 @@
+﻿@model LC.WEB.Areas.Admin.Models.Speciality.ThemeViewModel
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="theme_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="theme_form" autocomplete="off">
+                <input type="hidden" asp-for="Id" />
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label asp-for="Code">C&oacute;digo</label>
+                            <input asp-for="Code" class="form-control m-input" required maxlength="50" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label asp-for="OfficialName">Nombre Oficial</label>
+                            <input asp-for="OfficialName" class="form-control m-input" required maxlength="60" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label asp-for="ColloquialName">Nombre Coloquial</label>
+                            <input asp-for="ColloquialName" class="form-control m-input" required maxlength="60" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

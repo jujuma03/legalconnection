@@ -1,0 +1,106 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LC.WEB", "LC.WEB\LC.WEB.csproj", "{3911D610-4556-424C-A65A-C1BC7768ADE1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LC.REPOSITORY", "LC.REPOSITORY\LC.REPOSITORY.csproj", "{0BD13A00-DE6B-4631-B74D-CCB30DA70FD4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LC.ENTITIES", "LC.ENTITIES\LC.ENTITIES.csproj", "{59B04262-6C5E-4991-BD19-C0977C991493}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LC.SERVICE", "LC.SERVICE\LC.SERVICE.csproj", "{68A19999-C595-4A73-86EC-C4EC4536DC52}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LC.DATABASE", "LC.DATABASE\LC.DATABASE.csproj", "{B7A7FB64-898A-4151-982B-6596C7B8DB37}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LC.CORE", "LC.CORE\LC.CORE.csproj", "{82BDBA7F-2A07-4BC6-93F0-F990A29AA3B0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LC.CORE.VIEW", "LC.CORE.VIEW\LC.CORE.VIEW.csproj", "{A64CB96A-D0C4-480A-BE83-FCA5D55AF7C3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LC.PAYMENT", "LC.PAYMENT\LC.PAYMENT.csproj", "{8909A44C-400D-403F-924D-E831E1B38FAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LC.HANGFIRE", "LC.HANGFIRE\LC.HANGFIRE.csproj", "{81DB19F4-5CA3-4965-8A5C-7071AB02EA65}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3911D610-4556-424C-A65A-C1BC7768ADE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3911D610-4556-424C-A65A-C1BC7768ADE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3911D610-4556-424C-A65A-C1BC7768ADE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3911D610-4556-424C-A65A-C1BC7768ADE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BD13A00-DE6B-4631-B74D-CCB30DA70FD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BD13A00-DE6B-4631-B74D-CCB30DA70FD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BD13A00-DE6B-4631-B74D-CCB30DA70FD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BD13A00-DE6B-4631-B74D-CCB30DA70FD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59B04262-6C5E-4991-BD19-C0977C991493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59B04262-6C5E-4991-BD19-C0977C991493}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59B04262-6C5E-4991-BD19-C0977C991493}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59B04262-6C5E-4991-BD19-C0977C991493}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68A19999-C595-4A73-86EC-C4EC4536DC52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68A19999-C595-4A73-86EC-C4EC4536DC52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68A19999-C595-4A73-86EC-C4EC4536DC52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68A19999-C595-4A73-86EC-C4EC4536DC52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7A7FB64-898A-4151-982B-6596C7B8DB37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7A7FB64-898A-4151-982B-6596C7B8DB37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7A7FB64-898A-4151-982B-6596C7B8DB37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7A7FB64-898A-4151-982B-6596C7B8DB37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82BDBA7F-2A07-4BC6-93F0-F990A29AA3B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82BDBA7F-2A07-4BC6-93F0-F990A29AA3B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82BDBA7F-2A07-4BC6-93F0-F990A29AA3B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82BDBA7F-2A07-4BC6-93F0-F990A29AA3B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A64CB96A-D0C4-480A-BE83-FCA5D55AF7C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A64CB96A-D0C4-480A-BE83-FCA5D55AF7C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A64CB96A-D0C4-480A-BE83-FCA5D55AF7C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A64CB96A-D0C4-480A-BE83-FCA5D55AF7C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8909A44C-400D-403F-924D-E831E1B38FAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8909A44C-400D-403F-924D-E831E1B38FAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8909A44C-400D-403F-924D-E831E1B38FAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8909A44C-400D-403F-924D-E831E1B38FAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81DB19F4-5CA3-4965-8A5C-7071AB02EA65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81DB19F4-5CA3-4965-8A5C-7071AB02EA65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81DB19F4-5CA3-4965-8A5C-7071AB02EA65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81DB19F4-5CA3-4965-8A5C-7071AB02EA65}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {00174F4E-0009-4D9F-9A28-5CB61D65A5FE}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 10
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://junioralberto03.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = LC.ENTITIES\\LC.ENTITIES.csproj
+		SccProjectName1 = LC.ENTITIES
+		SccLocalPath1 = LC.ENTITIES
+		SccProjectUniqueName2 = LC.REPOSITORY\\LC.REPOSITORY.csproj
+		SccProjectName2 = LC.REPOSITORY
+		SccLocalPath2 = LC.REPOSITORY
+		SccProjectUniqueName3 = LC.WEB\\LC.WEB.csproj
+		SccProjectName3 = LC.WEB
+		SccLocalPath3 = LC.WEB
+		SccProjectUniqueName4 = LC.SERVICE\\LC.SERVICE.csproj
+		SccProjectName4 = LC.SERVICE
+		SccLocalPath4 = LC.SERVICE
+		SccProjectUniqueName5 = LC.DATABASE\\LC.DATABASE.csproj
+		SccProjectName5 = LC.DATABASE
+		SccLocalPath5 = LC.DATABASE
+		SccProjectUniqueName6 = LC.CORE\\LC.CORE.csproj
+		SccProjectName6 = LC.CORE
+		SccLocalPath6 = LC.CORE
+		SccProjectUniqueName7 = LC.CORE.VIEW\\LC.CORE.VIEW.csproj
+		SccProjectName7 = LC.CORE.VIEW
+		SccLocalPath7 = LC.CORE.VIEW
+		SccProjectUniqueName8 = LC.PAYMENT\\LC.PAYMENT.csproj
+		SccProjectName8 = LC.PAYMENT
+		SccLocalPath8 = LC.PAYMENT
+		SccProjectUniqueName9 = LC.HANGFIRE\\LC.HANGFIRE.csproj
+		SccProjectName9 = LC.HANGFIRE
+		SccLocalPath9 = LC.HANGFIRE
+	EndGlobalSection
+EndGlobal

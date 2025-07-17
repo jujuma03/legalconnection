@@ -1,0 +1,129 @@
+﻿@model LC.WEB.Areas.Admin.Models.Blog.ExternalPublicationViewModel
+@{
+    ViewData["Title"] = "Agregar Publicacion Externa";
+    ViewData["Breadcrumbs"] = new[] {
+    new BreadcrumbViewModel { Name = "Blog" , Action = "Index" , Area="Admin", Controller="Blog"},
+    new BreadcrumbViewModel { Name = "Publicaciones Externas" , Action = "ExternalPublication" , Area="Admin", Controller="Blog"},
+    new BreadcrumbViewModel { Name = ViewData["Title"].ToString() }
+    };
+}
+@section Styles {
+    <link href="~/assets/css/croppie/croppie.css" rel="stylesheet" />
+}
+<form id="main_form">
+
+    <div class="m-portlet">
+        <div class="m-portlet__body">
+            <div class="m-portlet__body">
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-12">
+                        <label>T&iacute;tulo:</label>
+                        <input class="form-control m-input" asp-for="Title" required>
+                    </div>
+                </div>
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-4">
+                        <label>Asunto:</label>
+                        <input class="form-control m-input" asp-for="Topic" required>
+                    </div>
+                    <div class="col-lg-4">
+                        <label>Abogado:</label>
+                        <input class="form-control m-input" asp-for="LawyerFullName" required>
+                    </div>
+                    <div class="col-lg-4">
+                        <label>Fec. Publicación:</label>
+                        <input class="form-control m-input datepicker_input" asp-for="PublicationDate" required autocomplete="off">
+                    </div>
+                </div>
+                <div class="">
+                    @*<div class="col-lg-12">
+                            <label class="form-control-label">Foto Referencial</label>
+                            <div class="custom-file">
+                                <input type="file" asp-for="Photo" accept="image/*" class="custom-file-input" required />
+                                <label class="custom-file-label">
+                                    Seleccione un archivo
+                                </label>
+                            </div>
+                        </div>*@
+                    <input type="hidden" id="UrlCropImg-0" asp-for="urlPhotoCropImg" />
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label class="form-control-label">Foto Referencial</label>
+                            <div class="custom-file">
+                                <input type="file" id="Image-0" asp-for="Photo" accept="image/*" class="custom-file-input" required />
+                                <label class="custom-file-label">
+                                    Seleccione un archivo
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="m-form__group-sub upload-demo-wrap">
+                            <div id="upload-demo-0" style="overflow-x: auto;">
+                                <p style="font-weight:bold; text-align:center">Resolución de la imagen recomendada: <span id="recommended-resolution-0" style="color:#8b0404;">aprox 1920px x 950px</span></p>
+                            </div>
+                            <div id="upload-offi-0" style="text-align:center">
+                                <img id="img-offi-0" src="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-form__group-sub col-lg-12 col-xs-12 text-center">
+                        <button type="button" class="btn btn-md btn-primary upload-result-0" disabled>Previsualizar</button>
+                    </div>
+                </div>
+
+                <div class="">
+                    @*<div class="col-lg-12">
+            <label class="form-control-label">Foto del Abogado</label>
+            <div class="custom-file">
+                <input type="file" asp-for="LawyerPhoto" accept="image/*" class="custom-file-input" />
+                <label class="custom-file-label">
+                    Seleccione un archivo
+                </label>
+            </div>
+        </div>*@
+                    <input type="hidden" id="UrlCropImg-1" asp-for="urlLawyerPhotoCropImg" />
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label class="form-control-label">Foto del Abogado</label>
+                            <div class="custom-file">
+                                <input type="file" id="Image-1" asp-for="LawyerPhoto" accept="image/*" class="custom-file-input" required  />
+                                <label class="custom-file-label">
+                                    Seleccione un archivo
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="m-form__group-sub upload-demo-wrap">
+                            <div id="upload-demo-1" style="overflow-x: auto;">
+                                <p style="font-weight:bold; text-align:center">Resolución de la imagen recomendada: <span id="recommended-resolution-1" style="color:#8b0404;">aprox 1920px x 950px</span></p>
+                            </div>
+                            <div id="upload-offi-1" style="text-align:center">
+                                <img id="img-offi-1" src="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-form__group-sub col-lg-12 col-xs-12 text-center">
+                        <button type="button" class="btn btn-md btn-primary upload-result-1" disabled>Previsualizar</button>
+                    </div>
+                </div>
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-12">
+                        <label>Descripci&oacute;n:</label>
+                        <textarea name="Description" placeholder="Descripción" class="form-control m-input summernote mv_summernote" required rows="10"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="m-portlet__foot">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </div>
+</form>
+@await Html.PartialAsync("Partials/_ModalPreview")
+
+@section Scripts{
+    <script src="~/assets/js/croppie/croppie.js" asp-append-version="true"></script>
+    <script src="~/js/areas/admin/blog/addexternalpublication.js" asp-append-version="true"></script>
+}

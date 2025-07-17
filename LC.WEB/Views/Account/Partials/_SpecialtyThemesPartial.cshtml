@@ -1,0 +1,28 @@
+﻿@model List<LC.ENTITIES.Models.SpecialityTheme>
+@if (Model != null && Model.Count() > 0)
+{
+    @foreach (var item in Model.GroupBy(x => x.Speciality.OfficialName).ToList())
+    {
+        <div class="col-12 row">
+            <h4 class="col-12 mt-4 m--font-boldest">@item.Key</h4>
+            @foreach (var theme in item)
+            {
+            <div class="col-lg-6 ">
+                <label>&emsp;</label>
+                <div class="m-checkbox-inline">
+                    <label class="m-checkbox m-checkbox--solid m-checkbox--brand valiate-label">
+                        <input name="SpecialityThemes" value="@theme.Id" type="checkbox" onchange="this.className = 'form-control m-input valiate-input'" class="form-control m-input valiate-input" required>@theme.OfficialName
+                        <span></span>
+                    </label>
+                </div>
+            </div>
+            }
+        </div>
+    }
+}
+else
+{
+    <div class="m--padding-20 text-center">
+        <h4 class="toast-title portal-title text-center" style="color:darkgray">No hay temas disponibles</h4>
+    </div>
+}

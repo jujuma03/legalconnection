@@ -1,0 +1,29 @@
+﻿<div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
+    <div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
+        <span class="m-footer__copyright">
+            2020 &copy; @ConstantHelpers.PROJECT
+        </span>
+    </div>
+    <div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
+        <ul class="m-footer__nav m-nav m-nav--inline m--pull-right">
+            @if (User.IsInRole(ConstantHelpers.ROLES.LAWYER) || User.IsInRole(ConstantHelpers.ROLES.CLIENT))
+            {
+                <li class="m-nav__item">
+                    <a href="/como-funciona-abogado" class="m-nav__link">
+                        <span class="m-nav__link-text text-white text-uppercase">¿C&oacute;mo Funciona?</span>
+                    </a>
+                </li>
+                <li class="m-nav__item">
+                    <a href="/quienes-somos" class="m-nav__link">
+                        <span class="m-nav__link-text text-white text-uppercase">¿Quienes somos?</span>
+                    </a>
+                </li>
+                <li class="m-nav__item">
+                    <a href="/blog" class="m-nav__link">
+                        <span class="m-nav__link-text text-white text-uppercase">Blog</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

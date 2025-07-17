@@ -1,0 +1,12 @@
+D:\ING-SW\Legal Connection\Proyecto\LC.ENTITIES\bin\Debug\netcoreapp3.1\LC.ENTITIES.deps.json
+D:\ING-SW\Legal Connection\Proyecto\LC.ENTITIES\bin\Debug\netcoreapp3.1\LC.ENTITIES.dll
+D:\ING-SW\Legal Connection\Proyecto\LC.ENTITIES\bin\Debug\netcoreapp3.1\LC.ENTITIES.pdb
+D:\ING-SW\Legal Connection\Proyecto\LC.ENTITIES\bin\Debug\netcoreapp3.1\LC.CORE.dll
+D:\ING-SW\Legal Connection\Proyecto\LC.ENTITIES\bin\Debug\netcoreapp3.1\LC.CORE.pdb
+D:\ING-SW\Legal Connection\Proyecto\LC.ENTITIES\obj\Debug\netcoreapp3.1\LC.ENTITIES.csprojAssemblyReference.cache
+D:\ING-SW\Legal Connection\Proyecto\LC.ENTITIES\obj\Debug\netcoreapp3.1\LC.ENTITIES.AssemblyInfoInputs.cache
+D:\ING-SW\Legal Connection\Proyecto\LC.ENTITIES\obj\Debug\netcoreapp3.1\LC.ENTITIES.AssemblyInfo.cs
+D:\ING-SW\Legal Connection\Proyecto\LC.ENTITIES\obj\Debug\netcoreapp3.1\LC.ENTITIES.csproj.CoreCompileInputs.cache
+D:\ING-SW\Legal Connection\Proyecto\LC.ENTITIES\obj\Debug\netcoreapp3.1\LC.ENTITIES.csproj.CopyComplete
+D:\ING-SW\Legal Connection\Proyecto\LC.ENTITIES\obj\Debug\netcoreapp3.1\LC.ENTITIES.dll
+D:\ING-SW\Legal Connection\Proyecto\LC.ENTITIES\obj\Debug\netcoreapp3.1\LC.ENTITIES.pdb

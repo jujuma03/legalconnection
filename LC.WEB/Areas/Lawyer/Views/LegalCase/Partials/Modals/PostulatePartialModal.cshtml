@@ -1,0 +1,36 @@
+﻿@model LC.WEB.Areas.Lawyer.Models.LegalCase.PostulateViewModal
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="postulate_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Postular</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="postulate_form" autocomplete="off">
+                <div class="modal-body">
+                    <div class="m-alert m-alert--square alert alert-brand alert-dismissible fade show text-center mb-4" role="alert">
+                        REGISTRA CUAL ES EL TIEMPO DE RESPUESTA DE QUE LE DAR&Aacute;S A ESTE CASO, ESO IMPLICA LA COMUNICACI&Oacute;N CON EL CLIENTE, PUEDE SER HASTA 48 HORAS M&Aacute;XIMO
+                    </div>
+                    <input type="hidden" name="LegalCaseId" />
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label asp-for="ResponseTime">Tiempo(Horas)</label>
+                            <select class="form-control m-select2" required asp-for="ResponseTime">
+                                <option value="24">24 horas</option>
+                                <option value="36">36 horas</option>
+                                <option value="48">48 horas</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Postular</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

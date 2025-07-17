@@ -1,0 +1,166 @@
+﻿@model LC.WEB.Areas.Admin.Models.Configuration.ConfigurationViewModel
+@{
+    ViewData["Title"] = "Configuraciones";
+    ViewData["Breadcrumbs"] = new[] {
+    new BreadcrumbViewModel { Name = ViewData["Title"].ToString() }
+    };
+}
+
+<div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+    <div class="m-alert__icon">
+        <i class="la la-warning"></i>
+    </div>
+    <div class="m-alert__text">
+        <strong>Informaci&oacute;n!</strong> Los cambios realizados ser&aacute;n aplicados inmediatamente.
+    </div>
+</div>
+
+<div class="m-portlet m-portlet--tabs">
+    <form id="main_form">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-tools">
+                <ul class="nav nav-tabs m-tabs-line m-tabs-line--primary m-tabs-line--2x" role="tablist">
+                    <li class="nav-item m-tabs__item">
+                        <a class="nav-link m-tabs__link active show" data-toggle="tab" href="#m_tabs_6_1" role="tab" aria-selected="true">
+                            <i class="la la-cog"></i> General
+                        </a>
+                    </li>
+                    <li class="nav-item m-tabs__item">
+                        <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_2" role="tab" aria-selected="false">
+                            <i class="la la-cog"></i> Casos Legales
+                        </a>
+                    </li>
+                    <li class="nav-item m-tabs__item">
+                        <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_3" role="tab" aria-selected="false">
+                            <i class="la la-cog"></i> Abogados
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="m-portlet__body">
+            <div class="tab-content">
+                <div class="tab-pane active show" id="m_tabs_6_1" role="tabpanel">
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-4">
+                            <label>D&iacute;a de Solicitud de Retiro</label>
+                            <select class="form-control m-select2" asp-for="WithdrawalRequestDay">
+                                <option value="@DayOfWeek.Sunday">Domingo</option>
+                                <option value="@DayOfWeek.Monday">Lunes</option>
+                                <option value="@DayOfWeek.Tuesday">Martes</option>
+                                <option value="@DayOfWeek.Wednesday">Mi&eacute;rcoles</option>
+                                <option value="@DayOfWeek.Thursday">Jueves</option>
+                                <option value="@DayOfWeek.Friday">Viernes</option>
+                                <option value="@DayOfWeek.Saturday">S&aacute;bado</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Hora de inicio de trabajo:</label>
+                            <input class="form-control m-input" asp-for="WorkScheduleStart" placeholder="Ingrese hora inicio de trabajo">
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Hora fin de trabajo</label>
+                            <input class="form-control m-input" asp-for="WorkScheduleEnd" placeholder="Ingrese hora fin de trabajo">
+                        </div>
+                    </div>
+
+   
+
+                </div>
+                <div class="tab-pane" id="m_tabs_6_2" role="tabpanel">
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                            <label>Cantidad m&aacute;xima de caracteres para describir un nuevo caso</label>
+                            <input type="number" step="1" min="1" class="form-control m-input" asp-for="MaxLengthDescriptionLegalCase" placeholder="Ingrese cantidad máxima de caracteres">
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Tiempo (horas) m&aacute;ximo para se cierre el caso</label>
+                            <input asp-for="MaxHourToCloseLegalCase" type="number" step="1" min="1" class="form-control m-input" placeholder="Ingrese cantidad máxima">
+                        </div>
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-4">
+                            <label>Cantidad m&aacute;xima de postulantes por caso</label>
+                            <input asp-for="MaxVacancies" type="number" step="1" min="1" class="form-control m-input" placeholder="Ingrese cantidad máxima">
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Tiempo (horas) m&aacute;ximo para que los abogados puedan postular:</label>
+                            <input type="number" step="1" min="1" class="form-control m-input" asp-for="MaxHourTimeToLawyerPostulate" placeholder="Ingrese tiempo máximo">
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Tiempo (horas) m&aacute;ximo para que clientes acepten y pagen al abogado (Flujo Normal)</label>
+                            <input type="number" step="1" min="1" class="form-control m-input" asp-for="MaxHourTimeToClientAcceptAndPayLawyer" placeholder="Ingrese tiempo máximo">
+                        </div>
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-4">
+                            <label>Tiempo (horas) m&aacute;ximo para que el cliente pague al abogado (Flujo Directo)</label>
+                            <input asp-for="MaxHourTimeToClientPayLawyer" type="number" step="1" min="1" class="form-control m-input" placeholder="Ingrese cantidad máxima">
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Tiempo (horas) m&aacute;ximo para que el abogado acepte un caso directo</label>
+                            <input asp-for="MaxHourTimeTolawyerAcceptDirect" type="number" step="1" min="1" class="form-control m-input" placeholder="Ingrese cantidad máxima">
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Tiempo (horas) m&aacute;ximo para que se envie mensaje de comunicacion éxitosa</label>
+                            <input asp-for="MaxHourToSendEmailConfirmation" type="number" step="1" min="1" class="form-control m-input" placeholder="Ingrese cantidad máxima">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="m_tabs_6_3" role="tabpanel">
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-4">
+                            <label>Cantidad m&aacute;xima de especialidades:</label>
+                            <input type="number" step="1" min="0" max="4" class="form-control m-input" asp-for="MaxSpeciality" placeholder="Ingrese cantidad máxima (máx 4)">
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Cantidad m&aacute;xima de temas/especialidad:</label>
+                            <input type="number" step="1" min="0"  class="form-control m-input" asp-for="MaxThemeBySpeciality" placeholder="Ingrese cantidad máxima">
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Cantidad m&aacute;xima de temas que se puede seleccionar:</label>
+                            <input type="number" step="1" min="1" class="form-control m-input" asp-for="MaxSpecialityTheme" disabled placeholder="Ingrese cantidad máxima">
+                        </div>
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-4">
+                            <label>Consultas gratuitas:</label>
+                            <input type="number" step="1" min="0" class="form-control m-input" asp-for="FreeConsulting" placeholder="Ingrese consults gratuitas">
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Tiempo (horas) m&aacute;ximo que se permite archivar un caso</label>
+                            <input type="number" step="1" min="1" class="form-control m-input" asp-for="MaxHourTimeFiledLegalCase" placeholder="Ingrese tiempo máximo">
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Cantidad de horas m&aacute;ximas para proceso de validaci&oacute;n para nuevos abogados:</label>
+                            <input type="number" step="1" min="1" class="form-control m-input" asp-for="NewLawyerMaxHourTimevalidationProcess" placeholder="Ingrese proceso de validación para nuevos abogados">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="m-portlet__foot">
+            <div class="row align-items-center">
+                <div class="col-lg-12 text-right">
+                    <button type="submit" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                        <span>
+                            <i class="la la-save"></i>
+                            <span>Guardar</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts{
+    <script src="~/js/areas/admin/configuration/index.js" asp-append-version="true"></script>
+}

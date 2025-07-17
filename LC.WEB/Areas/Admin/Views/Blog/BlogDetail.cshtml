@@ -1,0 +1,70 @@
+﻿@model LC.WEB.Areas.Admin.Models.Blog.BlogViewModel
+
+@{
+    ViewData["Title"] = "Detalle de Publicación";
+    ViewData["Breadcrumbs"] = new[] {
+    new BreadcrumbViewModel { Name = "Blog" , Controller ="Blog",Action="Index",Area ="Admin" },
+    new BreadcrumbViewModel { Name = ViewData["Title"].ToString() }
+    };
+}
+
+<div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+    <div class="m-alert__icon">
+        <i class="la la-info-circle"></i>
+    </div>
+    <div class="m-alert__text">
+        <strong>Opciones</strong>
+    </div>
+    <div class="m-alert__actions">
+        <button id="delete_blog" data-id="@Model.Id" class="btn btn-danger btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+            Eliminar del Blog
+        </button>
+    </div>
+</div>
+
+<div class="m-portlet">
+    <form id="main_form">
+        <div class="m-portlet__body">
+            <div style="text-align:center">
+                <img id="Image" name="Image" src="/documentos/@Model.PhotoUrl" style="max-height:65vh;max-width:40vw" />
+            </div>
+            <div class="form-group m-form__group row">
+                <div class="col-lg-12">
+                    <label>T&iacute;tulo:</label>
+                    <input class="form-control m-input" asp-for="Title" readonly>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <div class="col-lg-12">
+                    <label>Asunto:</label>
+                    <input class="form-control m-input" asp-for="Topic" readonly>
+                </div>
+            </div>
+            <div style="text-align:center">
+                <img src="@(string.IsNullOrEmpty(Model.LawyerPhotoUrl)?"~/images/general/profile.jpg":$"/documentos/{Model.LawyerPhotoUrl}")" style="max-height:45vh;max-width:15vw"/>
+            </div>
+            <div class="form-group m-form__group row">
+                <div class="col-lg-12">
+                    <label>Abogado:</label>
+                    <input class="form-control m-input" asp-for="LawyerFullName" readonly>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <div class="col-lg-12">
+                    <label>Fec. Publicación:</label>
+                    <input class="form-control m-input" asp-for="PublicationDate" readonly>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <div class="col-lg-12">
+                    <label>Asunto:</label>
+                    <textarea class="form-control m-input" id="Description" rows="15" readonly>@Html.Raw(Model.Description)</textarea>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <script src="~/js/areas/admin/blog/blogdetail.js" asp-append-version="true"></script>
+}

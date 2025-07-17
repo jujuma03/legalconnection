@@ -1,0 +1,101 @@
+﻿@model LC.WEB.Areas.Client.Models.LegalCase.LegalCaseViewModel
+@{
+    ViewBag.Title = "Registrar Caso";
+}
+
+<input type="hidden" value="@Model.DepartmentId" id="DepartmentId_value" />
+<input type="hidden" value="@Model.Department" id="Department_value" />
+<input type="hidden" value="@Model.Province" id="Province_value" />
+<input type="hidden" value="@Model.ProvinceId" id="ProvinceId_value" />
+
+<div class="m-portlet m-portlet--mobile m-portlet--body-progress row">
+    <div class="m-portlet__body col-xl-12">
+        <form id="form_add_legal_case">
+            <div id="first_part">
+                <div class="m-form__group form-group">
+                    <h4 class="m--font-boldest2">Especilidad Requerida</h4>
+                    <span>Necesitamos que resuelvas ciertas dudas que nos har&aacute;n encontrar a tu abogado ideal.</span>
+                    <div class="row pl-4">
+                        @foreach (var speciality in Model.Specialities)
+                        {
+                            <div class="m-radio-inline col-6 mt-4">
+                                <label class="m-radio">
+                                    <input type="radio" asp-for="SpecialitySelected" value="@speciality.Id"> <strong class="text-uppercase">@speciality.Name</strong>
+                                    <span></span>
+                                </label>
+                            </div>
+                        }
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12 mt-5 text-center">
+                            <button type="button" class="btn m-btn--pill btn-primary m-btn--md m-btn m-btn--custom" id="next_view">SIGUIENTE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="second_part" class="d-none">
+                <h4 class="m--font-boldest2">Cu&eacute;ntanos ¿De qu&eacute; trata tu caso?</h4>
+                <span>Necesitamos que resuelvas ciertas dudas que nos har&aacute;n encontrar a tu abogado ideal.</span>
+                <div class="mt-4">
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label>Asunto del caso</label>
+                            <select asp-for="SpecialityThemeId" class="m-select2" required multiple></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label>Explicanos un breve resumen del contexto del caso</label>
+                            <textarea asp-for="Description" class="form-control m-input" required rows="8" maxlength="@Model.DescriptionMaxLength"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label class="m--font-boldest">Lugar en donde te encuentras</label>
+                        </div>
+                        <div class="form-group m-form__group col-lg-6">
+                            <label>Departamento</label>
+                            <select asp-for="DepartmentId" class="m-select2" required></select>
+                        </div>
+                        <div class="form-group m-form__group col-lg-6">
+                            <label>Provincia</label>
+                            <select asp-for="ProvinceId" class="m-select2" required></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label>Celular</label>
+                            <input asp-for="PhoneNumber" class="form-control m-input" required maxlength="9" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label class="form-control-label">¿Alg&uacute;n documento con informaci&oacute;n adicional? (Opcional)</label>
+                            <div class="custom-file">
+                                <input type="file" asp-for="File" accept="application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword" class="custom-file-input"/>
+                                <label class="custom-file-label">
+                                    Seleccione un archivo
+                                </label>
+                            </div>
+                            <small>Solo se permite archivos con extensi&oacute;n .pdf, .doc o .docx y con peso máximo de 500kb</small>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="form-group m-form__group col-lg-6 text-right">
+                            <button type="button" class="btn m-btn--pill btn-secondary m-btn--md m-btn m-btn--custom" id="previous_view">ANTERIOR</button>
+                        </div>
+                        <div class="form-group m-form__group col-lg-6">
+                            <button type="submit" class="btn m-btn--pill btn-primary m-btn--md m-btn m-btn--custom">REGISTRAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/areas/client/legalcase/add.js" asp-append-version="true"></script>
+}

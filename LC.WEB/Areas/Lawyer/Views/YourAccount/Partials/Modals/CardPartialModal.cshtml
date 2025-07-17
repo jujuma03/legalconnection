@@ -1,0 +1,54 @@
+﻿<div class="modal fade" id="new_card_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form id="form_card" autocomplete="off">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label>N&uacute;mero de Tarjeta:</label>
+                            <input class="form-control m-input" maxlength="20" data-culqi="card[number]" placeholder="Ingrese Tarjeta" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-5">
+                            <label>Mes:</label>
+                            <select class="form-control m-input m-select2 select2_month" maxlength="2" placeholder="Año" data-culqi="card[exp_month]" id="card[exp_month]">
+                                <option selected disabled> Seleccionar</option>
+                                <option value="01">Enero</option>
+                                <option value="02">Febrero</option>
+                                <option value="03">Marzo</option>
+                                <option value="04">Abril</option>
+                                <option value="05">Mayo</option>
+                                <option value="06">Junio</option>
+                                <option value="07">Julio</option>
+                                <option value="08">Agosto</option>
+                                <option value="09">Setiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+                            </select>
+                        </div>
+                        <div class="form-group m-form__group col-lg-3">
+                            <label>Año:</label>
+                            <input class="form-control m-input datepicker_year" maxlength="4" placeholder="Año" data-culqi="card[exp_year]" id="card[exp_year]" required>
+                        </div>
+                        <div class="form-group m-form__group col-lg-4">
+                            <label>CVV:</label>
+                            <input class="form-control m-input" maxlength="4" placeholder="Ingrese CVV" ata-culqi="card[cvv]" id="card[cvv]" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12 text-center mt-5">
+                            <button type="submit" class="btn btn-primary m-btn m-btn m-btn--icon">
+                                <span>
+                                    <i class="la la-credit-card"></i>
+                                    <span>AGREGAR TARJETA</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

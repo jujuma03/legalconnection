@@ -1,0 +1,115 @@
+﻿@model List<LC.WEB.Areas.Admin.Models.MissionVision.MissionVisionViewModel>
+@{
+    ViewBag.Title =ViewData["Title"]= "Misión y Visión";
+    ViewData["Breadcrumbs"] = new[] {
+    new BreadcrumbViewModel { Name = ViewData["Title"].ToString() }
+    };
+}
+
+@section Styles {
+    <link href="~/assets/css/croppie/croppie.css" rel="stylesheet" />
+    <link href="~/css/areas/admin/banner/create.css" rel="stylesheet" asp-append-version="true" />
+}
+
+
+<div class="m-portlet">
+    <div class="container">
+        <form class="m-form" id="update-form" asp-area="Admin" asp-controller="MissionVision" asp-action="UpdateMissionVision" method="post" enctype="multipart/form-data">
+
+            @for (var i = 0; i < Model.Count; i++)
+            {
+                <div class="modal-body">
+                    <div class="m-alert m-alert--icon alert alert-danger m--hide" role="alert" id="modal-form-alert">
+                        <div class="m-alert__icon">
+                            <i class="la la-warning"></i>
+                        </div>
+                        <div class="m-alert__text" id="msg_txt">
+                            Por favor, corrija los errores pertinentes
+                        </div>
+                        <div class="m-alert__close">
+                            <button type="button" class="close" data-close="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+
+                    <input asp-for="@Model[i].Type" type="hidden">
+                    @if (i == 0)
+                    {
+                        <h3>Misión</h3>
+                    }
+                    else
+                    {
+                        <h3>Visión</h3>
+                    }
+                    <h3></h3>
+                    <div class="form-group m-form__group row m-form__group--first mb-2">
+
+                        <div class="m-form__group-sub col-lg-12 col-xs-12">
+                            <div class="col-md-12 m-form__group-sub  mb-5">
+                                <label asp-for="@Model[i].Title" class="required-form-label"></label>
+                                <input asp-for="@Model[i].Title" type="text" class="form-control m-input" maxlength="300">
+                            </div>
+                        </div>
+                        <div class="m-form__group-sub col-lg-12 col-xs-12">
+                            <div class="col-md-12 m-form__group-sub  mb-5">
+                                <input type="hidden" id="UrlCropImg-@i" asp-for="@Model[i].urlCropImg" />
+                                <div class="row">
+                                    <div class="form-group m-form__group col-lg-12">
+                                        <label class="form-control-label">Adjuntar imagen</label>
+                                        <div class="custom-file">
+                                            @if (Model[i].Id == Guid.Empty)
+                                            {
+                                                <input type="file" id="Image-@i" asp-for="@Model[i].Image" accept="image/*" class="custom-file-input" required />
+                                            }
+                                            else
+                                            {
+                                                <input type="file" id="Image-@i" asp-for="@Model[i].Image" accept="image/*" class="custom-file-input" />
+                                            }
+                                            <label class="custom-file-label">
+                                                Seleccione un archivo
+                                            </label>
+                                        </div>
+                                        <div style="text-align:center">
+                                            <img id="oldImage-@i" src="/documentos/@Model[i].UrlImage" />
+                                        </div>
+                                        <span asp-validation-for="@Model[i].UrlImage" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row m-form__group--first m--padding-10">
+                                    <div class="m-form__group-sub col-lg-12 col-xs-12 upload-demo-wrap">
+                                        <div id="upload-demo-@i" style="overflow-x: auto;">
+                                            <p style="font-weight:bold; text-align:center">Resolución de la imagen recomendada: <span id="recommended-resolution-@i" style="color:#8b0404;">aprox 1920px x 950px</span></p>
+                                        </div>
+                                        <div id="upload-offi-@i" style="text-align:center">
+                                            <img id="img-offi-@i" src="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-form__group-sub col-lg-12 col-xs-12 text-center">
+                                    <button type="button" class="btn btn-md btn-primary upload-result-@i" disabled>Previsualizar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" asp-for="@Model[i].Id" />
+
+                    <div class="form-group m-form__group row mb-5">
+                        <div class="col-md-12 m-form__group-sub  mb-5">
+                            <label asp-for="@Model[i].Content" class="required-form-label"></label>
+                            <textarea asp-for="@Model[i].Content" type="text" class="summernote mv_summernote"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+            }
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-save" id="btnSave">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+@await Html.PartialAsync("Partials/_ModalPreview")
+@section Scripts {
+    <script src="~/assets/js/croppie/croppie.js"></script>
+    <script src="~/js/areas/admin/missionvision/index.js" asp-append-version="true"></script>
+}

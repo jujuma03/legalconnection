@@ -1,0 +1,8 @@
+D:\ING-SW\Legal Connection\Proyecto\LC.CORE\bin\Release\netcoreapp3.1\LC.CORE.deps.json
+D:\ING-SW\Legal Connection\Proyecto\LC.CORE\bin\Release\netcoreapp3.1\LC.CORE.dll
+D:\ING-SW\Legal Connection\Proyecto\LC.CORE\bin\Release\netcoreapp3.1\LC.CORE.pdb
+D:\ING-SW\Legal Connection\Proyecto\LC.CORE\obj\Release\netcoreapp3.1\LC.CORE.AssemblyInfoInputs.cache
+D:\ING-SW\Legal Connection\Proyecto\LC.CORE\obj\Release\netcoreapp3.1\LC.CORE.AssemblyInfo.cs
+D:\ING-SW\Legal Connection\Proyecto\LC.CORE\obj\Release\netcoreapp3.1\LC.CORE.csproj.CoreCompileInputs.cache
+D:\ING-SW\Legal Connection\Proyecto\LC.CORE\obj\Release\netcoreapp3.1\LC.CORE.dll
+D:\ING-SW\Legal Connection\Proyecto\LC.CORE\obj\Release\netcoreapp3.1\LC.CORE.pdb

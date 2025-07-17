@@ -1,0 +1,43 @@
+﻿@model LC.CORE.Structs.PaginationStructs.ReturnedData<LC.ENTITIES.Custom.Lawyer.LegalCaseCustomModel>
+
+@if (!Model.Data.Any())
+{
+    <span>No se han encontrado casos finalizados</span>
+}
+else
+{
+    @foreach (var item in Model.Data)
+    {
+        <div class="m-portlet m-portlet--rounded legal_case_portlet" data-id="@item.Id">
+            <div class="m-portlet__body">
+                <div class="row">
+                    <h5 class="col-xl-4 col-lg-4 col-md-4 m--font-boldest">Cliente : @item.Client.FullName</h5>
+                    <div class="title col-12 row">
+                        <h5 class="col-xl-4 col-lg-4 col-md-4 m--font-boldest"><u>Especialidad : @item.Speciality</u></h5>
+                        <h5 class="col-xl-4 col-lg-4 col-md-4 m--font-boldest2"><u>@item.Department - @item.Province</u></h5>
+                        <h5 class="col-xl-4 col-lg-4 col-md-4 text-xl-right text-lg-right text-md-right m--font-boldest2">@(ConstantHelpers.ENTITIES.LEGAL_CASE_LAWYER.STATUS.VALUES[item.Status])</h5>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <div class="row">
+                            <div class="col-10">
+                                <p class="text-justify">
+                                    @item.Description
+                                </p>
+                            </div>
+                            <div class="col-2 text-center">
+                                <h4 class="m--font-boldest2">S/.@item.Payment</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-2">
+                        <a href="javascript:;" class="m-link m--font-boldest">@item.FinishDate</a>
+                    </div>
+                    <span class="col-12 m--font-boldest2"></span>
+                </div>
+            </div>
+        </div>
+
+    }
+
+    @await Html.PartialAsync("Partials/_PaginationPartial", Model.PaginationData)
+}

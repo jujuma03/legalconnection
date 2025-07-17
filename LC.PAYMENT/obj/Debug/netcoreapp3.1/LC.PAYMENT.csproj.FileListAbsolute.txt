@@ -1,0 +1,9 @@
+D:\ING-SW\Legal Connection\Proyecto\LC.PAYMENT\bin\Debug\netcoreapp3.1\LC.PAYMENT.deps.json
+D:\ING-SW\Legal Connection\Proyecto\LC.PAYMENT\bin\Debug\netcoreapp3.1\LC.PAYMENT.dll
+D:\ING-SW\Legal Connection\Proyecto\LC.PAYMENT\bin\Debug\netcoreapp3.1\LC.PAYMENT.pdb
+D:\ING-SW\Legal Connection\Proyecto\LC.PAYMENT\obj\Debug\netcoreapp3.1\LC.PAYMENT.AssemblyInfoInputs.cache
+D:\ING-SW\Legal Connection\Proyecto\LC.PAYMENT\obj\Debug\netcoreapp3.1\LC.PAYMENT.AssemblyInfo.cs
+D:\ING-SW\Legal Connection\Proyecto\LC.PAYMENT\obj\Debug\netcoreapp3.1\LC.PAYMENT.csproj.CoreCompileInputs.cache
+D:\ING-SW\Legal Connection\Proyecto\LC.PAYMENT\obj\Debug\netcoreapp3.1\LC.PAYMENT.dll
+D:\ING-SW\Legal Connection\Proyecto\LC.PAYMENT\obj\Debug\netcoreapp3.1\LC.PAYMENT.pdb
+D:\ING-SW\Legal Connection\Proyecto\LC.PAYMENT\obj\Debug\netcoreapp3.1\LC.PAYMENT.csprojAssemblyReference.cache

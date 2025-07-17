@@ -1,0 +1,209 @@
+﻿@model LC.WEB.Models.Regiser.ClientViewModel
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+@section Styles{
+    <link href="~/css/views/account/login.css" rel="stylesheet" />
+}
+
+<div class="m--padding-100-desktop m--padding-50-tablet m--padding-10-mobile m--padding-top-10" style="padding-top:0px !important;padding-bottom:0px !important;">
+    <div class="m--padding-50-desktop m--padding-50-tablet m--padding-10-mobile m--padding-top-10" style="padding-bottom: 0px !important;">
+        <div class="m-portlet m-portlet--mobile m-portlet--body-progress lc-background-gradient lc-border-radius-gradient-side-right" style="">
+            <div class="m-portlet__body d-lg-flex d-md-flex d-sm-block" style="padding:0px !important;">
+                <div class="col-lg-6 col-md-6 col-sm-12 " style="padding:0px !important">
+                    <div class="m-login__signin m--padding-50-desktop m--padding-20-tablet m--padding-20-mobile">
+                        <a href="/">
+                            <img src="/images/logo/logo_horizontal_blanco.png" alt="Alternate Text" class="lc-logo-login" />
+                        </a>
+                        <div class="row">
+                            <span class="lc-welcome-text text-center m--padding-20-desktop">
+                                ¿Ya estas registrado en LegalConnection?
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="text-white text-center m--padding-20-desktop">
+                                ¿Que esperas?, contamos con un repertorio de abogados amplio que están dispuestos a solucionar tu caso.
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-8 text-center" style="margin:auto">
+                                <a id="register_link" asp-controller="Account" asp-action="Login" class="btn btn-lc-transparent-white m-btn m-btn--pill m-btn--custom m-btn--air">INGRESAR</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 bg-white lc-border-radius-white-side-right" style="padding:0px !important">
+                    <div class="m-login__signin m--padding-50-desktop m--padding-20-tablet m--padding-20-mobile">
+                        <h1 class="text-center" style="font-weight:bold">
+                            Soy usuario nuevo
+                        </h1>
+
+                        <div class="m--padding-10">
+                            <div class="col-lg-12 col-md-12 text-center m--padding-5" style="margin:auto;display:flex;border-radius: 60px;background-color:white;border:1px solid #0f7f97">
+                                <div class="col-lg-6 col-md-6" style="padding:unset;">
+                                    <a href="#" style="" class="btn m-btn--pill btn-lc-green btn-block text-white">BUSCO ABOGADO</a>
+                                </div>
+                                <div class="col-lg-6 col-md-6" style="padding:unset;">
+                                    <a asp-action="LawyerRegister" asp-controller="Account" style="" class="btn m-btn--pill btn-secondary btn-block">SOY ABOGADO</a>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="text-center" style="font-weight:bold">
+                            Ingresa tus datos
+                        </h4>
+                        <form class="m-form m-form--label-align-right" id="register" autocomplete="off">
+                            <div class="form-group m-form__group col-lg-12">
+                                <input asp-for="Name" class="form-control m-input" required maxlength="100">
+                            </div>
+                            <div class="form-group m-form__group col-lg-12">
+                                <input asp-for="Surnames" class="form-control m-input" required maxlength="100">
+                            </div>
+                            <div class="form-group m-form__group col-lg-12">
+                                <div class="m-input-icon m-input-icon--right">
+                                    <input class="form-control m-input" asp-for="Email" required maxlength="150">
+                                    <span class="m-input-icon__icon m-input-icon__icon--right"><span><i class="la la-user"></i></span></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group m-form__group col-lg-12">
+                                <div class="m-input-icon m-input-icon--right">
+                                    <input type="password" asp-for="Password" class="form-control m-input" required maxlength="100">
+                                    <span class="m-input-icon__icon m-input-icon__icon--right"><span><i class="la la-unlock"></i></span></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group col-lg-12">
+                                <div class="m-input-icon m-input-icon--right">
+                                    <input type="password" asp-for="ConfirmPassword" class="form-control m-input" required maxlength="100">
+                                    <span class="m-input-icon__icon m-input-icon__icon--right"><span><i class="la la-unlock"></i></span></span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group col-lg-12">
+                                <div class="m-checkbox-inline">
+                                    <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
+                                        <input type="checkbox" required asp-for="TermsAndConditions"> Acepto los <a target="_blank" asp-controller="Portal" asp-action="TermAndConditions" class="m-link m--font-boldest">T&eacute;rminos y condiciones  </a> y las <a asp-controller="Portal" asp-action="PolicyAndPrivacy" target="_blank" class="m-link m--font-boldest"> Pol&iacute;tica de Privacidad y Protecci&oacute;n de datos Personales</a>
+                                        <span></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-8" style="margin:auto">
+                                    <button type="submit" class="btn btn-lc-green m-btn--pill" style="float:right">REGISTRATE</button>
+                                </div>
+                            </div>
+                            <div class="text-center m--padding-15-desktop" id="external_div_logins">
+                                <a class="google-button " id="google" asp-controller="Account" asp-action="ExternalRegister" asp-route-provider="Google" asp-route-returnurl="@ViewData["ReturnUrl"]">
+                                    <span class="google-button__icon">
+                                        <svg viewBox="0 0 366 372" xmlns="http://www.w3.org/2000/svg"><path d="M125.9 10.2c40.2-13.9 85.3-13.6 125.3 1.1 22.2 8.2 42.5 21 59.9 37.1-5.8 6.3-12.1 12.2-18.1 18.3l-34.2 34.2c-11.3-10.8-25.1-19-40.1-23.6-17.6-5.3-36.6-6.1-54.6-2.2-21 4.5-40.5 15.5-55.6 30.9-12.2 12.3-21.4 27.5-27 43.9-20.3-15.8-40.6-31.5-61-47.3 21.5-43 60.1-76.9 105.4-92.4z" id="Shape" fill="#EA4335" /><path d="M20.6 102.4c20.3 15.8 40.6 31.5 61 47.3-8 23.3-8 49.2 0 72.4-20.3 15.8-40.6 31.6-60.9 47.3C1.9 232.7-3.8 189.6 4.4 149.2c3.3-16.2 8.7-32 16.2-46.8z" id="Shape" fill="#FBBC05" /><path d="M361.7 151.1c5.8 32.7 4.5 66.8-4.7 98.8-8.5 29.3-24.6 56.5-47.1 77.2l-59.1-45.9c19.5-13.1 33.3-34.3 37.2-57.5H186.6c.1-24.2.1-48.4.1-72.6h175z" id="Shape" fill="#4285F4" /><path d="M81.4 222.2c7.8 22.9 22.8 43.2 42.6 57.1 12.4 8.7 26.6 14.9 41.4 17.9 14.6 3 29.7 2.6 44.4.1 14.6-2.6 28.7-7.9 41-16.2l59.1 45.9c-21.3 19.7-48 33.1-76.2 39.6-31.2 7.1-64.2 7.3-95.2-1-24.6-6.5-47.7-18.2-67.6-34.1-20.9-16.6-38.3-38-50.4-62 20.3-15.7 40.6-31.5 60.9-47.3z" fill="#34A853" /></svg>
+                                    </span>
+                                    <span class="google-button__text">Registrate con Google</span>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<div class="container m--padding-top-90">
+    <div class="m-portlet">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <span class="m-portlet__head-icon m--hide">
+                        <i class="la la-gear"></i>
+                    </span>
+                    <h3 class="m-portlet__head-text">
+                        Registro
+                    </h3>
+                </div>
+            </div>
+        </div>-->
+<!--begin::Form-->
+<!--<form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" id="register" autocomplete="off">
+    <div class="m-portlet__body">
+        <div class="row">
+            <div class="form-group m-form__group col-lg-6">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control m-input" required maxlength="100">
+            </div>
+            <div class="form-group m-form__group col-lg-6">
+                <label asp-for="Surnames"></label>
+                <input asp-for="Surnames" class="form-control m-input" required maxlength="100">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group m-form__group col-lg-6">
+                <label asp-for="Email"></label>
+                <div class="m-input-icon m-input-icon--right">
+                    <input class="form-control m-input" asp-for="Email" required maxlength="150">
+                    <span class="m-input-icon__icon m-input-icon__icon--right"><span><i class="la la-user"></i></span></span>
+                </div>
+            </div>
+            <div class="form-group m-form__group col-lg-3">
+                <label asp-for="DocumentType"></label>
+                <div class="m-input-icon m-input-icon--right">
+                    <select asp-for="DocumentType" class="form-control m-input" required>
+                        @foreach (var item in ConstantHelpers.DOCUMENT_TYPE.VALUES)
+                        {
+                            <option value="@item.Key">@item.Value</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group m-form__group col-lg-3">
+                <label asp-for="Dni"></label>
+                <div class="m-input-icon m-input-icon--right">
+                    <input asp-for="Dni" class="form-control m-input" required>
+                    <span class="m-input-icon__icon m-input-icon__icon--right"><span><i class="la la-eyedropper"></i></span></span>
+                </div>
+            </div>
+        </div>
+        <div class=" row">
+            <div class="form-group m-form__group col-lg-6">
+                <label asp-for="Password"></label>
+                <div class="m-input-icon m-input-icon--right">
+                    <input type="password" asp-for="Password" class="form-control m-input" required maxlength="100">
+                    <span class="m-input-icon__icon m-input-icon__icon--right"><span><i class="la la-unlock"></i></span></span>
+                </div>
+            </div>
+            <div class="form-group m-form__group col-lg-6">
+                <label asp-for="ConfirmPassword"></label>
+                <div class="m-input-icon m-input-icon--right">
+                    <input type="password" asp-for="ConfirmPassword" class="form-control m-input" required maxlength="100">
+                    <span class="m-input-icon__icon m-input-icon__icon--right"><span><i class="la la-unlock"></i></span></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group m-form__group col-lg-12">
+                <label>&emsp;</label>
+                <div class="m-checkbox-inline">
+                    <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
+                        <input type="checkbox" required asp-for="TermsAndConditions"> Acepto los <a class="m-link m--font-boldest" href="javascript:;">T&eacute;rminos y condiciones  </a> y las <a class="m-link m--font-boldest" href="javascript:;"> Pol&iacute;tica de Privacidad y Protecci&oacute;n de datos Personales</a>
+                        <span></span>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+        <div class="m-form__actions m-form__actions--solid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <button type="submit" class="btn btn-primary" style="float:right">Registrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>-->
+<!--end::Form-->
+<!--</div>
+</div>-->
+
+@section Scripts{
+    <script src="~/js/views/account/registerasclient.js"></script>
+}

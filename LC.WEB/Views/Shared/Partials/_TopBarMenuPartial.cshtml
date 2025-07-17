@@ -1,0 +1,235 @@
+﻿@if (User.IsInRole(ConstantHelpers.ROLES.LAWYER))
+{
+
+    <li class="m-menu__item" aria-haspopup="true" is-active-route asp-route-area="Lawyer" asp-controller="Profile" asp-action="Index">
+        <a asp-action="Index" asp-controller="Profile" asp-area="Lawyer" class="m-menu__link "><span class="m-menu__item-here"></span><span class="m-menu__link-text text-white">PERFIL PROFESIONAL</span></a>
+    </li>
+    @*<li class="m-menu__item  m-menu__item--active " aria-haspopup="true"><a href="index.html" class="m-menu__link "><span class="m-menu__item-here"></span><span class="m-menu__link-text text-white">Dashboard</span></a></li>*@
+    @if (User.LawyerIfValidated())
+    {
+        <li class="m-menu__item" aria-haspopup="true" is-active-route asp-route-area="Lawyer" asp-controller="LegalCase" asp-action="Index">
+            <a asp-action="Index" asp-controller="LegalCase" asp-area="Lawyer" class="m-menu__link ">
+                <span class="m-menu__item-here"></span><span class="m-menu__link-text text-white">BANDEJA</span>
+            </a>
+        </li>
+        <li class="m-menu__item" aria-haspopup="true" is-active-route asp-route-area="Lawyer" asp-controller="EconomicManagement" asp-action="Index">
+            <a asp-action="Index" asp-controller="EconomicManagement" asp-area="Lawyer" class="m-menu__link "><span class="m-menu__item-here"></span><span class="m-menu__link-text text-white">FINANZAS</span></a>
+        </li>
+    }
+}
+
+@if (User.IsInRole(ConstantHelpers.ROLES.CLIENT))
+{
+    <li class="m-menu__item" aria-haspopup="true" is-active-route asp-route-area="Client" asp-controller="LegalCase" asp-action="Index">
+        <a asp-action="Index" asp-controller="LegalCase" asp-area="Client" class="m-menu__link "><span class="m-menu__item-here"></span><span class="m-menu__link-text text-white">MIS CASOS</span></a>
+    </li>
+    <li class="m-menu__item" aria-haspopup="true" is-active-route asp-route-area="Client" asp-controller="LegalCase" asp-action="Add">
+        <a asp-action="Add" asp-controller="LegalCase" asp-area="Client" class="m-menu__link "><span class="m-menu__item-here"></span><span class="m-menu__link-text text-white">REGISTRA TU CASO</span></a>
+    </li>
+    <li class="m-menu__item" aria-haspopup="true" is-active-route asp-route-area="Client" asp-controller="Lawyer" asp-action="Index">
+        <a asp-action="Index" asp-controller="Lawyer" asp-area="Client" class="m-menu__link "><span class="m-menu__item-here"></span><span class="m-menu__link-text text-white">ENCUENTRA UN ABOGADO</span></a>
+    </li>
+    @*<li class="m-menu__item  m-menu__item--active " aria-haspopup="true"><a href="index.html" class="m-menu__link "><span class="m-menu__item-here"></span><span class="m-menu__link-text text-white">Dashboard</span></a></li>*@
+}
+
+@if (User.IsInRole(ConstantHelpers.ROLES.ADMIN))
+{
+
+    <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+        <a href="javascript:;" class="m-menu__link m-menu__toggle">
+            <i class="m-menu__link-icon flaticon-users-1"></i>
+            <span class="m-menu__link-text text-white">Administrador</span><i class="m-menu__ver-arrow la la-angle-right text-white"></i>
+        </a>
+        <div class="m-menu__submenu ">
+            <span class="m-menu__arrow"></span>
+            <ul class="m-menu__subnav">
+                <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
+                    <span class="m-menu__link"><span class="m-menu__link-text text-white">Administrador</span></span>
+                </li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="Configuration" asp-action="Index">
+                    <a asp-controller="Configuration" asp-action="Index" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Configuraciones</span></a>
+                </li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="Speciality" asp-action="Index">
+                    <a asp-controller="Speciality" asp-action="Index" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Especialidades</span></a>
+                </li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="LegalCaseQuestion" asp-action="Index">
+                    <a asp-controller="LegalCaseQuestion" asp-action="Index" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Alcances para Casos Legales</span></a>
+                </li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="Plan" asp-action="Index">
+                    <a asp-controller="Plan" asp-action="Index" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Planes</span></a>
+                </li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="Benefit" asp-action="Index">
+                    <a asp-controller="Benefit" asp-action="Index" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Beneficios</span></a>
+                </li>
+            </ul>
+        </div>
+    </li>
+
+    <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+        <a href="javascript:;" class="m-menu__link m-menu__toggle">
+            <i class="m-menu__link-icon flaticon-add-circular-button"></i><span class="m-menu__link-text text-white">Maquetador</span><i class="m-menu__ver-arrow la la-angle-right text-white"></i>
+        </a>
+        <div class="m-menu__submenu ">
+            <span class="m-menu__arrow"></span>
+            <ul class="m-menu__subnav">
+                <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"><span class="m-menu__link"><span class="m-menu__link-text text-white">Maquetador</span></span></li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="Banner" asp-action="Index">
+                    <a asp-controller="Banner" asp-action="Index" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Banner</span></a>
+                </li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="SectionItems" asp-action="Index">
+                    <a asp-controller="SectionItems" asp-action="Index" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Elementos por secci&oacute;n</span></a>
+                </li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="MissionVision" asp-action="Index">
+                    <a asp-controller="MissionVision" asp-action="Index" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Misi&oacute;n y Visi&oacute;n</span></a>
+                </li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="HowItWorks" asp-action="Index">
+                    <a asp-controller="HowItWorks" asp-action="Index" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Pasos de C&oacute;mo funciona</span></a>
+                </li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="FrequentQuestion" asp-action="Index">
+                    <a asp-controller="FrequentQuestion" asp-action="Index" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white"> Preguntas frecuentes</span></a>
+                </li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="SocialNetwork" asp-action="Index">
+                    <a asp-controller="SocialNetwork" asp-action="Index" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white"> Redes sociales</span></a>
+                </li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="Footer" asp-action="Index">
+                    <a asp-controller="Footer" asp-action="Index" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white"> Footer</span></a>
+                </li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="Blog" asp-action="Index">
+                    <a asp-controller="Blog" asp-action="Index" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white"> Blog</span></a>
+                </li>
+
+            </ul>
+        </div>
+    </li>
+
+    <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+        <a href="javascript:;" class="m-menu__link m-menu__toggle">
+            <i class="m-menu__link-icon flaticon-layer"></i><span class="m-menu__link-text text-white">Asesor</span><i class="m-menu__ver-arrow la la-angle-right text-white"></i>
+        </a>
+        <div class="m-menu__submenu ">
+            <span class="m-menu__arrow"></span>
+            <ul class="m-menu__subnav">
+                <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"><span class="m-menu__link"><span class="m-menu__link-text text-white">Asesor</span></span></li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="Lawyer" asp-action="Pending">
+                    <a asp-controller="Lawyer" asp-action="Pending" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Abogados por Validar</span></a>
+                </li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="Lawyer" asp-action="Validated">
+                    <a asp-controller="Lawyer" asp-action="Validated" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Abogados Registrados</span></a>
+                </li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="Publication" asp-action="Index">
+                    <a asp-controller="Publication" asp-action="Index" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Publicaciones</span></a>
+                </li>
+
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="WithdrawalRequest" asp-action="Index">
+                    <a asp-controller="WithdrawalRequest" asp-action="Index" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Solicitudes de Retiro</span></a>
+                </li>
+
+            </ul>
+        </div>
+    </li>
+
+    <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+        <a href="javascript:;" class="m-menu__link m-menu__toggle">
+            <i class="m-menu__link-icon flaticon-doc"></i>
+            <span class="m-menu__link-text text-white">Casos Legales</span><i class="m-menu__ver-arrow la la-angle-right text-white"></i>
+        </a>
+        <div class="m-menu__submenu ">
+            <span class="m-menu__arrow"></span>
+            <ul class="m-menu__subnav">
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="LegalCase" asp-action="Postulations">
+                    <a asp-controller="LegalCase" asp-action="Postulations" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Postulaciones</span></a>
+                </li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="LegalCase" asp-action="Index">
+                    <a asp-controller="LegalCase" asp-action="Index" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Contacto Directo</span></a>
+                </li>
+            </ul>
+        </div>
+    </li>
+
+    <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+        <a href="javascript:;" class="m-menu__link m-menu__toggle">
+            <i class="m-menu__link-icon flaticon-layer"></i><span class="m-menu__link-text text-white">Reportes</span><i class="m-menu__ver-arrow la la-angle-right text-white"></i>
+        </a>
+        <div class="m-menu__submenu ">
+            <span class="m-menu__arrow"></span>
+            <ul class="m-menu__subnav">
+                <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"><span class="m-menu__link"><span class="m-menu__link-text text-white">Reportes</span></span></li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Report" asp-controller="NewUser" asp-action="Index">
+                    <a asp-controller="NewUser" asp-action="Index" asp-route-area="Report" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Nuevos Usuarios</span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="m-menu__submenu ">
+            <span class="m-menu__arrow"></span>
+            <ul class="m-menu__subnav">
+                <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"><span class="m-menu__link"><span class="m-menu__link-text text-white">Reportes</span></span></li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Report" asp-controller="Payment" asp-action="Index">
+                    <a asp-controller="Payment" asp-action="Index" asp-route-area="Report" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Pagos</span></a>
+                </li>
+            </ul>
+        </div>
+    </li>
+}
+
+@if (User.IsInRole(ConstantHelpers.ROLES.ADVISER))
+{
+    <li class="m-menu__item " aria-haspopup="true" is-active-route asp-controller="Lawyer" asp-action="Pending" asp-area="Admin">
+        <a asp-controller="Lawyer" asp-action="Pending" asp-route-area="Admin" class="m-menu__link ">
+            <i class="m-menu__link-icon flaticon-comment"></i>
+            <span class="m-menu__link-text text-white">
+                Nuevos Abogados
+            </span>
+        </a>
+    </li>
+    <li class="m-menu__item " aria-haspopup="true" is-active-route asp-controller="Lawyer" asp-action="Validated" asp-area="Admin">
+        <a asp-controller="Lawyer" asp-action="Validated" asp-route-area="Admin" class="m-menu__link ">
+            <i class="m-menu__link-icon flaticon-user-ok"></i>
+            <span class="m-menu__link-text text-white">
+                Abogados Registrados
+            </span>
+        </a>
+    </li>
+    <li class="m-menu__item " aria-haspopup="true" is-active-route asp-controller="Publication" asp-action="Index" asp-area="Admin">
+        <a asp-controller="Publication" asp-action="Index" asp-route-area="Admin" class="m-menu__link ">
+            <i class="m-menu__link-icon flaticon-alarm"></i>
+            <span class="m-menu__link-text text-white">
+                Publicaciones
+            </span>
+        </a>
+    </li>
+    <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+        <a href="javascript:;" class="m-menu__link m-menu__toggle">
+            <i class="m-menu__link-icon flaticon-doc"></i>
+            <span class="m-menu__link-text text-white">Casos Legales</span><i class="m-menu__ver-arrow la la-angle-right text-white"></i>
+        </a>
+        <div class="m-menu__submenu ">
+            <span class="m-menu__arrow"></span>
+            <ul class="m-menu__subnav">
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="LegalCase" asp-action="Index">
+                    <a asp-controller="LegalCase" asp-action="Index" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Contacto Directo</span></a>
+                </li>
+                <li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="LegalCase" asp-action="Postulations">
+                    <a asp-controller="LegalCase" asp-action="Postulations" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Postulaciones</span></a>
+                </li>
+            </ul>
+        </div>
+    </li>
+    @*<li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="LegalCase" asp-action="Index">
+            <a asp-controller="LegalCase" asp-action="Index" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Casos Legales Contacto Directo</span></a>
+        </li>*@
+    @*<li class="m-menu__item " aria-haspopup="true" is-active-route asp-route-area="Admin" asp-controller="LegalCase" asp-action="Postulations">
+            <a asp-controller="LegalCase" asp-action="Postulations" asp-route-area="Admin" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text-white">Postulaciones</span></a>
+        </li>*@
+}
+
+@if (User.IsInRole(ConstantHelpers.ROLES.TREASURER))
+{
+    <li class="m-menu__item " aria-haspopup="true" is-active-route asp-controller="WithdrawalRequest" asp-action="Index" asp-area="Admin">
+        <a asp-controller="WithdrawalRequest" asp-action="Index" asp-route-area="Admin" class="m-menu__link ">
+            <i class="m-menu__link-icon flaticon-comment"></i>
+            <span class="m-menu__link-text text-white">
+                Solicitudes de Retiro
+            </span>
+        </a>
+    </li>
+}

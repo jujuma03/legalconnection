@@ -1,0 +1,84 @@
+﻿@model LC.WEB.Areas.Admin.Models.Plan.PlanViewModel
+@{
+    ViewData["Title"] = "Detalles del Plan";
+    ViewData["Breadcrumbs"] = new[] {
+    new BreadcrumbViewModel { Name = "Listado de Planes" , Action = "Index" , Area="Admin", Controller="Plan"},
+    new BreadcrumbViewModel { Name = ViewData["Title"].ToString() }
+    };
+}
+
+<div class="m-portlet">
+    <form id="main_form">
+        <div class="m-portlet__body">
+            <div class="row">
+                <div class="form-group m-form__group col-lg-12">
+                    <label asp-for="Name">Nombre:</label>
+                    <input class="form-control m-input" asp-for="Name" placeholder="Ingrese nombre" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group m-form__group col-lg-12">
+                    <label asp-for="Description">Descripci&oacute;n:</label>
+                    <textarea class="form-control m-input" asp-for="Description" placeholder="Ingrese descripción" rows="4" maxlength="300" readonly></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group m-form__group col-lg-12">
+                    <label asp-for="DescriptionLC">Descripci&oacute;n (Solo para uso de LC):</label>
+                    <textarea class="form-control m-input" asp-for="DescriptionLC" placeholder="Ingrese descripción" rows="4" maxlength="300" readonly></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group m-form__group col-lg-6">
+                    <label asp-for="Interval">Intervalo:</label>
+                    <input class="form-control m-input" value="@ConstantHelpers.ENTITIES.PLAN.INTERVAL.VALUES[Model.Interval]" readonly>
+                </div>
+                <div class="form-group m-form__group col-lg-6">
+                    <label asp-for="IntervalCount">Cantidad Intervalo:</label>
+                    <input min="0" type="number" class="form-control m-input" asp-for="IntervalCount" placeholder="Ingrese intervalo" readonly>
+                    <small class="m-form__help">
+                        Cantidad de cada cuanto se deben ejecutar los cargos del plan. Si en 'Intervalo' pusimos "meses", poner valor 1 en este campo hará que se cobre cada mes.
+                    </small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group m-form__group col-lg-6">
+                    <label asp-for="Amount">Monto:</label>
+                    <input type="number" class="form-control m-input" asp-for="Amount" placeholder="Ingrese Monto" readonly>
+                </div>
+                <div class="form-group m-form__group  col-lg-6">
+                    <label asp-for="TrialDays">D&iacute;as de Prueba:</label>
+                    <input type="number" min="0" class="form-control m-input" asp-for="TrialDays" placeholder="Ingrese días de prueba" readonly>
+                    <small class="m-form__help">
+                        Número de días del periodo de prueba (sin costo).
+                    </small>
+                </div>
+            </div>
+            <div class="m-divider mb-4 mt-3">
+                <span></span>
+            </div>
+            <h5 class="m--font-boldest2 mb-4">Beneficios</h5>
+            <div class="row">
+                @for (int i = 0; i < Model.Benefits.Count(); i++)
+                {
+                    <input type="hidden" value="@Model.Benefits[i].Id" name="Benefits[@i].Id" />
+                    <div class="m-form__group form-group col-6">
+                        <div class="m-checkbox-list">
+                            <label class="m-checkbox m-checkbox--check-bold m-checkbox--state-brand">
+                                @if (Model.Benefits[i].Assigned)
+                                {
+                                    <input type="checkbox" checked name="Benefits[@i].Assigned" value="true" disabled> @Model.Benefits[i].Description
+                                }
+                                else
+                                {
+                                    <input type="checkbox" name="Benefits[@i].Assigned" value="true" disabled> @Model.Benefits[i].Description
+                                }
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </form>
+</div>

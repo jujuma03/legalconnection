@@ -1,0 +1,147 @@
+﻿<div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
+        <div id="m_header_topbar" class="">
+            <div class="m-stack__item m-topbar__nav-wrapper">
+                <ul class="m-topbar__nav m-nav m-nav--inline">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @if (User.IsInRole(ConstantHelpers.ROLES.LAWYER))
+                        {
+                            <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light">
+                                <a class="btn btn-lc-green m-btn--pill" asp-area="Lawyer" asp-controller="LegalCase" asp-action="Index"> Ir al Panel</a>
+                            </li>
+                        }
+                        @if (User.IsInRole(ConstantHelpers.ROLES.CLIENT))
+                        {
+                            <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light">
+                                <a class="btn btn-lc-green m-btn--pill" asp-area="Client" asp-controller="LegalCase" asp-action="Index"> Ir al Panel</a>
+                            </li>
+                        }
+                        @if (User.IsInRole(ConstantHelpers.ROLES.ADMIN)|| User.IsInRole(ConstantHelpers.ROLES.LAYOUT_ARTIST))
+                        {
+                            <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light">
+                                <a class="btn btn-lc-green m-btn--pill" asp-area="Admin" asp-controller="LegalCase" asp-action="Postulations"> Ir al Panel</a>
+                            </li>
+                        }
+                        <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light"
+                            m-dropdown-toggle="click">
+                            <a href="#" class="m-nav__link m-dropdown__toggle">
+                                <span class="m-topbar__userpic">
+                                    @if (string.IsNullOrEmpty(User.GetPictureUrl()))
+                                    {
+                                        <img id="topbar_profile_image" src="~/images/general/profile.jpg" class="m--img-rounded m--marginless m--img-centered" style="max-height:40px" alt="" />
+                                    }
+                                    else
+                                    {
+                                        <img id="topbar_profile_image" src="/documentos/@User.GetPictureUrl()" class="m--img-rounded m--marginless m--img-centered" style="max-height:40px" alt="" />
+                                    }
+                                </span>
+                            </a>
+                            <div class="m-dropdown__wrapper">
+                                <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                                <div class="m-dropdown__inner">
+                                    <div class="m-dropdown__header m--align-center" style="background: url(/assets/images/user_profile_bg.jpg); background-size: cover;">
+                                        <div class="m-card-user m-card-user--skin-dark">
+                                            <div class="m-card-user__pic">
+                                                @if (string.IsNullOrEmpty(User.GetPictureUrl()))
+                                                {
+                                                    <img src="~/images/general/profile.jpg" class="m--img-rounded m--marginless" alt="" />
+                                                }
+                                                else
+                                                {
+                                                    <img ssrc="/documentos/@User.GetPictureUrl()"  class="m--img-rounded m--marginless" alt="" />
+                                                }
+                                            </div>
+                                            <div class="m-card-user__details">
+                                                <span class="m-card-user__name m--font-weight-500">@User.GetFullName()</span>
+                                                <a href="" class="m-card-user__email m--font-weight-300 m-link">@User.GetEmail()</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="m-dropdown__body">
+                                        <div class="m-dropdown__content">
+                                            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
+                                                <ul class="m-nav m-nav--skin-light">
+                                                    <li class="m-nav__section m--hide">
+                                                        <span class="m-nav__section-text">Section</span>
+                                                    </li>
+                                                    @*<li class="m-nav__item">
+            <a asp-action="Index" asp-controller="Profile" asp-area="Lawyer" class="m-nav__link">
+                <i class="m-nav__link-icon flaticon-profile-1"></i>
+                <span class="m-nav__link-text">Mi Perfil</span>
+            </a>
+        </li>
+        <li class="m-nav__item">
+            <a href="#" class="m-nav__link">
+                <i class="m-nav__link-icon flaticon-chat-1"></i>
+                <span class="m-nav__link-text">Mensajes</span>
+            </a>
+        </li>
+        <li class="m-nav__separator m-nav__separator--fit">
+        </li>
+        <li class="m-nav__item">
+            <a href="#" class="m-nav__link">
+                <i class="m-nav__link-icon flaticon-info"></i>
+                <span class="m-nav__link-text">FAQ</span>
+            </a>
+        </li>
+        <li class="m-nav__item">
+            <a href="#" class="m-nav__link">
+                <i class="m-nav__link-icon flaticon-lifebuoy"></i>
+                <span class="m-nav__link-text">Soporte</span>
+            </a>
+        </li>*@
+                                                    <li class="m-nav__separator m-nav__separator--fit">
+                                                    </li>
+                                                    <li class="m-nav__item">
+                                                        <button type="submit" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Cerrar Sesi&oacute;n</button>
+                                                    </li>
+                                                </ul>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light"
+                            m-dropdown-toggle="click">
+                            <a href="#" class="m-nav__link m-dropdown__toggle">
+                                <span class="m-topbar__username m-widget13__text-bolder">REGISTRO</span>
+                            </a>
+                            <div class="m-dropdown__wrapper" style="z-index: 101;">
+                                <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 5px;"></span>
+                                <div class="m-dropdown__inner">
+                                    <div class="m-dropdown__body">
+                                        <div class="m-dropdown__content">
+                                            <ul class="m-nav m-nav--skin-light">
+                                                <li class="m-nav__item m-nav__item--active">
+                                                    <a asp-controller="Account" asp-action="LawyerRegister" class="m-nav__link m-nav__link--active">
+                                                        <span class="m-nav__link-title m-topbar__language-text m-nav__link-text">Como abogado</span>
+                                                    </a>
+                                                </li>
+                                                <li class="m-nav__item m-nav__item--active">
+                                                    <a asp-controller="Account" asp-action="Register" class="m-nav__link m-nav__link--active">
+                                                        <span class="m-nav__link-title m-topbar__language-text m-nav__link-text">Como cliente</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        @*<li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light">
+                            <a asp-action="Login" asp-controller="Account" class="m-nav__link">
+                                <span class="m-topbar__username">INGRESA</span>
+                            </a>
+                        </li>*@
+                        <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light">
+                            <a class="btn btn-lc-green m-btn--pill" asp-action="Login" asp-controller="Account">INGRESA</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>

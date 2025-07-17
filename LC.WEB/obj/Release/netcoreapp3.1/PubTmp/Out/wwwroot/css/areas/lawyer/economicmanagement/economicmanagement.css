@@ -1,0 +1,81 @@
+﻿.form-control-customize {
+    border-top: 0px !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+    border-radius: 0px !important;
+    border-color: black !important;
+    border-bottom: 2px solid;
+    font-size: 30px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.dataTables_wrapper {
+    width: 100%;
+}
+
+.btn-nav2 {
+    font-size: 18px;
+    border-radius: 33px;
+}
+
+h3 {
+    font-size: 35px;
+}
+
+.div_detail {
+    background-color: #0f7f97;
+    border-radius: 10px;
+    color: white;
+}
+
+.div_detail_2 {
+    border-radius: 10px;
+    background-color: #b6cad9;
+}
+
+.text-2-c {
+    font-size: 25px;
+    font-weight: 600;
+    color: #384854;
+}
+
+.div_detailed {
+    color: white;
+    font-size: 22px !important;
+}
+
+.lc-big-input {
+    border: 0;
+    border-bottom: 1px solid white;
+    text-align: center;
+    width: 100%;
+    background-color: transparent;
+    color: white;
+    font-size: 70px;
+    line-height: 80px;
+    height: 100px;
+}
+
+    .lc-big-input:focus {
+        color: white;
+        background-color: transparent;
+    }
+
+    .lc-big-input + .form-control-feedback {
+        color: white
+    }
+
+.lc-San-bold {
+    font-family: 'SourceSansProBold'
+}

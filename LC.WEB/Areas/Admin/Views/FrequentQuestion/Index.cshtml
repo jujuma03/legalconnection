@@ -1,0 +1,196 @@
+﻿@using LC.WEB.Models
+@model LC.WEB.Areas.Admin.Models.FrequentQuestion.FrequentQuestionViewModel
+@{
+    ViewBag.Title =ViewData["Title"]= "Gestión de preguntas frecuentes";
+        ViewData["Breadcrumbs"] = new[] {
+    new BreadcrumbViewModel { Name = ViewData["Title"].ToString() }
+    };
+}
+
+@section Styles {
+    <link href="~/css/areas/admin/sectionitems/index.css" asp-append-version="true" rel="stylesheet" />
+}
+<div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text m--font-brand">
+                    &emsp;
+                </h3>
+            </div>
+        </div>
+        <div class="m-portlet__head-tools">
+            <a data-toggle="modal" href="#add_modal" id="btnCreateSlide" class="btn btn-primary btn-sm m-btn m-btn m-btn--icon">
+                <span>
+                    <i class="la la-plus"></i>
+                    <span>Agregar</span>
+                </span>
+            </a>
+        </div>
+    </div>
+    <div class="m-portlet__body">
+        <div class="m-form--label-align-right m--margin-bottom-20">
+            <div class="row align-items-center">
+                <div class="col-xl-12 order-2 order-xl-1">
+                    <div class="row">
+                        @*<div class="form-group m-form__group col-12 col-sm-6 col-md-6 col-xl-4">
+                                <div class="m-input m-input-icon m-input-icon--left">
+                                    <label asp-for="Headline" class="form-control-label" style="font-weight:bold;"></label>
+                                    <input type="text" class="form-control" placeholder="Titular" id="tbHeadline">
+                                </div>
+                            </div>*@
+
+                        <div class="form-group m-form__group col-12 col-sm-6 col-md-6 col-xl-4">
+                            <div class="m-input m-input-icon m-input-icon--left">
+                                <label asp-for="ListStatus" class="form-control-label" style="font-weight:bold;"></label>
+                                <select class="form-control" asp-for="Status" asp-items="@Model.ListStatus" id="selectStatus">
+                                    <option value="0">Todos</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-hover table-bordered m-table m-table--head-bg-primary" id="data-table"> </table>
+            @*<div class="table-responsive">
+                    <table class="table table-striped w-auto" id="data-table"></table>
+                </div>*@
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="add_modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Agregar pregunta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="add_items_form" autocomplete="off" asp-controller="FrequentQuestion" asp-action="Create" asp-area="Admin">
+                <div class="modal-body">
+                    <div class="">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label for="Headline">T&iacute;tulo</label>
+                            <input name="Headline" class="form-control m-input" required placeholder="Título" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-6 col-xs-12">
+                            <div class="col-md-12 m-form__group-sub">
+                                <label class="required-form-label">Dirigido a:</label>
+                                <select class="form-control" asp-for="Type" asp-items="@Model.ListTypes" id="selectType-add">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="col-md-12 m-form__group-sub">
+                            <label class="required-form-label">Icono</label>
+                            <select class="form-control" asp-for="Icon" asp-items="Model.ListIcons" id="selectIcon-add">
+                                @*@foreach (var item in Model.ListIcons)
+                                {
+                                    <option value="@item.Value">@item.Text</option>
+                                }*@
+                            </select>
+                        </div>
+                    </div>
+                    @*<div class="row">
+            <div class="form-group m-form__group col-lg-6 col-xs-12">
+                <div class="col-md-12 m-form__group-sub">
+                    <label class="required-form-label">Dirigido a:</label>
+                    <input class="form-control" id="selecticons-add" />
+                </div>
+            </div>
+        </div>*@
+                    <div class="">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label for="Description">Descripci&oacute;n</label>
+                            <textarea name="Description" placeholder="Descripción" class="form-control m-input" required rows="5" maxlength="1000"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary btn-save">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="update_modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar pregunta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="update_items_form" autocomplete="off" asp-controller="FrequentQuestion" asp-action="Update" asp-area="Admin">
+                <input type="hidden" id="Id" asp-for="Id" />
+                <div class="modal-body">
+                    <div class="">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label for="Headline">T&iacute;tulo</label>
+                            <input id="Headline" name="Headline" class="form-control m-input" required placeholder="Título" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-6 col-xs-12">
+                            <div class="col-md-12 m-form__group-sub">
+                                <label class="required-form-label">Dirigido a:</label>
+                                <select class="form-control" asp-for="Type" asp-items="@Model.ListTypes" id="selectType-edit">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group col-lg-6">
+                            <div class="col-md-12 m-form__group-sub m--margin-top-20">
+                                <div class="row align-items-center">
+                                    <div class="col-4">
+                                        <label asp-for="Status" class="required-form-label">Estado</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <label class="switch" style="margin-left:10px;">
+                                            <input id="Status" asp-for="Status" type="checkbox">
+                                            <div class="slider round">
+                                                <span class="on" style="color:black; font-weight:bold;">ACTIVO</span>
+                                                <span class="off" style="color:black; font-weight:bold;">OCULTO</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="col-md-12 m-form__group-sub">
+                            <label class="required-form-label">Icono</label>
+                            <select class="form-control" asp-for="Icon" asp-items="Model.ListIcons" id="selectIcon-edit">
+                                @*@foreach (var item in Model.ListIcons)
+                                {
+                                <option value="@item.Value">@item.Text</option>
+                                }*@
+                            </select>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label for="Description">Descripci&oacute;n</label>
+                            <textarea id="Description" name="Description" placeholder="Descripción" class="form-control m-input" required rows="5" maxlength="1000"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary btn-save">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/js/areas/admin/frequentquestion/index.js" asp-append-version="true"></script>
+}

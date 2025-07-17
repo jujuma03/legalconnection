@@ -1,0 +1,170 @@
+﻿@model LC.WEB.Areas.Admin.Models.Lawyer.LawyerInfoViewModel
+@{
+    ViewData["Title"] = "Perfil de Abogado";
+    ViewData["Breadcrumbs"] = new[] {
+    new BreadcrumbViewModel { Name = ViewData["Title"].ToString() }
+    };
+}
+
+@section Styles{
+    <link href="~/css/site_client.css" asp-append-version="true" rel="stylesheet" type="text/css" />
+    <link href="~/css/views/lawyerprofile/index.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/areas/lawyer/profile/index.css" rel="stylesheet" asp-append-version="true" />
+}
+
+<input type="hidden" id="LawyerId" value="@Model.LawyerId" />
+
+@if (Model.Status == ConstantHelpers.ENTITIES.LAWYER.STATUS.IN_EVALUATION)
+{
+    if (Model.LawyerObservation.HasObservations && !Model.LawyerObservation.HasBeenCorrected)
+    {
+        <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+            <div class="m-alert__icon">
+                <i class="la la-warning"></i>
+            </div>
+            <div class="m-alert__text">
+                El abogado tiene observaciones pendientes.
+            </div>
+            <div class="m-alert__actions">
+                <button type="button" data-toggle="modal" data-target="#send_observation_modal" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                    Observaciones
+                </button>
+            </div>
+        </div>
+    }
+    else if (Model.LawyerObservation.HasObservations && Model.LawyerObservation.HasBeenCorrected)
+    {
+        <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+            <div class="m-alert__icon">
+                <i class="la la-warning"></i>
+            </div>
+            <div class="m-alert__text">
+                @Model.LawyerObservation.Observations <strong>(Corregido)</strong>
+            </div>
+            <div class="m-alert__actions">
+                <button type="button" id="validate_profile" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                    Validar
+                </button>
+                <button type="button" data-toggle="modal" data-target="#send_observation_modal" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                    Subsanar
+                </button>
+                <button type="button" id="reject_lawyer" class="btn btn-danger btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                    Denegar
+                </button>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+            <div class="m-alert__icon">
+                <i class="la la-warning"></i>
+            </div>
+            <div class="m-alert__text">
+                <strong>Nuevo Abogado!</strong> El registro fue realizado el @Model.RegisterDate.
+            </div>
+            <div class="m-alert__actions">
+                <button type="button" id="validate_profile" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                    Validar
+                </button>
+                <button type="button" data-toggle="modal" data-target="#send_observation_modal" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                    Subsanar
+                </button>
+                <button type="button" id="reject_lawyer" class="btn btn-danger btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                    Denegar
+                </button>
+            </div>
+        </div>
+    }
+
+    @await Html.PartialAsync("Partials/Modals/LawyerObservationPartialModal", Model.LawyerObservation)
+}
+else if (Model.Status == ConstantHelpers.ENTITIES.LAWYER.STATUS.PROFILE_VALIDATED)
+{
+    <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+        <div class="m-alert__icon">
+            <i class="la la-warning"></i>
+        </div>
+        <div class="m-alert__text">
+            <strong>Perfil Validado!</strong> La validaci&oacute;n fue el @Model.ValidatedDate
+        </div>
+        <div class="m-alert__actions">
+            <button type="button" data-toggle="modal" data-target="#request_interview_modal" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                Solicitar Entrevista
+            </button>
+        </div>
+    </div>
+
+    @await Html.PartialAsync("Partials/Modals/LawyerInterviewPartialModal", Model)
+}
+else if (Model.Status == ConstantHelpers.ENTITIES.LAWYER.STATUS.INTERVIEW_VALIDATED)
+{
+    <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+        <div class="m-alert__icon">
+            <i class="la la-warning"></i>
+        </div>
+        <div class="m-alert__text">
+            @if (Model.RequestInterviews.Any(y => y.Selected))
+            {
+                <strong>Entrevista Seleccionada!</strong><span> Dia : @Model.RequestInterviews.Where(x => x.Selected).Select(x => x.Date).FirstOrDefault() Rango Fechas : @Model.RequestInterviews.Where(x => x.Selected).Select(x => x.StartRange).FirstOrDefault() - @Model.RequestInterviews.Where(x => x.Selected).Select(x => x.EndRange).FirstOrDefault() </span>
+            }
+            else
+            {
+                <strong>Solicitud de Entevista!</strong><span> La solicitud fue enviada el @Model.ValidatedDate</span>
+            }
+        </div>
+        <div class="m-alert__actions">
+            @if (Model.RequestInterviews.Any(y => y.Selected))
+            {
+                <button type="button" id="validate_lawyer" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                    Validar
+                </button>
+            }
+
+            <button type="button" id="reject_lawyer" class="btn btn-danger btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                Denegar
+            </button>
+
+            <button type="button" data-toggle="modal" data-target="#request_interview_modal" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                Ver Entrevistas
+            </button>
+        </div>
+    </div>
+
+
+    @await Html.PartialAsync("Partials/Modals/LawyerInterviewPartialModal", Model)
+}
+else if (Model.Status == ConstantHelpers.ENTITIES.LAWYER.STATUS.VALIDATED)
+{
+    if (Model.ProfileWithChanges)
+    {
+        <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+            <div class="m-alert__icon">
+                <i class="la la-warning"></i>
+            </div>
+            <div class="m-alert__text">
+                <strong>Perfil con cambios!</strong> El abogado ha realizado cambios en su perfil.
+            </div>
+            <div class="m-alert__actions">
+                <button type="button" id="accept_profile_with_changes" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                    Aprobar Cambios
+                </button>
+
+                <button type="button" id="reject_profile_with_changes" class="btn btn-danger btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                    Rechazar Cambios
+                </button>
+            </div>
+        </div>
+    }
+}
+else if (Model.Status == ConstantHelpers.ENTITIES.LAWYER.STATUS.REJECTED)
+{
+
+}
+
+<div id="container_lawyer_profile"></div>
+
+@section Scripts {
+    <script src="~/assets/js/expander/jquery.expander.min.js" asp-append-version="true"></script>
+    <script src="~/js/areas/admin/lawyer/lawyerprofile.js" asp-append-version="true"></script>
+}

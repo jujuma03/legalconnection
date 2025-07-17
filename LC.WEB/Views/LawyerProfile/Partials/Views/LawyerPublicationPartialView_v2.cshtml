@@ -1,0 +1,48 @@
+﻿@model LC.CORE.Structs.PaginationStructs.ReturnedData<LC.ENTITIES.Models.LawyerPublication>
+
+@{
+    var result = Model.Data.ToArray();
+}
+@if (Model.Data.Any())
+{
+    @for (int i = 0; i < Model.Data.Count(); i++)
+    {
+        <div style="text-align:center">
+            <img id="Image" name="Image" style="max-height:200px; max-width:200px" src="/documentos/@result[i].PhotoUrl" />
+        </div>
+        <div class="row mt-2">
+            <div class="col-12 row">
+                <p class="col-10 m--font-boldest">
+                    @result[i].Title
+                </p>
+                @*<div class="col-2 d-flex align-items-center justify-content-end">
+                    <i data-id="@result[i].Id" class="fa fa-trash options_partialview btn-publication-delete"></i>
+                </div>*@
+            </div>
+            <p class="col-12">@result[i].Topic</p>
+            <p class="col-12">Fec. Publicaci&oacute;n : @result[i].PublicationDate</p>
+            <p class="col-12 text-justify expandable">
+                @Html.Raw(result[i].Description)
+            </p>
+        </div>
+
+        if (i < Model.Data.Count() - 1)
+        {
+            <div class="m-divider">
+                <span></span>
+            </div>
+        }
+    }
+
+    @await Html.PartialAsync("Partials/_PaginationPartial", Model.PaginationData)
+
+}
+else
+{
+    <div class="m-demo__preview col-12">
+        <blockquote class="blockquote">
+            <p class="mb-0"> Aún no se han registrado comentarios</p>
+            <footer class="blockquote-footer"><cite title="Source Title"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to ma</cite></footer>
+        </blockquote>
+    </div>
+}

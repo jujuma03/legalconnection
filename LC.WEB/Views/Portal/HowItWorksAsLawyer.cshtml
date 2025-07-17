@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "~/Views/Shared/_TransparentLayout.cshtml";
+}
+@section Styles{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" asp-append-version="true">
+    <link href="~/css/views/portal/index.css" rel="stylesheet" asp-append-version="true" />
+}
+<div class="bg-dark" style="background-image: url('../images/general/como-funciona-cliente.png'); background-size: cover; height: 310px;">
+    <div class="m--margin-top-90">
+        <div class="container">
+            <div class="col-lg-6 text-center">
+                <h1 class="m--font-boldest3 toast-title portal-title text-white" style="text-align:left;padding-left:0px;">¿C&oacute;mo funciona Legal Connection?</h1>
+            </div>
+            <div class="col-lg-6 col-md-12 text-left m--padding-5" style="display:flex;border-radius: 60px;background-color:white;text-align:left;">
+                <div class="col-lg-6 col-md-6" style="padding:unset;">
+                    <a asp-action="HowItWorks" asp-controller="Portal" style="line-height: 25px;font-weight: 600;font-size: 1.2em;" class="btn m-btn--pill btn-secondary btn-block">ENCUENTRA ABOGADOS</a>
+                </div>
+                <div class="col-lg-6 col-md-6" style="padding:unset;">
+                    <a href="#" class="btn m-btn--pill btn-lc-green btn-block text-white" style="line-height: 25px;font-weight: 600;font-size: 1.2em;" " target="_blank">TRABAJA COMO ABOGADO</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="lc-background-light-blue">
+    <div class="container" id="how-it-works-lawyer-steps">
+
+    </div>
+    <div id="how-it-works-summary-lawyer-steps">
+
+    </div>
+
+    <div class="m-portlet m-portlet--unair lc-background-dark-blue" style="margin-bottom:unset">
+        <div class="container">
+            <h1 class="toast-title portal-title text-white">
+                ¿Est&aacute;s listo para potenciar tu carrera de abogado?
+            </h1>
+            @*<h6 class="text-center text-white">Absolute positioned elements are removed from the normal flow, and can overlap elements.</h6>*@
+            <div class="row">
+                <div style="text-align: center;width: 100%;" class="m--padding-bottom-20">
+                    <a class="btn btn-lc-transparent bg-white m-btn--pill" href="/registrar-abogado" target="_blank">
+                        REGISTRATE AHORA
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="m-portlet m-portlet--unair lc-background-light-blue" id="frequent-questions">
+
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+    <script src="~/js/views/portal/howitworksaslawyer.js" asp-append-version="true"></script>
+}

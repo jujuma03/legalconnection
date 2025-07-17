@@ -1,0 +1,38 @@
+﻿@model List<LC.WEB.Areas.Lawyer.Models.Profile.PublicationViewModel>
+
+@if (Model.Any())
+{
+    <div class="row">
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <div class="col-6">
+                <div class="m-portlet lc-publications-card">
+                    @*<img src="@Model[i].PhotoUrl" alt="Alternate Text" />*@
+                    <img src="~/images/369x231.png" />
+                    <div class="m--padding-20">
+                        <p class="col-12 m--font-boldest">
+                            @Model[i].Title
+                            <button class="pull-right btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only m-btn--pill m-btn--air btn-publication-delete" data-id="@Model[i].Id">
+                                <i class="la la-trash"></i>
+                            </button>
+                        </p>
+                        <p class="col-12">@Model[i].Topic</p>
+                        <p class="col-12">Fec. Publicaci&oacute;n : @Model[i].PublicationDate</p>
+                        <div class="col-12 text-justify expandable">
+                            @Html.Raw(Model[i].Description)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="m-demo__preview col-12">
+        <blockquote class="blockquote">
+            <p class="mb-0"> Aún no se agregan publicaciones</p>
+            <footer class="blockquote-footer"><cite title="Source Title"> Recuerda que para recibir m&aacute;s ofertas de casos necesitas tener tu perfil completo y asi podr&aacute;s tener m&aacute;s opciones de ser seleccionado.</cite></footer>
+        </blockquote>
+    </div>
+}

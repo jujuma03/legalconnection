@@ -1,0 +1,181 @@
+﻿@model LC.WEB.Areas.Lawyer.Models.EconomicManagement.WithdrawalRequestViewModel
+
+@section Styles{
+    <link href="~/css/areas/lawyer/economicmanagement/economicmanagement.css" rel="stylesheet" />
+}
+
+<h3 class="m--font-boldest2 mb-4">Mis Finanzas</h3>
+
+<div class="mb-4" role="group" aria-label="Default button group">
+    <a asp-action="Index" asp-controller="EconomicManagement" asp-area="Lawyer" class="btn btn-lg btn-secondary m--font-boldest2 btn-nav2">Reporte General de Casos</a>
+    <a asp-action="CashWithdrawal" asp-controller="EconomicManagement" asp-area="Lawyer" class="btn btn-lg btn-primary m--font-boldest2 btn-nav2">Retirar Efectivo</a>
+    <a asp-action="Movements" asp-controller="EconomicManagement" asp-area="Lawyer"  class="btn btn-secondary btn-lg m--font-boldest2 btn-nav2">Movimientos</a>
+</div>
+
+
+<input type="hidden" value="@ViewBag.LawyerId" />
+
+<div class="row">
+    <div class="col-4">
+        <h4 class="m--font-boldest2 mb-4">Mis finanzas</h4>
+
+        <div class="col-12 p-2 text-center div_detail">
+            <div class="m--font-boldest2 m--icon-font-size-sm2 mb-2">SALDO DISPONIBLE</div>
+            <span class="m--icon-font-size-lg5 m--font-bolder" id="available_balance_span">S/.0.00</span>
+        </div>
+        <br />
+        <div class="col-12 p-2 text-center div_proceess" style="background-color:white">
+            <div class="m--font-boldest2 m--icon-font-size-sm2 mb-2">SALDO EN PROCESO DE RETIRO</div>
+            <span class="m--icon-font-size-lg5 m--font-bolder" id="in_process_balance_span">S/.0.00</span>
+        </div>
+
+        <div class="col-12 p-2 text-center div_detail_2 mt-4">
+            <div class="col-12 mb-4">
+                <div class="m--font-boldest2 m--icon-font-size-sm2 mb-2 text-2-c">SALDO TOTAL</div>
+                <span class="m--icon-font-size-lg5 m--font-bolder text-2-c" id="total_balance_span">S/.0.00</span>
+            </div>
+            <div class="col-12 row div_detailed">
+                <div class="col-6">
+                    <div class="m--font-boldest2 m--icon-font-size-sm2 mb-2">EN CURSO</div>
+                    <span class="m--icon-font-size-lg5 m--font-bolder inprogress_span">0</span>
+                </div>
+                <div class="col-6">
+                    <div class="m--font-boldest2 m--icon-font-size-sm2 mb-2">SALDO</div>
+                    <span class="m--icon-font-size-lg5 m--font-bolder inprogress_balance_span">S/.0.00</span>
+                </div>
+            </div>
+            <div class="col-12 row div_detailed">
+                <div class="col-6">
+                    <div class="m--font-boldest2 m--icon-font-size-sm2 mb-2">CONCLUIDOS</div>
+                    <span class="m--icon-font-size-lg5 m--font-bolder finished_span">0</span>
+                </div>
+                <div class="col-6">
+                    <div class="m--font-boldest2 m--icon-font-size-sm2 mb-2">SALDO</div>
+                    <span class="m--icon-font-size-lg5 m--font-bolder finished_balance_span">S/.0.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <h4 class="m--font-boldest2 mb-4">Retiro Efectivo</h4>
+        @*@if ((bool)ViewBag.CanWithdrawalRequest)
+            {
+                <div class="row">
+                    <div class="col-12 mt-5 d-flex justify-content-center">
+                        <a asp-action="WithdrawalRequest" asp-controller="EconomicManagement" asp-area="Lawyer" class="btn btn-primary">SOLICITAR RETIRO</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+                    <div class="m-alert__icon">
+                        <i class="la la-warning"></i>
+                    </div>
+                    <div class="m-alert__text">
+                        El d&iacute;a habilitado para solicitar retiros es el @ViewBag.WithdrawalRequestDay.
+                    </div>
+                </div>
+            }*@
+        @if ((bool)ViewBag.CanWithdrawalRequest)
+        {
+
+            <form id="main_form" autocomplete="off">
+                <div class="m-portlet lc-background-gradient">
+                    <div class="m-portlet__body text-white">
+                        <b class="lc-San-bold">Monto a retirar</b>
+                        <div class="form-group m-form__group " style="display:flex">
+                            <span class="lc-big-input" style="max-width:20%">S/.</span>
+                            <input type="number" style="width:80%" class="form-control m-input lc-big-input" asp-for="Amount" placeholder="Ingrese monto a retirar" min="10" required>
+                        </div>
+                        <h4 class="text-center lc-San-bold">
+                            EL MONTO MINIMO PARA HACER UN RETIRO ES S/. 10
+                        </h4>
+                    </div>
+                </div>
+                <div class="m-portlet">
+                    <div class="m-portlet__body">
+                        <div class="row">
+                            <div class="form-group m-form__group col-lg-6">
+                                <label asp-for="FinancialEntity">Banco:</label>
+                                <select class="form-control m-select2" asp-for="FinancialEntity" required>
+                                    @foreach (var item in ConstantHelpers.ENTITIES.LAWYER_WITHDRAWAL_INFO.FINANCIAL_ENTITY.VALUES)
+                                    {
+                                        <option value="@item.Key">@item.Value</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group m-form__group col-lg-6">
+                                <label asp-for="Dni">DNI:</label>
+                                <input class="form-control m-input" asp-for="Dni" placeholder="DNI" required>
+                            </div>
+                            @*<div class="form-group m-form__group col-lg-6">
+                                    <label asp-for="Amount" class="text-uppercase">Monto a Retirar:</label>
+                                    <input type="number" class="form-control m-input" asp-for="Amount" placeholder="Ingrese monto a retirar" min="5" required>
+                                </div>*@
+                        </div>
+                        <div class="row">
+                            <div class="form-group m-form__group col-lg-6">
+                                <label asp-for="BankAccount">N&uacute;mero de Cuenta:</label>
+                                <input class="form-control m-input" asp-for="BankAccount" placeholder="Ingrese número de cuenta" required>
+                            </div>
+                            <div class="form-group m-form__group  col-lg-6">
+                                <label asp-for="InterbankAccount">N&uacute;mero de Cuenta Interbancaria:</label>
+                                <input class="form-control m-input" asp-for="InterbankAccount" placeholder="Ingrese número de cuenta interbancario" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group m-form__group  col-lg-6">
+                                <label asp-for="FullName">Nombre Completo:</label>
+                                <input class="form-control m-input" asp-for="FullName" placeholder="Nombre del dueño de la cuenta" required>
+                            </div>
+                            <div class="form-group m-form__group col-lg-6">
+                                <label class="form-control-label">Recibo por Honorarios</label>
+                                <div class="custom-file">
+                                    <input type="file" asp-for="ReceiptFileForFees" accept="image/png,application/pdf" class="custom-file-input" required />
+                                    <label class="custom-file-label">
+                                        Seleccione un archivo
+                                    </label>
+                                    <small>Solo se permite archivos con extensi&oacute;n .pdf o .png</small>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="row">
+
+                            </div>*@
+                    </div>
+                    <div class="m-portlet__foot">
+                        <div class="row align-items-center">
+                            <div class="col-lg-12 text-right">
+                                <button type="submit" class="btn btn-primary m-btn--pill m-btn  m-btn m-btn--icon">
+                                    <span>
+                                        <i class="la la-save"></i>
+                                        <span>Enviar Solicitud</span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        }
+        else
+        {
+            <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+                <div class="m-alert__icon">
+                    <i class="la la-warning"></i>
+                </div>
+                <div class="m-alert__text">
+                    No se encuentra en el d&iacute;a para solicitar retiros.
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@await Html.PartialAsync("Partials/Modals/WithdrawalRequestDetailPartialModal")
+
+@section Scripts{
+    <script src="~/js/areas/lawyer/economicmanagement/cashwithdrawal.js" asp-append-version="true"></script>
+    <script src="~/js/areas/lawyer/economicmanagement/withdrawalrequest.js" asp-append-version="true"></script>
+}

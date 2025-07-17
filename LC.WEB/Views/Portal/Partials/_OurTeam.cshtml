@@ -1,0 +1,35 @@
+﻿@model List<LC.WEB.Models.Home.SectionItemViewModel>
+
+@if (Model!= null && Model.Count()>0)
+{
+    <div class="m-portlet m-portlet--unair" style="margin-bottom:unset;opacity:0.9;background-color:#dfe8ef">
+        <div class="container">
+            <h1 class="toast-title portal-title">NUESTRO EQUIPO</h1>
+            <div class="row" style="padding:20px">
+                @{
+                    var size = 12/(Model.Count()>4 ? 4 : Model.Count());
+                    var col_lg = $"col-lg-{size}";
+                }
+                @foreach (var item in Model)
+                {
+                    <div class="@col_lg">
+                        <div class="m-card-profile">
+                            <div class="m-card-profile__pic">
+                                <div class="">
+                                    <img src="/documentos/@item.UrlImage" style="width:100%;min-width:unset !important;border-radius:0px" />
+                                </div>
+                            </div>
+                            <div class="m-card-profile__details">
+                                <span class="m-card-profile__name">@item.Headline</span>
+
+                                <span class="m-card-profile__email m-link">
+                                    @item.Description
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,110 @@
+﻿@{
+    ViewData["Title"] = "Listado de Postulaciones";
+    ViewData["Breadcrumbs"] = new[] {
+    new BreadcrumbViewModel { Name = ViewData["Title"].ToString() }
+    };
+}
+
+<div class="m-portlet m-portlet--tabs">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-tools">
+            <ul class="nav nav-tabs m-tabs-line m-tabs-line--right">
+                <li class="nav-item m-tabs__item">
+                    <a class="nav-link m-tabs__link active show" data-toggle="tab" href="#all">
+                        Todos
+                    </a>
+                </li>
+                <li class="nav-item m-tabs__item">
+                    <a class="nav-link m-tabs__link" data-toggle="tab" href="#revision">
+                        @ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALUES[ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALIDATION_PROCCESS]
+                    </a>
+                </li>
+                <li class="nav-item m-tabs__item">
+                    <a class="nav-link m-tabs__link" data-toggle="tab" href="#lookinglawyer">
+                        @ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALUES[ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.LOOKING_LAWYER]
+                    </a>
+                </li>
+                <li class="nav-item m-tabs__item">
+                    <a class="nav-link m-tabs__link" data-toggle="tab" href="#pendingpayment">
+                        @ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALUES[ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.PENDING_PAYMENT]
+                    </a>
+                </li>
+                <li class="nav-item m-tabs__item">
+                    <a class="nav-link m-tabs__link" data-toggle="tab" href="#rejected">
+                        @ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALUES[ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.REJECTED]
+                    </a>
+                </li>
+                <li class="nav-item m-tabs__item">
+                    <a class="nav-link m-tabs__link" data-toggle="tab" href="#validated">
+                        @ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALUES[ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALIDATED]
+                    </a>
+                </li>
+                <li class="nav-item m-tabs__item">
+                    <a class="nav-link m-tabs__link" data-toggle="tab" href="#finalized">
+                        @ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALUES[ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.FINALIZED]
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="m-portlet__body pt-2">
+        <div class="m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
+            <div class="row align-items-center">
+                <div class="col-xl-8 order-2 order-xl-1">
+                    <div class="row">
+                        <div class="form-group m-form__group col-xl-4">
+                            <label style="font-weight:bold;">Nombre o Código</label>
+                            <div class="m-input m-input-icon m-input-icon--left">
+                                <input type="text" class="form-control m-input m-input--pill m-input--solid" placeholder="Buscar..." id="search">
+                                <span class="m-input-icon__icon m-input-icon__icon--left">
+                                    <span><i class="la la-search"></i></span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-form__group col-xl-6">
+                            @*-lg-4 col-md-6 col-sm-12*@
+                            <label  style="font-weight:bold;">Rango de Fechas de Envío</label>
+                            <div class="input-daterange input-group" id="m_datepicker_5">
+                                <input type="text" class="form-control m-input m-input--pill m-input--solid" placeholder="Fecha Inicial" id="date_start_filter" autocomplete="off">
+
+                                <div class="input-group-append"><span class="input-group-text" style="background-color:white;"><i class="la la-ellipsis-h"></i></span></div>
+
+                                <input type="text" class="form-control m-input m-input--pill m-input--solid" placeholder="Fecha Final" id="date_end_filter" autocomplete="off">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div id="all" class="tab-pane fade in show active">
+                <table class="table table-hover table-bordered m-table m-table--head-bg-primary" id="legal_cases_datatable"> </table>
+            </div>
+            <div id="revision" class="tab-pane fade">
+                <table class="table table-hover table-bordered m-table m-table--head-bg-primary" id="revision_datatable"> </table>
+            </div>
+            <div id="lookinglawyer" class="tab-pane fade">
+                <table class="table table-hover table-bordered m-table m-table--head-bg-primary" id="looking_lawyer_datatable"> </table>
+            </div>
+            <div id="pendingpayment" class="tab-pane fade">
+                <table class="table table-hover table-bordered m-table m-table--head-bg-primary" id="pending_payment_datatable"> </table>
+            </div>
+            <div id="rejected" class="tab-pane fade">
+                <table class="table table-hover table-bordered m-table m-table--head-bg-primary" id="rejected_datatable"> </table>
+            </div>
+            <div id="validated" class="tab-pane fade">
+                <table class="table table-hover table-bordered m-table m-table--head-bg-primary" id="validated_datatable"> </table>
+            </div>
+            <div id="finalized" class="tab-pane fade">
+                <table class="table table-hover table-bordered m-table m-table--head-bg-primary" id="finalized_datatable"> </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/lib/jquery.fileDownload/jquery.fileDownload.min.js"></script>
+    <script src="~/js/areas/admin/legalcase/postulations.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,29 @@
+﻿@model LC.WEB.Areas.Admin.Models.LegalCase.RejectViewModel
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="reject_modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Rechazar Caso</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="reject_form" autocomplete="off">
+                <div class="modal-body">
+                    <input type="hidden" name="LegalCaseId" value="@Model.LegalCaseId" />
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label asp-for="Observations">Observaciones</label>
+                            <textarea asp-for="Observations" class="form-control m-input" required rows="10" maxlength="1000"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Enviar Observaciones</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

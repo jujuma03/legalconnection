@@ -1,0 +1,157 @@
+﻿@model LC.WEB.Areas.Client.Models.Profile.ProfileViewModel
+@{
+    ViewBag.Title = "Mi Perfil";
+}
+
+@section Styles{
+    <style>
+        .m-portlet--creative .m-portlet__head {
+            height: 0px !important;
+        }
+
+        .table_experiences tr td {
+            border-top: 0px !important;
+        }
+
+        .table_subgroup .divided {
+            border-top: 1px black solid !important;
+            height: 0px !important;
+            padding-top: 0px;
+            width: 19.5px;
+            padding-bottom: 0px !important;
+            height: 7px !important;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="m-portlet m-portlet--creative m-portlet--first m-portlet--bordered-semi col-xl-6 col-md-12 mr-3">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <span class="m-portlet__head-icon m--hide">
+                        <i class="flaticon-statistics"></i>
+                    </span>
+                    <h2 class="m-portlet__head-label m-portlet__head-label--success">
+                        <span>Informaci&oacute;n Personal</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="m-portlet__body" id="portlet_personal_information">
+            <div class="m-card-profile">
+                <div class="m-card-profile__pic">
+                    <div class="m-card-profile__pic-wrapper">
+                        <img src="~/assets/images/user4.jpg" alt="Foto de Perfil">
+                    </div>
+                </div>
+                <div class="m-card-profile__details">
+                    <span class="m-card-profile__name name_surnames">@Model.PersonalInformation.Name @Model.PersonalInformation.Surnames</span>
+                    <a href="" class="m-card-profile__email m-link">@Model.PersonalInformation.Email</a>
+                </div>
+            </div>
+            <div class="">
+                <div class="row mb-2">
+                    <div class="col-8 d-flex align-items-center">
+                        <h5>Datos Personales</h5>
+                    </div>
+                    <div class="col-4">
+                        <button data-toggle="modal" data-target="#personal_information_modal" class="pull-right btn btn-success m-btn m-btn--icon btn-sm m-btn--icon-only m-btn--pill">
+                            <i class="la la-edit"></i>
+                        </button>
+                    </div>
+                </div>
+                <table class="table table-hover table-bordered">
+                    <tr>
+                        <td class="m--font-boldest">@Model.PersonalInformation.DocumentType</td>
+                        <td class="pi_dni">@Model.PersonalInformation.DNI</td>
+                    </tr>
+                    <tr>
+                        <td class="m--font-boldest">Celular</td>
+                        <td class="pi_phoneNumber">@Model.PersonalInformation.PhoneNumber</td>
+                    </tr>
+                    <tr>
+                        <td class="m--font-boldest">Tel&eacute;fono</td>
+                        <td class="pi_houseNumber">@Model.PersonalInformation.HouseNumber</td>
+                    </tr>
+                    <tr>
+                        <td class="m--font-boldest">Fec. de Nacimiento</td>
+                        <td class="pi_birthDate">@Model.PersonalInformation.BirthDate</td>
+                    </tr>
+                    <tr>
+                        <td class="m--font-boldest">Género</td>
+                        <td class="pi_sex">@(ConstantHelpers.ENTITIES.USER.SEX.VALUES[Model.PersonalInformation.Sex])</td>
+                    </tr>
+                    <tr>
+                        <td class="m--font-boldest">Departamento</td>
+                        <td class="pi_department">@Model.PersonalInformation.Department</td>
+                    </tr>
+                    <tr>
+                        <td class="m--font-boldest">Provincia</td>
+                        <td class="pi_province">@Model.PersonalInformation.Province</td>
+                    </tr>
+                    <tr>
+                        <td class="m--font-boldest">Distrito</td>
+                        <td class="pi_district">@Model.PersonalInformation.District</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row col-lg-6 col-md-12">
+        <div class="m-portlet m-portlet--creative m-portlet--first m-portlet--bordered-semi col-12">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="flaticon-statistics"></i>
+                        </span>
+                        <h2 class="m-portlet__head-label m-portlet__head-label--success">
+                            <span>Cambiar contraseña</span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="m-portlet__body" id="">
+                <form id="change_password_form" autocomplete="off">
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-12">
+                            <label for="CurrentPassword">Contraseña actual</label>
+                            <div class="m-input-icon m-input-icon--right">
+                                <input type="password" name="CurrentPassword" class="form-control m-input" required>
+                                <span class="m-input-icon__icon m-input-icon__icon--right"><span><i class="la la-unlock"></i></span></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <label  for="NewPassword">Nueva contraseña</label>
+                            <div class="m-input-icon m-input-icon--right">
+                                <input type="password" name="NewPassword" class="form-control m-input" required>
+                                <span class="m-input-icon__icon m-input-icon__icon--right"><span><i class="la la-unlock"></i></span></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="ConfirmPassword">Repetir contraseña</label>
+                            <div class="m-input-icon m-input-icon--right">
+                                <input type="password" name="ConfirmPassword" class="form-control m-input" required>
+                                <span class="m-input-icon__icon m-input-icon__icon--right"><span><i class="la la-unlock"></i></span></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div style="text-align:right;">
+                                <button type="submit" class="btn btn-primary" data-style="slide-down">
+                                    <span class="ladda-label">Guardar</span>
+                                </button>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+@await Html.PartialAsync("Partials/Modals/PersonalInformationPartialModal", Model.PersonalInformation)
+
+@section Scripts {
+    <script src="~/js/areas/client/profile/index.js" asp-append-version="true"></script>
+}

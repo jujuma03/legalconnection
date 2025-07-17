@@ -1,0 +1,125 @@
+﻿@model LC.WEB.Areas.Lawyer.Models.Plan.UserPlanViewModel
+
+@section Styles{
+    <link href="~/css/areas/lawyer/plan/plan.css" rel="stylesheet" asp-append-version="true" />
+}
+@{
+    var color = "";
+    var count = 1;
+    var background = "";
+    var iconcolor = "";
+}
+<div class="lc-background-light-blue">
+    <div class="col-lg-10 portal-title" style="margin:0 auto">
+        <h1 class="toast-title">
+            Suscribete en nuestro plan mensual gratuito y obtén los beneficios seleccionados para ti.
+
+        </h1>
+    </div>
+    <div class="col-lg-8 col-md-12" style="margin:0 auto">
+        <div class="row">
+            @foreach (var item in Model.Plans)
+            {
+                switch (count)
+                {
+                    case 1:
+                        background = "bg-white";
+                        break;
+                    case 2:
+                        //background = "lc-background-green";
+                        //color = "text-white";
+                        //iconcolor = "lc-plan-icon-blue";
+                        background = "lc-background-gradient";
+                        color = "text-white";
+                        iconcolor = "lc-plan-icon-blue";
+                        break;
+                    case 3:
+                        background = "lc-background-gradient";
+                        color = "text-white";
+                        iconcolor = "lc-plan-icon-blue";
+                        break;
+                    default:
+                        break;
+                }
+                <div class="col-lg-6 col-md-6">
+                    <div class="@background m-portlet m-portlet--rounded lc-plan">
+                        <div class="m-portlet__body">
+                            <span class="float-right">
+                                <i class="fa flaticon-rocket fa-3x @iconcolor"></i>
+                            </span>
+                            <div class="lc-plan-title @color">
+                                @item.Name
+                            </div>
+                            <div class="lc-plan-subtitle @color">
+                                S/  @item.Amount
+                            </div>
+                            <br />
+                            <small class="lc-plan-time @color">
+
+                            </small>
+                            <br />
+                            <small class="lc-plan-description @color"> @item.Description</small>
+                            <br />
+                            <ul class="lc-plan-list @color">
+                                @foreach (var benefit in item.Benefits)
+                                {
+                                    <li>
+                                        <span class="@color">@benefit.Description</span>
+                                        <br>
+                                        @if (benefit.Assigned)
+                                        {
+                                            <i class="fa fa-check @color"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fa fa-window-close @color"></i>
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                            <br />
+                            <div class="row">
+                                @if (item.Id == Model.CurrentPlanId)
+                                {
+                                    <div class="col-lg-9 col-md-10 col-sm-10">
+                                        <button class="btn @(string.IsNullOrEmpty(color)?"btn-lc-transparent":"btn-lc-transparent-white") m-btn--pill btn-block">
+                                            SUSCRITO
+                                        </button>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-lg-9 col-md-10 col-sm-10">
+                                        <button data-id="@item.Id" class="btn @(string.IsNullOrEmpty(color)?"btn-lc-transparent":"btn-lc-transparent-white") m-btn--pill btn-block btn_select_change_plan">
+                                            SELECCIONAR
+                                        </button>
+                                    </div>
+                                }
+                            <div class="col-lg-3 col-md-2 col-sm-2">
+                                @*<button  data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                                    <i class="fa fa-info"></i>
+                                </button>*@
+                                <a tabindex="0" class="btn @(string.IsNullOrEmpty(color)?"btn-lc-transparent":"btn-lc-transparent-white") m-btn--pill btn-block info-but" role="button" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="Legal Connection, adquiere una comisión del 10% del valor aplicado a la consulta realizada por gastos administrativos y servicios.">
+                                    <i class="fa fa-info"></i>
+                                </a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if (count == 3)
+                {
+                    count = 1;
+                }
+                else
+                {
+                    count++;
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/areas/lawyer/plan/index.js" asp-append-version="true"></script>
+}

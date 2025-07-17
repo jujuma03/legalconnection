@@ -1,0 +1,178 @@
+﻿@model LC.ENTITIES.Custom.Lawyer.LegalCaseCustomModel
+
+<input type="hidden" id="LegalCaseId" value="@ViewBag.LegalCaseId" />
+<h2 class="m--font-boldest2">DETALLE DE CASO</h2>
+<div class="m-portlet m-portlet--full-height ">
+    <div class="m-portlet__body" id="main_portlet_legal_cases">
+        <div class="row">
+            <h5 class="col-12 m--font-boldest2 text-uppercase">@ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALUES[Model.Status]</h5>
+            <div class="title col-12 row">
+                <h5 class="col-xl-3 col-lg-3 col-md-3 m--font-boldest"><u>Especialidad : @Model.Speciality</u></h5>
+                <h5 class="col-xl-3 col-lg-3 col-md-3 m--font-boldest2"><u>@Model.Department - @Model.Province</u></h5>
+                @if (Model.Type == ConstantHelpers.ENTITIES.LEGAL_CASE.TYPE.NORMAL)
+                {
+                    <h5 class="col-xl-3 col-lg-3 col-md-3 m--font-boldest2"><u>Vacantes : @Model.Vacancies/@Model.TotalVacancies</u></h5>
+                }
+                else
+                {
+                    <h5 class="col-xl-3 col-lg-3 col-md-3 m--font-boldest2"><u>Contacto Directo</u></h5>
+                }
+                <h5 class="col-xl-3 col-lg-3 col-md-3 text-xl-right text-lg-right text-md-right m--font-boldest2">Publicado : @Model.DerivatedAt</h5>
+
+            </div>
+            <div class="col-12 mt-3">
+                <p class="text-justify">
+                    @Model.Description
+                </p>
+            </div>
+            <div class="col-8">
+                @foreach (var item in Model.SpecialityThemes)
+                {
+                    <span class="m-badge m-badge--@(ConstantHelpers.HTML.COLOR.RANDOM_COLOR()) m-badge--wide">@item.Name</span>
+                }
+            </div>
+
+            @if (Model.Questions.Any())
+            {
+                <div class="col-4 text-right">
+                    <a data-toggle="modal" data-target="#questions_modal" href="javascript:;" class="m-link m--font-boldest">Ver Información Adicional</a>
+                </div>
+            }
+
+            @if (Model.SearchType == ConstantHelpers.ENTITIES.LEGAL_CASE.SEARCH_TYPE.SEARCH_LEGALCASES)
+            {
+                <div class="col-12 mt-4 text-right">
+                    @if (!Model.IsFreeUser)
+                    {
+                        <button data-id="@Model.Id" class="postulate_legal_case btn btn-primary m-btn m-btn--custom m-btn--icon">
+                            <span>
+                                <i class="la la-check"></i>
+                                <span>Postular</span>
+                            </span>
+                        </button>
+                    }
+                    else
+                    {
+                        //if (!Model.IsFreeFee)
+                        //{
+                            @*<a class="btn m--font-boldest2 btn-lc-green" style="background-color:#ffcc00; color:#384854;" href="/abogado/planes">
+                                BENEFICIOS LEGALPRO
+                            </a>*@
+                        //}
+                        //else
+                        //{
+                            <button data-id="@Model.Id" class="postulate_legal_case btn btn-primary m-btn m-btn--custom m-btn--icon">
+                                <span>
+                                    <i class="la la-check"></i>
+                                    <span>Postular</span>
+                                </span>
+                            </button>
+                        //}
+                    }
+                    @if (!Model.IsFiledCase)
+                    {
+                        <button data-id="@Model.Id" class="filed_legal_case btn btn-secondary m-btn m-btn--custom m-btn--icon">
+                            <span>
+                                <i class="la la-archive"></i>
+                                <span>Archivar</span>
+                            </span>
+                        </button>
+                    }
+                </div>
+            }
+            else if (Model.SearchType == ConstantHelpers.ENTITIES.LEGAL_CASE.SEARCH_TYPE.POSTULATED_CASES)
+            {
+                <div class="col-12 row mt-3">
+                    <h5 class="col-xl-4 col-lg-4 col-md-4 m--font-boldest"><u>Fecha Postulación : @Model.PostulationDate</u></h5>
+                </div>
+                <div class="col-12 mt-4 text-right">
+                    <button data-id="@Model.Id" class="report_abandonment btn-sm btn btn-danger m-btn m-btn--custom m-btn--icon">
+                        <span>
+                            <i class="la la-warning"></i>
+                            <span>REPORTAR ABANDONO</span>
+                        </span>
+                    </button>
+                </div>
+            }
+            else if (Model.SearchType == ConstantHelpers.ENTITIES.LEGAL_CASE.SEARCH_TYPE.LEGAL_CASE_IN_COURSE)
+            {
+                <div class="col-12 mt-4 text-right">
+
+                    <button data-id="@Model.Id" class="btn-sm btn btn-primary m-btn m-btn--custom m-btn--icon close_legal_case">
+                        <span>
+                            <i class="la la-check"></i>
+                            <span>CASO CONLCUIDO</span>
+                        </span>
+                    </button>
+                </div>
+            }
+            else if (Model.SearchType == ConstantHelpers.ENTITIES.LEGAL_CASE.SEARCH_TYPE.INCOMING_REQUESTS)
+            {
+                <div class="col-12 row mt-3">
+                    <h5 class="col-xl-4 col-lg-4 col-md-4 m--font-boldest"><u>Fecha de Contacto : @Model.PostulationDate</u></h5>
+                </div>
+                <div class="col-12 mt-4 text-right">
+                    <button data-id="@Model.Id" class="btn-sm btn btn-primary m-btn m-btn--custom m-btn--icon accept_case">
+                        <span>
+                            <i class="la la-check"></i>
+                            <span>ACEPTAR CASO</span>
+                        </span>
+                    </button>
+
+                    <button data-id="@Model.Id" class="btn-sm btn btn-danger m-btn m-btn--custom m-btn--icon reject_case">
+                        <span>
+                            <i class="la la-close"></i>
+                            <span>RECHAZAR CASO</span>
+                        </span>
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@if (Model.SearchType == ConstantHelpers.ENTITIES.LEGAL_CASE.SEARCH_TYPE.LEGAL_CASE_IN_COURSE)
+{
+    <h4 class="m--font-boldest2">Perfil de Cliente</h4>
+    <div class="m-portlet m-portlet--full-height ">
+        <div class="m-portlet__body">
+            <div class="row">
+                <div class="col-xl-2 col-lg-2 col-md-2 mt-2 col-sm-12">
+                    @if (string.IsNullOrEmpty(Model.Client.PhotoUrl))
+                    {
+                        <img src="~/images/general/profile.jpg" width="80" style="border-radius:50%;" />
+                    }
+                    else
+                    {
+                        <img src="/documentos/@Model.Client.PhotoUrl" width="80" style="border-radius:50%;" />
+                    }
+                </div>
+                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                    <h5 class="m--font-boldest">@Model.Client.FullName</h5>
+                    <span class="m--font-bold">@Model.Client.Email</span><br />
+                    <span class="m--font-bold">@Model.Client.Department - @Model.Client.Province</span>
+                </div>
+                <div class="col-xl-22 col-lg-2 col-md-2 col-sm-12 d-flex align-items-center justify-content-center">
+                    <button data-toggle="modal" data-target="#client_modal" class="btn-sm btn btn-primary m-btn m-btn--custom m-btn--icon">
+                        <span>
+                            <i class="la la-envelope"></i>
+                            <span>CONTACTAR CLIENTE</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@await Html.PartialAsync("Partials/Modals/Benefits")
+@await Html.PartialAsync("Partials/Modals/PostulatePartialModal", new LC.WEB.Areas.Lawyer.Models.LegalCase.PostulateViewModal())
+@await Html.PartialAsync("Partials/Modals/AcceptCasePartialModal", new LC.WEB.Areas.Lawyer.Models.LegalCase.PostulateViewModal())
+@await Html.PartialAsync("Partials/Modals/ClientPartialModal", Model.Client)
+@await Html.PartialAsync("Partials/Modals/QuestionsPartialModal", Model.Questions)
+@await Html.PartialAsync("Partials/Modals/ReportAbandonmentPartialModal", new LC.WEB.Areas.Lawyer.Models.LegalCase.ReportAbandonmentViewModel())
+
+@section Scripts{
+    <script src="~/js/areas/lawyer/legalcase/detail.js" asp-append-version="true"></script>
+}

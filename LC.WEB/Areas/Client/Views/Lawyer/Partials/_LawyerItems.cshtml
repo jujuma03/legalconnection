@@ -1,0 +1,16 @@
+﻿@model LC.CORE.Structs.PaginationStructs.ReturnedData<LC.ENTITIES.Custom.LawyerTemp>
+
+@if (Model.Data.Count() > 0)
+{
+    @foreach (var item in Model.Data)
+    {
+        @await Html.PartialAsync("Partials/_LawyerCard", item)
+    }
+    @await Html.PartialAsync("Partials/_PaginationPartial", Model.PaginationData)
+}
+else
+{
+    <div class="m--padding-20">
+        <h4 class="toast-title portal-title text-center" style="color:darkgray">No hay resultados disponibles</h4>
+    </div>
+}

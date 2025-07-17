@@ -1,0 +1,73 @@
+﻿@model LC.WEB.Areas.Admin.Models.Plan.PlanViewModel
+@{
+    ViewData["Title"] = "Beneficios del Plan";
+    ViewData["Breadcrumbs"] = new[] {
+    new BreadcrumbViewModel { Name = "Listado de Planes" , Action = "Index" , Area="Admin", Controller="Plan"},
+    new BreadcrumbViewModel { Name = ViewData["Title"].ToString() }
+    };
+}
+
+<div class="m-portlet">
+    <form id="main_form" autocomplete="off">
+        <input type="hidden" asp-for="Id"/>
+        <div class="m-portlet__body">
+            <div class="row">
+                <div class="form-group m-form__group col-lg-6">
+                    <label asp-for="Name">Nombre:</label>
+                    <input class="form-control m-input" asp-for="Name" placeholder="Ingrese nombre" readonly>
+                </div>
+                <div class="form-group m-form__group col-lg-6">
+                    <label asp-for="Amount">Monto:</label>
+                    <input type="number" class="form-control m-input" asp-for="Amount" placeholder="Ingrese Monto" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group m-form__group col-lg-12">
+                    <label asp-for="DescriptionLC">Descripci&oacute;n (Solo para uso de LC):</label>
+                    <textarea class="form-control m-input" asp-for="DescriptionLC" placeholder="Ingrese descripción" rows="4" maxlength="300"></textarea>
+                </div>
+            </div>
+            <div class="m-divider mb-4 mt-3">
+                <span></span>
+            </div>
+            <h5 class="m--font-boldest2 mb-4">Beneficios</h5>
+            <div class="row">
+                @for (int i = 0; i < Model.Benefits.Count(); i++)
+                {
+                    <input type="hidden" value="@Model.Benefits[i].Id" name="Benefits[@i].Id" />
+                    <div class="m-form__group form-group col-6">
+                        <div class="m-checkbox-list">
+                            <label class="m-checkbox m-checkbox--check-bold m-checkbox--state-brand">
+                                @if (Model.Benefits[i].Assigned)
+                                {
+                                    <input type="checkbox" checked name="Benefits[@i].Assigned" value="true"> @Model.Benefits[i].Description
+                                }
+                                else
+                                {
+                                    <input type="checkbox" name="Benefits[@i].Assigned" value="true"> @Model.Benefits[i].Description
+                                }
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="m-portlet__foot">
+            <div class="row align-items-center">
+                <div class="col-lg-12 text-right">
+                    <button type="submit" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                        <span>
+                            <i class="la la-save"></i>
+                            <span>Guardar</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <script src="~/js/areas/admin/plan/benefit.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,116 @@
+﻿@inject LC.SERVICE.Services.Interfaces.IShortcutService _shortcutService;
+@inject LC.SERVICE.Services.Interfaces.ISocialNetworkService _socialNetworkService;
+@{
+    var socialnetwork = await _socialNetworkService.GetAllActive();
+    var directed = await _shortcutService.GetAllActive(ConstantHelpers.ENTITIES.SHORTCUT.TYPES.DIRECT_ACCESS);
+    var interestLinks = await _shortcutService.GetAllActive(ConstantHelpers.ENTITIES.SHORTCUT.TYPES.INTEREST_LINKS);
+    var contact = await _shortcutService.GetAllActive(ConstantHelpers.ENTITIES.SHORTCUT.TYPES.CONTACT);
+    var split = directed.Count() > 5;
+}
+<!-- Footer -->
+<!-- begin::Footer -->
+<footer class="m-grid__item		m-footer m-footer--fixed lc-footer">
+    <div class="">
+        <div class="m-container m-container--full-height m-page__container">
+            <div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
+                <div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--first">
+                    <ul class="m-footer__nav m-nav m-nav--inline">
+                        <li class="m-nav__item">
+                            <a href="/" class="m-brand__logo-wrapper">
+                                <img class="img_logo" alt="Legal Connection" src="~/assets/images/logo_horizontal_blanco.png">
+                            </a>
+                        </li>
+                        @if (ConstantHelpers.ShowAllOptions)
+                        {
+                            @if (ConstantHelpers.ENABLED_DIRECTORY)
+                            {
+                                <li class="m-nav__item">
+                                    <a class="m-nav__link" asp-area="Client" asp-action="Index" asp-controller="Lawyer">
+                                        <span class="m-nav__link-text text-white text-uppercase">Encuentra abogado</span>
+                                    </a>
+                                </li>
+                            }
+
+                            <li class="m-nav__item">
+                                <a class="m-nav__link" asp-action="HowItWorks" asp-controller="Portal">
+                                    <span class="m-nav__link-text text-white text-uppercase">¿C&Oacute;MO FUNCIONA?</span>
+                                </a>
+                            </li>
+                            @if (!User.Identity.IsAuthenticated || User.IsInRole(ConstantHelpers.ROLES.CLIENT))
+                            {
+                                <li class="m-nav__item">
+                                    <a class="m-nav__link" asp-area="Client" asp-action="Add" asp-controller="LegalCase">
+                                        <span class="m-nav__link-text text-white text-uppercase">REGISTRA TU CASO</span>
+                                    </a>
+                                </li>
+                            }
+                            <li class="m-nav__item">
+                                <a class="m-nav__link" asp-action="AboutUs" asp-controller="Portal">
+                                    <span class="m-nav__link-text text-white text-uppercase">¿QUIENES SOMOS?</span>
+                                </a>
+                            </li>
+                        }
+                        <li class="m-nav__item">
+                            <a class="m-nav__link" asp-action="Blog" asp-controller="Portal">
+                                <span class="m-nav__link-text text-white text-uppercase">BLOG</span>
+                            </a>
+                        </li>
+                    </ul>
+                    @if (ConstantHelpers.ShowAllOptions)
+                    {
+                        <ul class="m-footer__nav m-nav m-nav--inline pull-right">
+                            @foreach (var item in socialnetwork)
+                            {
+                                <li class="m-nav__item">
+                                    <a class="m-nav__link" href="@item.UrlDirection" target="_blank">
+                                        <span class="m-nav__link-text text-white text-uppercase">
+                                            <i class="la la-@ConstantHelpers.ENTITIES.SOCIAL_NETWORK.TYPES.VALUES[item.Type].ToLower()"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="" style="background-color: #0d1f2d;color: white;">
+        <div class="m-container m-container--full-height m-page__container text-center">
+            <ul class="m-footer__nav m-nav m-nav--inline">
+                <li class="m-nav__item">
+                    <a class="m-nav__link " href="#">
+                        <span class="m-nav__link-text text-white">
+                            <i class="la la-map-marker"></i>
+                            Direcci&oacute;n: Doña delmira 253, Santiago de Surco&emsp;&emsp;|
+                        </span>
+                    </a>
+                </li>
+                <li class="m-nav__item">
+                    <a class="m-nav__link" href="#">
+                        <span class="m-nav__link-text text-white">
+                            <i class="la la-at"></i>
+                            Correo de contacto: asesor@legalconnection.pe&emsp;&emsp;|
+                        </span>
+                    </a>
+                </li>
+                @*<li class="m-nav__item">
+                    <a class="m-nav__link" href="#">
+                        <span class="m-nav__link-text text-white">
+                            <i class="la la-phone"></i>
+                            TELEFONO
+                        </span>
+                    </a>
+                </li>*@
+                <li class="m-nav__item">
+                    <a class="m-nav__link" href="#">
+                        <span class="m-nav__link-text text-white">
+                            <i class="la la-mobile"></i>
+                            Celular: +51 956 233 228
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>

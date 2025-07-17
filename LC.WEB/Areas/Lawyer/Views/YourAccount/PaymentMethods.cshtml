@@ -1,0 +1,99 @@
+﻿@model LC.WEB.Areas.Lawyer.Models.YourAccount.LawyerViewModel
+
+@section Styles{
+    <style>
+        .btn-nav-account {
+            color: #384854;
+            font-weight: bold !important;
+        }
+
+        .btn-delete-card{
+            cursor:pointer;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-4">
+        <div class="m-portlet m-portlet--mobile">
+            <div class="m-portlet__body">
+                <a class="btn btn btn-outline-secondary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air btn-block p-4 btn-nav-account " asp-action="Index" asp-controller="YourAccount" asp-area="Lawyer">Informací&oacute;n de la Cuenta</a>
+                <a class="btn btn btn-outline-secondary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air btn-block p-4 btn-nav-account " asp-action="PaymentMethods" asp-controller="YourAccount" asp-area="Lawyer">M&eacute;todos de Pago</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="m-portlet m-portlet--mobile">
+            <div class="m-portlet__body">
+
+                <h2 class="m--font-boldest mb-5">Datos de Facturaci&oacute;n</h2>
+                <form id="form_billingdata" autocomplete="off" class="mb-5">
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-6">
+                            <label asp-for="BillingData.FirstName">Nombre:</label>
+                            <input class="form-control m-input" asp-for="BillingData.FirstName" placeholder="Nombre" required readonly="@(!Model.BillingData.IsNew)">
+                        </div>
+                        <div class="form-group m-form__group col-lg-6">
+                            <label asp-for="BillingData.LastName">Apellidos:</label>
+                            <input class="form-control m-input" asp-for="BillingData.LastName" placeholder="Apellidos" required readonly="@(!Model.BillingData.IsNew)">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-6">
+                            <label asp-for="BillingData.AddressCity">Ciudad</label>
+                            <input class="form-control m-input" asp-for="BillingData.AddressCity" placeholder="Ciudad" required readonly="@(!Model.BillingData.IsNew)">
+                        </div>
+                        <div class="form-group m-form__group col-lg-6">
+                            <label asp-for="BillingData.Phone">Celular:</label>
+                            <input class="form-control m-input" asp-for="BillingData.Phone" placeholder="Celular" required readonly="@(!Model.BillingData.IsNew)">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group  col-lg-12">
+                            <label asp-for="BillingData.Address">Direcci&oacute;n:</label>
+                            <input class="form-control m-input" asp-for="BillingData.Address" placeholder="Ingrese dirección" required readonly="@(!Model.BillingData.IsNew)">
+                        </div>
+                    </div>
+
+                    @if (Model.BillingData.IsNew)
+                    {
+                        <div class="row align-items-center">
+                            <div class="col-lg-12 text-right">
+                                <button type="submit" class="btn btn-primary btn-sm m-btn m-btn m-btn--icon">
+                                    <span>
+                                        <i class="la la-save"></i>
+                                        <span>Guardar Datos</span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    }
+                </form>
+
+                <h2 class="m--font-boldest mb-3">M&eacute;todo de Pago</h2>
+                <input type="hidden" data-culqi="card[email]" id="card[email]" value="@Model.Email" />
+
+                <button id="new_card_btn" class="p-3 btn btn-primary btn-sm m-btn m-btn m-btn--icon">
+                    <span>
+                        <i class="la la-plus pr-4"></i>
+                        <span>INGRESAR TARJETA DE CR&Eacute;DITO O D&Eacute;BITO</span>
+                    </span>
+                </button>
+
+                <div id="lawyer_cards"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("Partials/Modals/CardPartialModal")
+
+
+@section Scripts{
+    <script src="https://checkout.culqi.com/v2"></script>
+    <script src="~/js/views/shared/initpayment.js" asp-append-version="true"></script>
+    <script src="~/js/areas/lawyer/youraccount/billingdata.js" asp-append-version="true"></script>
+    <script src="~/js/areas/lawyer/youraccount/paymentmethods.js" asp-append-version="true"></script>
+    <script src="~/js/areas/lawyer/youraccount/defaultpayment.js" asp-append-version="true"></script>
+}
+

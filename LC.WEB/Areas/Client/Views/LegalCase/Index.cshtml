@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Mis Casos";
+}
+
+@section Styles{
+    <style>
+        .img-lawyer {
+            border-radius: 50%;
+            max-width: 55px;
+            padding:10px;
+        }
+
+        .legal_case_portlet {
+            -webkit-transition-duration: 0.5s;
+            transition-duration: 0.5s;
+        }
+
+            .legal_case_portlet:hover {
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+                -webkit-transform: scale(1.03);
+            }
+
+        .legal_case_portlet {
+            z-index: 100;
+            -webkit-transition-property: transform;
+            transition-property: transform;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            cursor: pointer;
+        }
+
+        .portal-title-left {
+            text-align: left;
+            padding: 0 20px;
+            font-family: 'SourceSansProBlack';
+            color: #384854;
+        }
+    </style>
+
+}
+<h2 class="toast-title portal-title-left">Mis casos</h2>
+<div class="m--padding-20">
+    <div id="cases_partial"></div>
+</div>
+
+@section Scripts{
+    <script src="~/js/areas/client/legalcase/index.js" asp-append-version="true"></script>
+}

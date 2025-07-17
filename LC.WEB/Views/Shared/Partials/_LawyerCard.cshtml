@@ -1,0 +1,125 @@
+﻿@model LC.ENTITIES.Custom.LawyerTemp
+
+<div class="m-portlet m-portlet--bordered m-portlet--bordered-semi m-portlet--rounded m-portlet--hover complete-card">
+    <div class="m-portlet__body">
+        <div class="row">
+            <div class="col-lg-8 ">
+                <div class="m-portlet__head" style="height: 150px;padding:0">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon">
+                                @if (!string.IsNullOrEmpty(Model.UrlImage))
+                                {
+                                    <img class="" style="border-radius:50px;height:100px;max-width: 100px;" src="/documentos/@Model.UrlImage" />
+                                }
+                                else
+                                {
+                                    <img class="" style="border-radius:50px;height:100px;max-width: 100px;" src="~/images/general/profile.jpg" />
+                                }
+                            </span>
+                            <div class="m-portlet__head-label" data-id="@Model.Id">
+                                <h3 class="m--font-boldest3" style="color:#152c3d; font-size:25px;">
+                                    @Model.Name.ToUpper() @Model.Surnames.ToUpper()
+                                </h3>
+                                @if (Model.Specialties.Count > 1)
+                                {
+                                    <h6 style="text-align:left;width:100%">Especialidades: @string.Join(", ", Model.Specialties.Select(x => x.Name))</h6>
+                                }
+                                else
+                                {
+                                    <h6 style="text-align:left;width:100%">Especialidad: @string.Join(", ", Model.Specialties.Select(x => x.Name))</h6>
+                                }
+                                <h6 style="text-align:left;width:100%;">
+                                    @if (Model.Qualification > 0)
+                                    {
+                                        <span class="m--font-boldest3" style="color:#152c3d; font-size:20px;">
+                                            @Model.Qualification.ToString("0.0")
+                                        </span>
+
+                                        @for (int i = 1; i <= Convert.ToInt32(Model.Qualification); i++)
+                                        {
+                                            <span class="fa fa-star checked"></span>
+                                        }
+                                        @for (int i = 1; i <= (5 - Convert.ToInt32(Model.Qualification)); i++)
+                                        {
+                                            <span class="fa fa-star"></span>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        @*<span>Sin calificar</span>*@
+                                    }
+                                    @*<span></span>*@
+                                    <i class="la la-map-marker" style="margin:0 0 0 0px;"></i>
+                                    @Model.District - @Model.Department
+                                    @*@if (Model.HasPlans)
+                                        {
+                                            <img src="~/images/general/certificate-medal.svg" style="max-height: 20px;margin:0 0 0 10px;width:20px" />
+                                            <span>Destacado</span>
+                                        }*@
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="col-lg-12 text-justify">
+                        <p id="container_about_me_text" class="expandable" style="text-align:left;">
+                            @Model.AboutLawyer
+                        </p>
+                        @*<p>
+                                @Model.AboutLawyer
+                            </p>*@
+                    </div>
+                    @*<div class="col-lg-12">
+                            <h4><a class="btn-view-details" asp-action="Index" asp-controller="LawyerProfile" asp-route-lawyerId="@Model.Id" style="text-decoration: underline;color: #575962;">VER DETALLE</a></h4>
+                        </div>*@
+                    <div class="col-lg-12">
+                        @foreach (var theme in Model.Themes)
+                        {
+                            <span class="m-badge m-badge--wide lc-badge-blue" style="margin: 10px 0;">@theme.Name</span>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div style="padding:20px 0">
+                    <div style="padding:10px">
+                        @if (!User.Identity.IsAuthenticated || !User.IsInRole(ConstantHelpers.ROLES.LAWYER))
+                        {
+                            <a asp-area="" asp-controller="LegalCase" asp-action="AddDirected" asp-route-lawyerId="@Model.Id" class="m--font-boldest3 btn btn-lc-green m-btn--pill" style="text-align:right; font-size:15px;">
+                                CONTACTAR ABOGADO
+                            </a>
+                        }
+
+                    </div>
+                    @*else
+                        {
+                            <a href="javascript:;" class="btn btn-primary">
+                                CONTACTAR ABOGADO
+                            </a>
+                        }*@
+                    <div style="padding:10px">
+                        <div class="m--font-boldest3" style="font-size:20px; text-align:right"><b>Consulta:</b></div>
+                        @if (!Model.IsFreeFee)
+                        {
+                            <h3 class="m--font-boldest3" style="color:#2a2a2a; text-align:right"><b>S/. @Model.Price</b></h3>
+                        }
+                        else
+                        {
+                            <h3 class="m--font-boldest3" style="color:#2a2a2a;text-align:right">
+                                <b>Gratis</b>
+                            </h3>
+                        }
+                        @*<div style="color:#ab9f9f; text-align:right">*El precio incluye IGV.</div>*@
+                        @*<div class="" style="color:#ab9f9f; text-align:right">Casos contratados: @Model.Cases</div>*@
+                        @*<div class="">Horas de trabajo: 15 horas</div>*@
+                        @*<br />
+                            <div class="">Ultima conexion: @Model.LastConnection</div>
+                            <div class="">Socio desde: @Model.RegisteredAt</div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

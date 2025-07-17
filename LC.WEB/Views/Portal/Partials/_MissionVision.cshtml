@@ -1,0 +1,31 @@
+﻿@model List<LC.ENTITIES.Models.MissionVision>
+
+@if (Model!=null && Model.Count()>0)
+{
+    <div class="m--padding-30" style="display:flex;margin:auto;">
+        <div class="col-lg-6 col-md-6" style="margin:auto;text-align:center">
+            <h2 class="m--padding-10 lc-step-title">@Model[0].Title</h2>
+            <p class="m--padding-left-10 m--padding-right-10">
+                @Html.Raw(Model[0].Content)
+            </p>
+        </div>
+        @*<div class="col-lg-6 col-md-6">
+            <img src="/documentos/@Model[0].UrlImage" class="m-link-hover__img img-fluid" alt="@Model[0].Title">
+        </div>*@
+    </div>
+}
+@if (Model!=null && Model.Count()>1)
+{
+    <div class="m--padding-30" style="display:flex;margin:auto;">
+        @*<div class="col-lg-6 col-md-6">
+            <img src="/documentos/@Model[1].UrlImage" class="m-link-hover__img img-fluid" alt="@Model[1].Title">
+        </div>*@
+        <div class="col-lg-6 col-md-6" style="margin:auto;text-align:center">
+            <h2 class="m--padding-10 lc-step-title">@Model[1].Title</h2>
+
+            <p class="m--padding-left-10 m--padding-right-10">
+                @Html.Raw(Model[1].Content)
+            </p>
+        </div>
+    </div>
+}

@@ -1,0 +1,80 @@
+﻿@model LC.WEB.Areas.Admin.Models.Lawyer.LawyerInfoViewModel
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="request_interview_modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Solicitud de Entrevista</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="request_interview_form" autocomplete="off">
+                <div class="modal-body">
+                    @if (Model.Status == ConstantHelpers.ENTITIES.LAWYER.STATUS.PROFILE_VALIDATED)
+                    {
+                        <input type="hidden" name="LawyerId" value="@Model.LawyerId" />
+                        @for (int i = 0; i < 3; i++)
+                        {
+                            <div class="row">
+                                <div class="form-group m-form__group col-lg-4">
+                                    <label>Día</label>
+                                    <input name="RequestInterviews[@i].Date" class="form-control m-input input-datepicker" required />
+                                </div>
+                                <div class="form-group m-form__group col-lg-4">
+                                    <label>Rango Inic.</label>
+                                    <input name="RequestInterviews[@i].StartRange" class="form-control m-input input-timepicker" required />
+                                </div>
+                                <div class="form-group m-form__group col-lg-4">
+                                    <label>Rango Fin.</label>
+                                    <input name="RequestInterviews[@i].EndRange" class="form-control m-input input-timepicker" required />
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @if (Model.Status == ConstantHelpers.ENTITIES.LAWYER.STATUS.INTERVIEW_VALIDATED)
+                    {
+                        @if (!Model.RequestInterviews.Any(x => x.Selected))
+                        {
+                            <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+                                <div class="m-alert__icon">
+                                    <i class="la la-warning"></i>
+                                </div>
+                                <div class="m-alert__text">
+                                    El abogado no ha seleccionado ninguna fecha hasta el momento.
+                                </div>
+                            </div>
+                        }
+
+                        @foreach (var item in Model.RequestInterviews)
+                        {
+                            <div class="row" @(item.Selected?"style=background-color:#0064942b;":"")>
+                                <div class="form-group m-form__group col-lg-4" >
+                                    <label>Día</label>
+                                    <input value="@item.Date" class="form-control m-input" readonly />
+                                </div>
+                                <div class="form-group m-form__group col-lg-4">
+                                    <label>Rango Inic.</label>
+                                    <input value="@item.StartRange" class="form-control m-input" readonly />
+                                </div>
+                                <div class="form-group m-form__group col-lg-4">
+                                    <label>Rango Fin.</label>
+                                    <input value="@item.EndRange" class="form-control m-input" readonly />
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+                @if (Model.Status == ConstantHelpers.ENTITIES.LAWYER.STATUS.PROFILE_VALIDATED)
+                {
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+</div>

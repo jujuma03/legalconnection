@@ -1,0 +1,179 @@
+﻿@model LC.ENTITIES.Custom.Admin.LegalCaseCustomModel
+@{
+    ViewData["Title"] = "Detalle del Caso";
+    ViewData["Breadcrumbs"] = new[] {
+    new BreadcrumbViewModel { Name = "Listado de Casos",Action="Postulations",Controller="Legalcase",Area="Admin" },
+    new BreadcrumbViewModel { Name = ViewData["Title"].ToString() }
+    };
+}
+<input type="hidden" asp-for="Id" />
+@if (Model.Status == ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALIDATION_PROCCESS)
+{
+    <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+        <div class="m-alert__icon">
+            <i class="la la-warning"></i>
+        </div>
+        <div class="m-alert__text">
+            <strong>Caso en Revisi&oacute;n!</strong> Este caso no podr&aacute; recibir postulaciones hasta que sea v&aacute;lidado.
+        </div>
+        <div class="m-alert__actions">
+            <button type="button" id="accept_legal_case" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                Validar
+            </button>
+            <a asp-action="Question" asp-controller="LegalCase" asp-area="Admin" asp-route-legalCaseId="@Model.Id" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                Preguntas
+            </a>
+            <button data-toggle="modal" data-target="#reject_modal" class="btn btn-danger btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                Denegar
+            </button>
+        </div>
+    </div>
+}
+else if (Model.Status == ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALIDATED)
+{
+    <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+        <div class="m-alert__icon">
+            <i class="la la-warning"></i>
+        </div>
+        <div class="m-alert__text">
+            <strong>Caso en Validado!</strong> Este caso no podr&aacute; recibir postulaciones hasta que sea derivado
+        </div>
+        <div class="m-alert__actions">
+            <button type="button" id="derive_legal_case" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                Derivar
+            </button>
+            <a asp-action="Question" asp-controller="LegalCase" asp-area="Admin" asp-route-legalCaseId="@Model.Id" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                Preguntas
+            </a>
+        </div>
+    </div>
+}
+else if (Model.Status == ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.REJECTED)
+{
+    <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+        <div class="m-alert__icon">
+            <i class="la la-warning"></i>
+        </div>
+        <div class="m-alert__text">
+            <strong>Caso Rechazado!</strong> La validaci&oacute;n del caso fue el @Model.ValidatedAt
+        </div>
+        <div class="m-alert__actions">
+            <button type="button" id="view_observations" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                Ver Observaciones
+            </button>
+        </div>
+    </div>
+}
+else if (Model.Status == ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.CORRECTED_OBSERVATIONS)
+{
+    <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+        <div class="m-alert__icon">
+            <i class="la la-warning"></i>
+        </div>
+        <div class="m-alert__text">
+            <strong>Observaciones Corregidas!</strong>
+        </div>
+        <div class="m-alert__actions">
+            <button type="button" id="accept_legal_case" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                Validar
+            </button>
+            <a asp-action="Question" asp-controller="LegalCase" asp-area="Admin" asp-route-legalCaseId="@Model.Id" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                Preguntas
+            </a>
+            <button data-toggle="modal" data-target="#reject_modal" class="btn btn-danger btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                Denegar
+            </button>
+            <button type="button" id="view_observations" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                Ver Observaciones
+            </button>
+        </div>
+    </div>
+}
+
+@if (Model.Status != ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALIDATION_PROCCESS &&
+Model.Status != ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALIDATED &&
+Model.Status != ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.REJECTED &&
+Model.Status != ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.CORRECTED_OBSERVATIONS)
+{
+    <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+        <div class="m-alert__icon">
+            <i class="la la-warning"></i>
+        </div>
+        <div class="m-alert__text">
+            <strong>Estado del Caso : @ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALUES[Model.Status]</strong>
+        </div>
+        <div class="m-alert__actions">
+            <a asp-action="Question" asp-controller="LegalCase" asp-area="Admin" asp-route-legalCaseId="@Model.Id" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                Preguntas
+            </a>
+        </div>
+    </div>
+}
+
+<div class="m-portlet m-portlet--mobile ">
+    <div class="m-portlet__body">
+        <div class="row">
+            <div class="title col-12 row mb-3">
+                <h5 class="col-8 m--font-boldest2 text-uppercase">@ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALUES[Model.Status]</h5>
+                <div class="col-4 btn btn-edit d-flex align-items-center justify-content-end">
+                    <i class="fa fa-edit btn-experience-edit" style="font-size:30px;"></i>
+                </div>
+            </div>
+            <div class="title col-12 row">
+                <h5 class="col-xl-4 col-lg-4 col-md-4 m--font-boldest"><u>Especialidad : @Model.Speciality</u></h5>
+                <h5 class="col-xl-4 col-lg-4 col-md-4 m--font-boldest2"><u>@Model.Department - @Model.Province</u></h5>
+                <h5 class="col-xl-4 col-lg-4 col-md-4 text-xl-right text-lg-right text-md-right m--font-boldest2">Publicado @Model.CreatedAt</h5>
+            </div>
+            <div class="col-6 mt-3">
+                <h5>
+                    <span class="m--font-boldest">Temas:</span>
+                    @string.Join(", ", Model.SpecialityThemes.Select(y => y.Name).ToList())
+                </h5>
+            </div>
+            <div class="col-12 mt-3">
+                <p class="text-justify">
+                    @Model.Description
+                </p>
+            </div>
+            @if (!string.IsNullOrEmpty(Model.FileUrl))
+            {
+                <div class="col-12 mb-3">
+                    <a href="/documentos/@Model.FileUrl" target="_blank" class="m-link m--font-boldest">Descargar Archivo Adjunto</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<h4 class="m--font-boldest2">Perfil de Cliente</h4>
+<div class="m-portlet m-portlet--full-height ">
+    <div class="m-portlet__body">
+        <div class="row">
+            <div class="col-xl-2 col-lg-2 col-md-2 mt-2 col-sm-12 text-center">
+                @if (string.IsNullOrEmpty(Model.Client.PhotoUrl))
+                {
+                    <img src="~/images/general/profile.jpg" width="80" style="border-radius:50%;" />
+                }
+                else
+                {
+                    <img src="/documentos/@Model.Client.PhotoUrl" width="80" style="border-radius:50%;" />
+                }
+            </div>
+            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                <h5 class="m--font-boldest">@Model.Client.FullName</h5>
+                <span class="m--font-bold">@Model.Client.Email</span><br />
+                <span class="m--font-bold">@Model.Client.Department - @Model.Client.Province</span><br />
+                <span class="m--font-bold">@Model.Client.PhoneNumber</span>
+                <span class="m--font-bold">@Model.Client.Document</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("Partials/Modals/RejectPartialModal", new LC.WEB.Areas.Admin.Models.LegalCase.RejectViewModel { LegalCaseId = Model.Id })
+@await Html.PartialAsync("Partials/Modals/_EdithCaseLegalModal", new LC.WEB.Areas.Client.Models.LegalCase.LegalCaseViewModel { Id = Model.Id })
+@await Html.PartialAsync("Partials/Modals/ObservationPartialModal")
+
+@section Scripts{
+    <script src="~/js/areas/admin/legalcase/detail.js" asp-append-version="true"></script>
+}

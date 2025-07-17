@@ -1,0 +1,88 @@
+﻿@model LC.WEB.Areas.Lawyer.Models.EconomicManagement.WithdrawalRequestViewModel
+
+
+@if (Model.CanRequest)
+{
+
+    <div class="m-portlet">
+        <form id="main_form" autocomplete="off">
+            <div class="m-portlet__body">
+                <div class="row">
+                    <div class="form-group m-form__group col-lg-6">
+                        <label asp-for="FinancialEntity">Banco:</label>
+                        <select class="form-control m-select2" asp-for="FinancialEntity" required>
+                            @foreach (var item in ConstantHelpers.ENTITIES.LAWYER_WITHDRAWAL_INFO.FINANCIAL_ENTITY.VALUES)
+                            {
+                                <option value="@item.Key">@item.Value</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group m-form__group col-lg-6">
+                        <label asp-for="Amount">Monto a Retirar:</label>
+                        <input type="number" class="form-control m-input" asp-for="Amount" placeholder="Ingrese monto a retirar" min="5" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group m-form__group col-lg-6">
+                        <label asp-for="BankAccount">N&uacute;mero de Cuenta:</label>
+                        <input class="form-control m-input" asp-for="BankAccount" placeholder="Ingrese número de cuenta" required>
+                    </div>
+                    <div class="form-group m-form__group  col-lg-6">
+                        <label asp-for="InterbankAccount">N&uacute;mero de Cuenta Interbancaria:</label>
+                        <input class="form-control m-input" asp-for="InterbankAccount" placeholder="Ingrese número de cuenta interbancario" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group m-form__group col-lg-6">
+                        <label asp-for="Dni">DNI:</label>
+                        <input class="form-control m-input" asp-for="Dni" placeholder="DNI" required>
+                    </div>
+                    <div class="form-group m-form__group  col-lg-6">
+                        <label asp-for="FullName">Nombre Completo:</label>
+                        <input class="form-control m-input" asp-for="FullName" placeholder="Nombre del dueño de la cuenta" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group m-form__group col-lg-12">
+                        <label class="form-control-label">Recibo por Honorarios</label>
+                        <div class="custom-file">
+                            <input type="file" asp-for="ReceiptFileForFees" accept="image/png,application/pdf" class="custom-file-input" required/>
+                            <label class="custom-file-label">
+                                Seleccione un archivo
+                            </label>
+                            <small>Solo se permite archivos con extensi&oacute;n .pdf o .png</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="m-portlet__foot">
+                <div class="row align-items-center">
+                    <div class="col-lg-12 text-right">
+                        <button type="submit" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                            <span>
+                                <i class="la la-save"></i>
+                                <span>Enviar Solicitud</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+}
+else
+{
+    <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+        <div class="m-alert__icon">
+            <i class="la la-warning"></i>
+        </div>
+        <div class="m-alert__text">
+            No se encuentra en el d&iacute;a para solicitar retiros.
+        </div>
+    </div>
+}
+
+
+@section Scripts{
+    <script src="~/js/areas/lawyer/economicmanagement/withdrawalrequest.js" asp-append-version="true"></script>
+}

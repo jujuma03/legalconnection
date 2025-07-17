@@ -1,0 +1,34 @@
+﻿@model LC.CORE.Structs.PaginationStructs.PaginationData
+
+@{
+    var prevDisable = "";
+    var nextDisable = "";
+
+    prevDisable = Model.Active==1 ? "disabled" : "";
+    nextDisable =Model.TotalPages==Model.Active ? "disabled" : "";
+}
+<nav aria-label="Page navigation example items-pagination">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @prevDisable">
+            <button class="page-link previous-item" data-active="@Model.Active">Anterior</button>
+        </li>
+        @if (Model.Active-1 >0)
+        {
+            <li class="page-item">
+                <button class="page-link previous-item" data-active="@Model.Active">@(Model.Active-1)</button>
+            </li>
+        }
+        <li class="page-item">
+            <button class="page-link" href="#">@Model.Active</button>
+        </li>
+        @if (Model.TotalPages>Model.Active+1)
+        {
+            <li class="page-item">
+                <button class="page-link next-item" data-active="@Model.Active">@(Model.Active+1)</button>
+            </li>
+        }
+        <li class="page-item @nextDisable">
+            <button class="page-link next-item" data-active="@Model.Active">Siguiente</button>
+        </li>
+    </ul>
+</nav>

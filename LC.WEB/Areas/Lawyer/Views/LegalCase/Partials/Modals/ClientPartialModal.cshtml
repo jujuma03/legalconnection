@@ -1,0 +1,35 @@
+﻿@model LC.ENTITIES.Custom.General.ClientCustomModel
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="client_modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row text-center">
+                    <h5 class="col-12">Ponte en contacto con tu cliente</h5>
+                    <div class="col-12 row">
+                        <div class="col-12">
+                            @if (string.IsNullOrEmpty(Model.PhotoUrl))
+                            {
+                                <img src="~/images/general/profile.jpg" width="80" style="border-radius:50%;" />
+                            }
+                            else
+                            {
+                                <img src="/documentos/@Model.PhotoUrl" width="80" style="border-radius:50%;" />
+                            }
+                        </div>
+                        <div class="col-12 mt-3">
+                            <h5 class="m--font-boldest">@Model.FullName</h5>
+                            <span class="m--font-bold">@Model.Email</span><br />
+                            <span class="m--font-bold">@Model.Department - @Model.Province</span>
+                        </div>
+                    </div>
+                    
+                    <h5 class="col-12 mt-3">Cont&aacute;ctalo al : <span class="m--font-boldest2">@Model.PhoneNumber</span></h5>
+                    <div class="col-12 mt-4">
+                        <button data-dismiss="modal" type="button" class="btn btn-primary m-btn m-btn--custom">Entendido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

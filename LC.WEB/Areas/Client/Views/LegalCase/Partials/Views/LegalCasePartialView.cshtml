@@ -1,0 +1,50 @@
+﻿@model LC.CORE.Structs.PaginationStructs.ReturnedData<LC.ENTITIES.Custom.Client.LegalCaseCustomModel>
+
+@if (Model.Data.Any())
+{
+    @foreach (var item in Model.Data)
+    {
+        <div class="m-portlet m-portlet--rounded legal_case_portlet" data-id="@item.Id">
+            <div class="m-portlet__body">
+                <div class="row">
+                    <div class="title col-12 row">
+                        <h5 class="col-xl-4 col-lg-4 col-md-4 m--font-boldest"><u>Especialidad : @item.Speciality</u></h5>
+                        <h5 class="col-xl-4 col-lg-4 col-md-4 m--font-boldest2"><u>@item.Department - @item.Province</u></h5>
+                        <h5 class="col-xl-4 col-lg-4 col-md-4 text-xl-right text-lg-right text-md-right m--font-boldest2">@(ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALUES[item.Status])</h5>
+                    </div>
+                    @if (item.Lawyers.Any())
+                    {
+                        <div class="row lawyer col-12 mt-3 col-12">
+                            <div class="col-12 d-xl-flex d-lg-flex d-md-flex align-items-center">
+                                <h5 class="m--font-boldest">Abogados asignados : </h5>
+                                @foreach (var lawyer in item.Lawyers)
+                                {
+                                    //&emsp;
+                                    @if (string.IsNullOrEmpty(lawyer.PhotoUrl))
+                                    {
+                                        <img src="~/images/general/profile.jpg" class="img-lawyer" />
+                                    }
+                                    else
+                                    {
+                                        <img src="/documentos/@lawyer.PhotoUrl" class="img-lawyer" />
+                                    }
+                                    //&emsp;
+                                    <a href="javascript:;" class="h5 m-link m--font-boldest">@lawyer.FullName</a>
+                                }
+                            </div>
+                        </div>
+                    }
+                    <div class="col-12 mt-3">
+                        <p class="text-justify">
+                            @item.Description
+                        </p>
+                    </div>
+                    <span class="col-12 m--font-boldest2">@item.CreatedAt</span>
+                </div>
+            </div>
+        </div>
+    }
+
+    @await Html.PartialAsync("Partials/_PaginationPartial", Model.PaginationData)
+}
+

@@ -1,0 +1,79 @@
+﻿@model LC.CORE.Structs.PaginationStructs.ReturnedData<LC.ENTITIES.Custom.PublicationCustomModel>
+
+@if (Model.Data.Count() >0)
+{
+    <div class="row">
+        @foreach (var item in Model.Data)
+        {
+            @if (item.Type == ConstantHelpers.ENTITIES.BLOG.TYPES.EXTERNALPUBLICATION)
+            {
+                <div class="col-lg-4">
+                    <div class="m-portlet">
+                        <div class="m-portlet__body" data-id="@item.Id">
+                            <div class="m-widget19">
+                                <div class="m-widget19__pic m-portlet-fit--top m-portlet-fit--sides " style="margin-top: -30px;">
+                                    <img class="m-widget19__img" src="/documentos/@item.ExternalPublication.PhotoUrl" />
+                                    <div class="m-widget19__shadow"></div>
+                                </div>
+                                <div class="m-widget19__content">
+                                    <h3 class="m-widget19__title m--padding-10">
+                                        <a class="" asp-action="BlogDetail" asp-controller="Portal" asp-route-id="@item.Id" style="color:unset">@item.ExternalPublication.Title</a>
+                                    </h3>
+                                    <div class="blog-item m-widget19__header">
+                                        <div class="m-widget19__info">
+                                            <span class="m-widget19__time">
+                                                Publicado el: @item.ExternalPublication.PublicationDate
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <article class="m-widget19__body show-read-more" style="word-break: break-all">
+                                        @Html.Raw(item.ExternalPublication.Description)
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-lg-4">
+                    <div class="m-portlet">
+                        <div class="m-portlet__body" data-id="@item.Id">
+                            <div class="m-widget19">
+                                <div class="m-widget19__pic m-portlet-fit--top m-portlet-fit--sides " style="margin-top: -30px;">
+                                    <img class="m-widget19__img" src="/documentos/@item.LawyerPublication.PhotoUrl" />
+                                    <div class="m-widget19__shadow"></div>
+                                </div>
+                                <div class="m-widget19__content">
+                                    <h3 class="m-widget19__title m--padding-10">
+                                        <a class="" asp-action="BlogDetail" asp-controller="Portal" asp-route-id="@item.Id" style="color:unset">@item.LawyerPublication.Title</a>
+                                    </h3>
+                                    <div class="blog-item m-widget19__header">
+                                        <div class="m-widget19__info">
+                                            <span class="m-widget19__time">
+                                                Publicado el: @item.LawyerPublication.PublicationDate
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <article class="m-widget19__body show-read-more" word-break: break-all>
+                                        @Html.Raw(item.LawyerPublication.Description)
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="">
+        @await Html.PartialAsync("Partials/_PaginationPartial", Model.PaginationData)
+    </div>
+}
+else
+{
+    <div class="m--padding-20 text-center">
+        <h4 class="toast-title portal-title text-center" style="color:darkgray">No hay blogs disponibles</h4>
+    </div>
+}

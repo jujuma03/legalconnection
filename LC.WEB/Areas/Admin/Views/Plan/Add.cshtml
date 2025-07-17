@@ -1,0 +1,74 @@
+﻿@model LC.WEB.Areas.Admin.Models.Plan.PlanViewModel
+@{
+    ViewData["Title"] = "Agregar Plan";
+    ViewData["Breadcrumbs"] = new[] {
+    new BreadcrumbViewModel { Name = "Listado de Planes" , Action = "Index" , Area="Admin", Controller="Plan"},
+    new BreadcrumbViewModel { Name = ViewData["Title"].ToString() }
+    };
+}
+
+<div class="m-portlet">
+    <form id="main_form" autocomplete="off">
+        <div class="m-portlet__body">
+            <div class="row">
+                <div class="form-group m-form__group col-lg-12">
+                    <label asp-for="Name">Nombre:</label>
+                    <input class="form-control m-input" asp-for="Name" placeholder="Ingrese nombre" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group m-form__group col-lg-12">
+                    <label asp-for="Description">Description:</label>
+                    <textarea class="form-control m-input" asp-for="Description" placeholder="Ingrese descripción" rows="4" maxlength="300" required></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group m-form__group col-lg-6">
+                    <label asp-for="Interval">Intervalo:</label>
+                    <select class="form-control m-select2" asp-for="Interval" required>
+                        @foreach (var item in ConstantHelpers.ENTITIES.PLAN.INTERVAL.VALUES.Skip(1))
+                        {
+                            <option value="@item.Key">@item.Value.ToPascalCaseFormatWithSpaces()</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group m-form__group col-lg-6">
+                    <label asp-for="IntervalCount">Cantidad Intervalo:</label>
+                    <input min="0" type="number" class="form-control m-input" asp-for="IntervalCount" placeholder="Ingrese intervalo" required>
+                    <small class="m-form__help">
+                        Cantidad de cada cuanto se deben ejecutar los cargos del plan. Si en 'Intervalo' pusimos "meses", poner valor 1 en este campo hará que se cobre cada mes.
+                    </small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group m-form__group col-lg-6">
+                    <label asp-for="Amount">Monto:</label>
+                    <input type="number" class="form-control m-input" asp-for="Amount" placeholder="Ingrese Monto" required>
+                </div>
+                <div class="form-group m-form__group  col-lg-6">
+                    <label asp-for="TrialDays">D&iacute;as de Prueba:</label>
+                    <input type="number" min="0" class="form-control m-input" asp-for="TrialDays" placeholder="Ingrese días de prueba" required>
+                    <small class="m-form__help">
+                        Número de días del periodo de prueba (sin costo).
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="m-portlet__foot">
+            <div class="row align-items-center">
+                <div class="col-lg-12 text-right">
+                    <button type="submit" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                        <span>
+                            <i class="la la-save"></i>
+                            <span>Guardar</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <script src="~/js/areas/admin/plan/add.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,12 @@
+﻿@{
+    if(User.IsInRole(ConstantHelpers.ROLES.CLIENT) || User.IsInRole(ConstantHelpers.ROLES.LAWYER))
+    {
+        Layout = "_Layout";
+    }
+    else
+    {
+        Layout = "_AdminLayout";
+    }
+}
+
+Acceso Denegado

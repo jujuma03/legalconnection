@@ -1,0 +1,58 @@
+﻿@model LC.ENTITIES.Custom.EconomicManagementLawyerCustomModel
+
+@section Styles{
+    <link href="~/css/areas/lawyer/economicmanagement/index.css" rel="stylesheet" />
+}
+
+<h3 class="m--font-boldest2 mb-4">Mis Finanzas</h3>
+<p class="mb-5">
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+</p>
+
+<div class="mb-4" role="group" aria-label="Default button group">
+    <a asp-action="Index" asp-controller="EconomicManagement" asp-area="Lawyer" class="btn btn-lg btn-primary m--font-boldest2 btn-nav2">Reporte General de Casos</a>
+    <a asp-action="CashWithdrawal" asp-controller="EconomicManagement" asp-area="Lawyer" class="btn btn-lg btn-secondary m--font-boldest2 btn-nav2">Retirar Efectivo</a>
+    <a asp-action="Movements" asp-controller="EconomicManagement" asp-area="Lawyer" class="btn btn-secondary btn-lg m--font-boldest2 btn-nav2">Movimientos</a>
+</div>
+
+<h3 class="m--font-boldest2 mb-5">Reporte general de casos</h3>
+
+<div class="m-portlet mb-5">
+    <div class="m-portlet__body  m-portlet__body--no-padding">
+        <div class="row m-row--no-padding m-row--col-separator-xl">
+            <div class="col-xl-2 col-lg-3 col-md-3 p-2 text-center">
+                <div class="m--font-boldest2 m--icon-font-size-sm2 mb-2 text-tab">PARTICIPADOS</div>
+                <span class="m--icon-font-size-lg5 m--font-bolder text-detail">@Model.Applications Casos</span>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 p-2 text-center">
+                <div class="m--font-boldest m--icon-font-size-sm2 m--icon-font-size-sm2 mb-2 text-tab">POR ACEPTAR</div>
+                <span class="m--icon-font-size-lg5 m--font-bolder text-detail">@Model.PendingDirected Casos</span>
+            </div>
+            <div class="col-xl-2  col-lg-3 col-md-3 p-2 text-center">
+                <div class="m--font-boldest m--icon-font-size-sm2 m--icon-font-size-sm2 mb-2 text-tab">EN CURSO</div>
+                <span class="m--icon-font-size-lg5 m--font-bolder text-detail">@Model.InCourse Casos</span>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 p-2 text-center">
+                <div class=" m--font-boldest m--icon-font-size-sm2 m--icon-font-size-sm2 mb-2 text-tab">CONCLUIDOS</div>
+                <span class="m--icon-font-size-lg5 m--font-bolder text-detail">@Model.Finalized Casos</span>
+            </div>
+            <div class="col-xl-4 col-lg-12 p-2 col-md-12 available_balance">
+                <div class="text-center m--font-boldest m--icon-font-size-sm2 m--icon-font-size-sm2 mb-2 text-tab">SALDO DISPONIBLE</div>
+                <div class="m--font-bolder text-center">
+                    <span class="m--icon-font-size-lg5 text-detail" id="available_balance_span">S/.0.00</span>
+                </div>
+                <div class="text-center">
+                    <a asp-action="CashWithdrawal" asp-controller="EconomicManagement" asp-area="Lawyer" class="m-link--secondary m--font-boldest">RETIRAR</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3 class="m--font-boldest2 mb-5">Historial de casos</h3>
+
+<div id="finished_cases_partial"></div>
+
+@section Scripts{
+    <script src="~/js/areas/lawyer/economicmanagement/index.js" asp-append-version="true"></script>
+}

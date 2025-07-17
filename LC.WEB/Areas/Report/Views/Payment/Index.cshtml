@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Listado de clientes con pagos ";
+    ViewData["Breadcrumbs"] = new[] {
+    new BreadcrumbViewModel { Name = ViewData["Title"].ToString() }
+    };
+}
+
+<div class="m-portlet">
+    <div class="m-portlet__body">
+        <div class="m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
+            <div class="row align-items-center">
+                <div class="col-xl-8 order-2 order-xl-1">
+                    <div class="row">
+                        <div class="form-group m-form__group col-xl-4">
+                            <div class="m-input m-input-icon m-input-icon--left">
+                                <input type="text" class="form-control m-input m-input--pill m-input--solid" placeholder="Buscar..." id="search">
+                                <span class="m-input-icon__icon m-input-icon__icon--left">
+                                    <span><i class="la la-search"></i></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-hover table-bordered m-table m-table--head-bg-primary table-responsive-lg" id="tbl-data"> </table>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/areas/report/payment/index.js" asp-append-version="true"></script>
+}

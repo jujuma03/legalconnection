@@ -1,0 +1,26 @@
+﻿@model IEnumerable<LC.ENTITIES.Models.Blog>
+@{
+ Layout = "~/Views/Shared/_TransparentLayout.cshtml";
+}
+@section Styles{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="~/css/views/portal/index.css" rel="stylesheet" asp-append-version="true"/>
+}
+<div class="bg-dark" style="background-image: url('../images/general/blog.png'); background-size: cover; height:250px;">
+    <div class="m--margin-top-90-desktop m--margin-top-50-mobile m--margin-top-70-tablet">
+        <div class="container">
+            <div class="col-lg-6 text-center">
+                <h2 class="toast-title portal-title text-white" style="text-align:left">NOS COMPROMETIMOS A MEJORAR EL SISTEMA LEGAL DEL PAÍS</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="lc-background-light-blue">
+    <div class="container m--padding-30" id="blogs-view">
+    </div>
+</div>
+
+@section  Scripts{ 
+    <script src="~/js/views/portal/blogs.js" asp-append-version="true"></script>
+}

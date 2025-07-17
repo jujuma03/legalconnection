@@ -1,0 +1,114 @@
+﻿@model LC.WEB.Models.Account.ConfirmEmailViewModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Correo Electrónico Confirmado!";
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ConstantHelpers.PROJECT | Bienvenido</title>
+    <meta name="description" content="Latest updates and statistic charts">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="~/images/logo/favicon.ico" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: { "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"] },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PDM45VG">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'GTM-PDM45VG');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PDM45VG');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDM45VG"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <link href="~/assets/css/vendors.admin.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/style.admin.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/site.css" rel="stylesheet" type="text/css" />
+    <style>
+        .m-portlet .m-portlet__head {
+            border-bottom: 0px !important;
+        }
+
+        .m-portlet .m-portlet__foot:not(.m-portlet__no-border) {
+            border-top: 0px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body" style="height:100%;">
+        <div class="m-content d-flex m-container">
+            <div class="row" style="margin:auto !important;">
+                <div class="m-portlet m-portlet--mobile m-portlet--body-progress-">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <img src="~/images/logo/logo_horizontal.png" style="width:140px;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <h4 class="m--font-boldest2 mb-4">Buen d&iacute;a @Model.FullName.ToUpper(), bienvenido(a) a @ConstantHelpers.PROJECT.ToUpper()</h4>
+                        @if (Model.Role == ConstantHelpers.ROLES.LAWYER)
+                        {
+                            <p class="m--icon-font-size-sm1 text-justify">
+                                Aquí te ayudaremos a crear tu perfil como abogado(a) para que consigas tu primer proyecto. Sigue estos pasos para aprovechar al máximo los beneficios.
+                            </p>
+                            <p class="m--icon-font-size-sm1 text-justify">
+                                Tu perfil pasará por un proceso de verificación y validación de los datos que brindes, este proceso nos tomará @Model.ProccessValidationMaxHours horas. No olvides colocar la mayor parte de la información para que así tengas mayor probabilidad de ser seleccionado(a). ¡Mucha suerte!
+                            </p>
+                        }
+
+                        @if (Model.Role == ConstantHelpers.ROLES.CLIENT)
+                        {
+                            <p class="m--icon-font-size-sm1 text-justify">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            </p>
+                        }
+
+                    </div>
+                    <div class="m-portlet__foot">
+                        <div class="row align-items-end">
+                            <div class="col-lg-12 m--align-right">
+                                <a href="/login" class="btn btn-primary">Siguiente</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

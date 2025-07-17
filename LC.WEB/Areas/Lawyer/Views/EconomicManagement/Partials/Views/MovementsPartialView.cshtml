@@ -1,0 +1,51 @@
+﻿@model LC.CORE.Structs.PaginationStructs.ReturnedData<LC.ENTITIES.Custom.WithdrawalRequestCustomModel>
+
+@if (!Model.Data.Any())
+{
+    <span>No se han encontrado casos finalizados</span>
+}
+else
+{
+    @foreach (var item in Model.Data)
+    {
+        <div class="m-portlet m-portlet--rounded legal_case_portlet" data-id="@item.Id">
+            <div class="m-portlet__body">
+                <div class="row">
+                    <h5 class="col-xl-4 col-lg-4 col-md-4 m--font-boldest">@item.Status</h5>
+                    @if (!string.IsNullOrEmpty(item.UrlDepositReceipt))
+                    {
+                        <div class="col-xl-4 col-lg-4 col-md-4 offset-4">
+                            <a href="/documentos/@item.UrlDepositReceipt" class="btn btn-primary m-btn--pill pull-right">
+                                <span>
+                                    <i class="la la-download"></i>
+                                </span>
+                                Descargar constancia
+                            </a>
+                        </div>
+                    }
+                    <div class="col-12 mt-3">
+                        <div class="row">
+                            <div class="col-10">
+                                <p class="text-justify">
+                                    Cuenta bancaria: @item.BankAccount
+                                    <br />
+                                    Cuenta Interbancaria: @item.InterBankAccount
+                                </p>
+                            </div>
+                            <div class="col-2 text-center">
+                                <h4 class="m--font-boldest2">S/.@item.Amount</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-2">
+                        <a href="javascript:;" class="m-link m--font-boldest">@item.RegisterDate</a>
+                    </div>
+                    <span class="col-12 m--font-boldest2"></span>
+                </div>
+            </div>
+        </div>
+
+    }
+
+    @await Html.PartialAsync("Partials/_PaginationPartial", Model.PaginationData)
+}

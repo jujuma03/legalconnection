@@ -1,0 +1,31 @@
+﻿@model List<LC.ENTITIES.Models.FrequentQuestion>
+
+@if (Model!= null && Model.Count()>0)
+{
+    <div class="container">
+        <h1 class="toast-title portal-title-left">Preguntas frecuentes</h1>
+        <div class="m-accordion m-accordion--bordered" id="m_accordion_2" role="tablist">
+            @{ 
+                var count = 0;
+            }
+            @foreach (var item in Model)
+            {
+                <div class="m-accordion__item"style=" background-color: transparent; border: 0;">
+                    <div class="m-accordion__item-head collapsed" role="tab" id="m_accordion_2_item_@(count)_head" data-toggle="collapse" href="#m_accordion_2_item_@(count)_body" aria-expanded="false" style=" background-color: transparent;">
+                        <span class="m-accordion__item-icon"><i class="@ConstantHelpers.ENTITIES.FREQUENT_QUESTION.ICONS.VALUES[item.Icon]"></i></span>
+                        <span class="m-accordion__item-title">@item.Title</span>
+                        <span class="m-accordion__item-mode"></span>
+                    </div>
+                    <div class="m-accordion__item-body collapse" id="m_accordion_2_item_@(count)_body" role="tabpanel" aria-labelledby="m_accordion_2_item_@(count)_head" data-parent="#m_accordion_2" style="">
+                        <div class="m-accordion__item-content">
+                            <p>
+                                @item.Description
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                count++;
+            }
+        </div>
+    </div>
+}

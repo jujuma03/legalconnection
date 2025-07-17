@@ -1,0 +1,162 @@
+﻿@model LC.WEB.Models.Qualification.QualificationViewModel
+@{
+    Layout = "~/Views/Shared/_TransparentLayout.cshtml";
+}
+@section Styles{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="~/css/views/portal/index.css" rel="stylesheet" asp-append-version="true" />
+    <style>
+
+        :root {
+            --color-inactivo: #5f5050;
+            --color-hover: #ffa400;
+        }
+
+        .fa-star {
+            font-size: 40px;
+        }
+
+        .valoration {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+            .valoration button {
+                background-color: initial;
+                border: 0;
+                color: var(--color-inactivo);
+                transition: 1s all;
+            }
+
+                .valoration button:hover {
+                    cursor: pointer;
+                    color: var(--color-hover);
+                    transform: rotate(360deg);
+                }
+
+        button:nth-child(1):hover ~ button {
+            color: var(--color-hover);
+            transform: rotate(360deg);
+        }
+
+        button:nth-child(2):hover ~ button {
+            color: var(--color-hover);
+            transform: rotate(360deg);
+        }
+
+        button:nth-child(3):hover ~ button {
+            color: var(--color-hover);
+            transform: rotate(360deg);
+        }
+
+        button:nth-child(4):hover ~ button {
+            color: var(--color-hover);
+            transform: rotate(360deg);
+        }
+
+        button:nth-child(5):hover ~ button {
+            color: var(--color-hover);
+            transform: rotate(360deg);
+        }
+
+        .fa_star_selected {
+            color: var(--color-hover);
+        }
+
+        .commentary_div {
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        .title {
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+    </style>
+}
+<div class="lc-background-green">
+    <div class="" style="margin-top: 45vh;">
+        <div class="container">
+        </div>
+    </div>
+</div>
+<div class="lc-background-light-blue">
+    <div class="container m--padding-30" style=" margin-top: -35vh;">
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m--padding-30" style="height: 100%; ">
+            <div class="m-content d-flex m-container">
+                <form id="main_form" class="m-auto">
+                    <input type="hidden" asp-for="Client.Id" />
+                    <input type="hidden" asp-for="Lawyer.Id" />
+                    <input type="hidden" asp-for="LegalCaseId" />
+                    <div class="row" style="margin:auto !important;">
+                        <div class="m-portlet m-portlet--mobile m-portlet--body-progress">
+                            <div class="m-portlet__body">
+                                <div class="title">
+                                    <h4 class="m--font-boldest2 mb-4 text-center">BUEN D&Iacute;A, @Model.Client.FullName</h4>
+                                    <h4 class="m--font-boldest2 mb-4 text-center">POR FAVOR, D&Eacute;JANOS TU CALIFACI&Oacute;N SOBRE EL ABOGADO QUE REVIS&Oacute; TU CASO</h4>
+                                </div>
+                                <p class="m--icon-font-size-sm1 text-center">
+                                    @if (string.IsNullOrEmpty(Model.Lawyer.PhotoUrl))
+                                    {
+                                        <img src="~/images/general/profile.jpg" width="150" />
+                                    }
+                                    else
+                                    {
+                                        <img src="/documentos/@Model.Lawyer.PhotoUrl" width="150" />
+                                    }
+                                </p>
+                                <p class="m--icon-font-size-sm1 text-center">
+                                    <span class="h4">@Model.Lawyer.FullName</span>
+                                </p>
+                                <p class="m--icon-font-size-sm1 text-justify ">
+                                    <div class="valoration justify-content-center">
+                                        <!-- Estrella 5 -->
+                                        <button type="button" class="btn_fa_start" data-id="5">
+                                            <i class="fas fa-star"></i>
+                                        </button>
+
+                                        <!-- Estrella 4 -->
+                                        <button type="button" class="btn_fa_start" data-id="4">
+                                            <i class="fas fa-star"></i>
+                                        </button>
+
+                                        <!-- Estrella 3 -->
+                                        <button type="button" class="btn_fa_start" data-id="3">
+                                            <i class="fas fa-star"></i>
+                                        </button>
+
+                                        <!-- Estrella 2 -->
+                                        <button type="button" class="btn_fa_start" data-id="2">
+                                            <i class="fas fa-star"></i>
+                                        </button>
+
+                                        <!-- Estrella 1 -->
+                                        <button type="button" class="btn_fa_start" data-id="1">
+                                            <i class="fas fa-star"></i>
+                                        </button>
+                                    </div>
+                                </p>
+                                <div class="col-12 commentary_div m--font-boldest2 h5 mt-5">
+                                    CU&Eacute;NTANOS TU EXPERIENCIA
+                                </div>
+                                <textarea style="font-size:20px;" class="form-control" asp-for="Commentary" maxlength="200" rows="4"></textarea>
+                            </div>
+                            <div class="m-portlet__foot">
+                                <div class="row align-items-end">
+                                    <div class="col-lg-12 m--align-right">
+                                        <button type="submit" class="btn btn-primary">Enviar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    @section Scripts {
+        <script src="~/js/views/qualification/index.js" asp-append-version="true"></script>
+    }

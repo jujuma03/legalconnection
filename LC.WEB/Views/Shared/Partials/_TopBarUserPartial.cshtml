@@ -1,0 +1,113 @@
+﻿<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
+    <div class="m-stack__item m-topbar__nav-wrapper">
+        <ul class="m-topbar__nav m-nav m-nav--inline">
+            @if (User.IsInRole(ConstantHelpers.ROLES.LAWYER) && User.LawyerIfValidated())
+            {
+                <li class="m-nav__item m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-prim m--padding-10 align-baseline" >
+                    <a class="btn m--font-boldest2 m-btn--pill btn-lc-green" asp-area="Lawyer" asp-controller="Plan" asp-action="Index" style="background-color:#ffcc00; color:#384854;">BENEFICIOS LEGALPRO</a>
+                </li>
+            }
+
+            @if (User.IsInRole(ConstantHelpers.ROLES.CLIENT) || User.IsInRole(ConstantHelpers.ROLES.LAWYER))
+            {
+                <li class="m-nav__item m-topbar__notifications m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" m-dropdown-toggle="click" m-dropdown-persistent="1">
+                    <a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon">
+                        <span class="m-nav__link-icon">
+                            <span class="m-nav__link-icon-wrapper"><i class="flaticon-alarm"></i></span>
+                            <span class="m-nav__link-badge m-badge m-badge--danger count_notification_topbar">0</span>
+                        </span>
+                    </a>
+                    <div class="m-dropdown__wrapper">
+                        <span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
+                        <div class="m-dropdown__inner">
+                            <div class="m-dropdown__header m--align-center">
+                                <span class="m-dropdown__header-title"><span class="count_notification_topbar">0</span> Notificaciones</span>
+                            </div>
+                            <div class="m-dropdown__body">
+                                <div class="m-dropdown__content">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="topbar_notifications_notifications" role="tabpanel">
+                                            <div class="m-scrollable m-scroller ps" data-scrollable="true" data-height="250" data-mobile-height="200" style="height: 250px; overflow: hidden;">
+                                                <div class="m-list-timeline m-list-timeline--skin-light">
+                                                    <div class="m-list-timeline__items" id="notification_item_topbar">
+
+                                                    </div>
+                                                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 4px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            }
+            <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light"
+                m-dropdown-toggle="click">
+                <a href="#" class="m-nav__link m-dropdown__toggle">
+                    <span class="m-topbar__userpic">
+                        @if (string.IsNullOrEmpty(User.GetPictureUrl()))
+                        {
+                            <img id="topbar_profile_image" src="~/images/general/profile.jpg" class="m--img-rounded m--marginless m--img-centered" alt="" />
+                        }
+                        else
+                        {
+                            <img id="topbar_profile_image" src="/documentos/@User.GetPictureUrl()" class="m--img-rounded m--marginless m--img-centered" alt="" />
+                        }
+                    </span>
+                </a>
+                <div class="m-dropdown__wrapper">
+                    <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                    <div class="m-dropdown__inner">
+                        <div class="m-dropdown__header m--align-center" style="background: url(/assets/images/user_profile_bg.jpg); background-size: cover;">
+                            <div class="m-card-user m-card-user--skin-dark">
+                                <div class="m-card-user__pic">
+                                    @if (string.IsNullOrEmpty(User.GetPictureUrl()))
+                                    {
+                                        <img src="~/images/general/profile.jpg" class="m--img-rounded m--marginless" alt="" />
+                                    }
+                                    else
+                                    {
+                                        <img src="/documentos/@User.GetPictureUrl()" class="m--img-rounded m--marginless" alt="" />
+                                    }
+                                </div>
+                                <div class="m-card-user__details">
+                                    <span class="m-card-user__name m--font-weight-500">@User.GetFullName()</span>
+                                    <a href="" class="m-card-user__email m--font-weight-300 m-link">@User.GetEmail()</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-dropdown__body">
+                            <div class="m-dropdown__content">
+                                <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
+                                    <ul class="m-nav m-nav--skin-light">
+                                        <li class="m-nav__section m--hide">
+                                            <span class="m-nav__section-text">Section</span>
+                                        </li>
+                                        @if (User.IsInRole(ConstantHelpers.ROLES.LAWYER) && User.LawyerIfValidated())
+                                        {
+                                            <li class="m-nav__item">
+                                                <a asp-action="Index" asp-controller="YourAccount" asp-area="Lawyer" class="m-nav__link">
+                                                    <i class="m-nav__link-icon flaticon-user"></i>
+                                                    <span class="m-nav__link-text">Cuenta y Configuraci&oacute;n</span>
+                                                </a>
+                                            </li>
+                                        }
+
+                                        <li class="m-nav__separator m-nav__separator--fit">
+                                        </li>
+                                        <li class="m-nav__item">
+                                            <button type="submit" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Cerrar Sesi&oacute;n</button>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

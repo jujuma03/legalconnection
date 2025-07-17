@@ -1,0 +1,92 @@
+﻿@model LC.WEB.Areas.Lawyer.Models.Profile.PublicationViewModel
+
+@*<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="publication_modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Solicitud de Publicación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>*@
+            <form id="publication_form" autocomplete="off">
+                <input type="hidden" name="Id" />
+                <div class="modal-body">
+                    <div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-primary alert-dismissible fade show" role="alert">
+                        <div class="m-alert__icon">
+                            <i class="flaticon-exclamation-1"></i>
+                            <span></span>
+                        </div>
+                        <div class="m-alert__text">
+                            <strong>Informaci&oacute;n!</strong> Una vez enviado el siguiente formulario pasar&aacute; por un proceso de evaluaci&oacute;n para que pueda aparecer en el BLOG y en su perfil de <strong>LEGAL CONNECTION</strong>.
+                        </div>
+                    </div>
+                    <input type="hidden" name="Id" value="@Model.Id" />
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-6">
+                            <label asp-for="Title">T&iacute;tulo</label>
+                            <input asp-for="Title" class="form-control m-input" required maxlength="100" />
+                        </div>
+                        <div class="form-group m-form__group col-lg-6">
+                            <label asp-for="Topic">Tema</label>
+                            <input asp-for="Topic" class="form-control m-input" required maxlength="100" />
+                        </div>
+                    </div>
+                    @*<div class="row">
+        </div>*@
+                    @*<div class="row">
+            <div class="form-group m-form__group col-lg-12">
+                <label class="form-control-label">Foto Referencial</label>
+                <div class="custom-file">
+                    <input type="file" asp-for="Photo" accept="image/*" class="custom-file-input" required />
+                    <label class="custom-file-label">
+                        Seleccione un archivo
+                    </label>
+                </div>
+            </div>
+        </div>*@
+                    <div class="">
+
+                        <input type="hidden" id="UrlCropImg-0" asp-for="urlPhotoCropImg" />
+                        <div class="row">
+                            <div class="form-group m-form__group col-lg-12">
+                                <label class="form-control-label">Foto Referencial</label>
+                                <div class="custom-file">
+                                    <input type="file" id="Image-0" asp-for="Photo" accept="image/*" class="custom-file-input" required />
+                                    <label class="custom-file-label">
+                                        Seleccione un archivo
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="m-form__group-sub upload-demo-wrap">
+                                <div id="upload-demo-0" style="overflow-x: auto;">
+                                    <p style="font-weight:bold; text-align:center">Resolución de la imagen recomendada: <span id="recommended-resolution-0" style="color:#8b0404;">aprox 1920px x 950px</span></p>
+                                </div>
+                                <div id="upload-offi-0" style="text-align:center">
+                                    <img id="img-offi-0" src="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-form__group-sub col-lg-12 col-xs-12 text-center">
+                            <button type="button" class="btn btn-md btn-primary upload-result-0" disabled>Previsualizar</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label asp-for="Description">Descripci&oacute;n</label>
+                            <textarea name="Description" id="Publication_Description" placeholder="Descripción" class="form-control m-input summernote mv_summernote" required rows="10" maxlength="1000"></textarea>
+
+                            @*<div class="summernote" id="Publication_Description"></div>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-cancel-publication">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
+        @*</div>
+    </div>
+</div>*@

@@ -1,0 +1,219 @@
+﻿@model LC.WEB.Models.LegalCase.LegalCaseViewModel
+
+@{
+    Layout = "~/Views/Shared/_TransparentLayout.cshtml";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="~/css/views/portal/index.css" rel="stylesheet" asp-append-version="true" />
+    <style>
+        .m-page {
+            background-color: #f2f6f9;
+        }
+
+        #customBtn {
+            display: inline-block;
+            background: white;
+            color: #444;
+            width: 150px;
+            border-radius: 5px;
+            border: thin solid #888;
+            box-shadow: 1px 1px 1px grey;
+            white-space: nowrap;
+        }
+
+            #customBtn:hover {
+                cursor: pointer;
+            }
+
+        span.label {
+            font-family: serif;
+            font-weight: normal;
+        }
+
+        span.icon {
+            background: url('/images/general/google_logo.png') transparent 5px 50% no-repeat;
+            display: inline-block;
+            vertical-align: middle;
+            width: 42px;
+            height: 42px;
+        }
+
+        span.buttonText {
+            display: inline-block;
+            vertical-align: middle;
+            padding-left: 15px;
+            padding-right: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+}
+
+<div class="bg-dark" style="opacity: 0.9; background-image: url('../images/general/quienes-somos.png'); background-size: cover; height: 250px;">
+    <div class="m--margin-top-90">
+        <div class="container">
+            <h2 class="toast-title portal-title text-white">REGISTRA TU CASO</h2>
+        </div>
+    </div>
+</div>
+
+<div class="lc-background-light-blue">
+    <div class="container">
+        <div class="m--padding-20-desktop m--padding-20-tablet m--padding-10-mobile mt-5">
+            <div class="m-portlet row">
+                <div class="m-portlet__body col-xl-12">
+                    <form id="form_add_legal_case">
+                        <div id="first_part">
+                            <div class="m-form__group form-group">
+                                <h4 class="m--font-boldest2">Especilidad Requerida</h4>
+                                <span>Necesitamos que resuelvas ciertas dudas que nos har&aacute;n encontrar a tu abogado ideal.</span>
+                                <div class="row pl-4">
+                                    @foreach (var speciality in Model.Specialities)
+                                    {
+                                        <div class="m-radio-inline col-6 mt-4">
+                                            <label class="m-radio">
+                                                <input type="radio" asp-for="SpecialitySelected" value="@speciality.Id"> <strong class="text-uppercase">@speciality.Name</strong>
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="row">
+                                    <div class="form-group m-form__group col-lg-12 mt-5 text-center">
+                                        <button type="button" class="btn m-btn--pill btn-primary m-btn--md m-btn m-btn--custom" id="next_view">SIGUIENTE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="second_part" class="d-none">
+                            <h4 class="m--font-boldest2">Cu&eacute;ntanos ¿De qu&eacute; trata tu caso?</h4>
+                            <span>Necesitamos que resuelvas ciertas dudas que nos har&aacute;n encontrar a tu abogado ideal.</span>
+                            <div class="mt-4">
+                                <div class="row">
+                                    <div class="form-group m-form__group col-lg-12">
+                                        <label>Asunto del caso</label>
+                                        <select asp-for="SpecialityThemeId" class="m-select2" required multiple></select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group m-form__group col-lg-12">
+                                        <label>Explicanos un breve resumen del contexto del caso</label>
+                                        <textarea asp-for="Description" class="form-control m-input" required rows="8" maxlength="@Model.DescriptionMaxLength"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group m-form__group col-lg-12">
+                                        <label class="m--font-boldest">Lugar en donde te encuentras</label>
+                                    </div>
+                                    <div class="form-group m-form__group col-lg-6">
+                                        <label>Departamento</label>
+                                        <select asp-for="DepartmentId" class="m-select2" required></select>
+                                    </div>
+                                    <div class="form-group m-form__group col-lg-6">
+                                        <label>Provincia</label>
+                                        <select asp-for="ProvinceId" class="m-select2" required></select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group m-form__group col-lg-12">
+                                        <label>Celular</label>
+                                        <input asp-for="PhoneNumber" class="form-control m-input" required maxlength="9" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group m-form__group col-lg-12">
+                                        <label class="form-control-label">¿Alg&uacute;n documento con informaci&oacute;n adicional? (Opcional)</label>
+                                        <div class="custom-file">
+                                            <input type="file" asp-for="File" accept="application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword" class="custom-file-input" />
+                                            <label class="custom-file-label">
+                                                Seleccione un archivo
+                                            </label>
+                                        </div>
+                                        <small>Solo se permite archivos con extensi&oacute;n .pdf, .doc o .docx y con peso máximo de 500kb</small>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="form-group m-form__group col-lg-6 text-right">
+                                        <button type="button" class="btn m-btn--pill btn-secondary m-btn--md m-btn m-btn--custom" id="previous_view">ANTERIOR</button>
+                                    </div>
+                                    <div class="form-group m-form__group col-lg-6">
+                                        <button type="button" class="btn m-btn--pill btn-primary m-btn--md m-btn m-btn--custom" id="next_view_register">SIGUIENTE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="third_part" class="d-none">
+                            <input type="hidden" asp-for="Client.GoogleTokenId" />
+                            <h4 class="m--font-boldest2">Registrar Datos del Cliente</h4>
+                            <div id="normal_register_div">
+                                <span>Registrate como usuario o ingresa con &emsp;</span>
+                                <div id="customBtn" class="customGPlusSignIn">
+                                    <span class="icon"></span>
+                                    <span class="buttonText">Google</span>
+                                </div>
+                                <span>&emsp; para poder seguir paso a paso el proceso de tu caso.</span>
+                            </div>
+
+                            <div id="google_user_div" class="d-none">
+                                <span>Continuar como </span><span class="m--font-boldest2" id="google_user_name"></span> o <a href="javascript:;" id="logout_google" class="m-link m--font-boldest">Cerrar Sesi&oacute;n</a>
+                            </div>
+
+                            <div id="client_register_data" class="mt-4">
+                                <div class="row">
+                                    <div class="form-group m-form__group col-lg-12">
+                                        <label>Nombre</label>
+                                        <input asp-for="Client.Name" class="form-control m-input" required placeholder="Ingrese nombre" maxlength="100" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group m-form__group col-lg-12">
+                                        <label>Apellidos</label>
+                                        <input asp-for="Client.Surnames" class="form-control m-input" required maxlength="100" placeholder="Ingrese apellidos" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group m-form__group col-lg-12">
+                                        <label>Correo Electrónico</label>
+                                        <input asp-for="Client.Email" class="form-control m-input" required maxlength="150" placeholder="Ingrese Correo Electronico" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group m-form__group col-lg-12">
+                                        <label>Contraseña</label>
+                                        <input asp-for="Client.Password" type="password" class="form-control m-input" required maxlength="100" placeholder="Ingrese contraseña" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group m-form__group col-lg-12">
+                                        <label>Contraseña</label>
+                                        <input asp-for="Client.ConfirmPassword" type="password" class="form-control m-input" required maxlength="100" placeholder="Confirmar contraseña" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="form-group m-form__group col-lg-6 text-right">
+                                    <button type="button" class="btn m-btn--pill btn-secondary m-btn--md m-btn m-btn--custom" id="previous_second_view">ANTERIOR</button>
+                                </div>
+                                <div class="form-group m-form__group col-lg-6">
+                                    <button type="submit" class="btn m-btn--pill btn-primary m-btn--md m-btn m-btn--custom">REGISTRAR CASO</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/api:client.js"></script>
+    <script src="~/js/views/legalcase/googleinit.js" asp-append-version="true"></script>
+    <script src="~/js/views/legalcase/add.js" asp-append-version="true"></script>
+}

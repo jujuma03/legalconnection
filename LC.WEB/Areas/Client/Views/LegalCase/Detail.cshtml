@@ -1,0 +1,179 @@
+﻿@model LC.ENTITIES.Custom.Client.LegalCaseCustomModel
+
+<style>
+    .portlet_lawyer_detail .m-widget3__img {
+        width: 6rem !important;
+    }
+
+    .portlet_lawyer_detail .m-widget3__username {
+        text-transform: uppercase;
+        font-size: 20px !important;
+        font-weight: 900 !important;
+    }
+
+    .portlet_lawyer_detail .m-widget3 .m-widget3__item .m-widget3__header .m-widget3__info {
+        width: 65% !important;
+    }
+
+    .fa-star {
+        font-weight: normal !important;
+    }
+
+    .start-graff {
+        color: #f9cf03;
+        font-weight: 900 !important;
+    }
+
+    .card_lawyer_detail {
+        border-left: 1px solid #006494;
+    }
+
+    @@media (max-width: 1200px) {
+        .card_lawyer_detail {
+            border-left: 0px solid #006494 !important;
+        }
+    }
+
+    .portal-title-left {
+        text-align: left;
+        padding: 0 20px;
+        font-family: 'SourceSansProBlack';
+        color: #384854;
+    }
+</style>
+
+@if (Model.Status == ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALIDATION_PROCCESS)
+{
+    <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+        <div class="m-alert__icon">
+            <i class="la la-warning"></i>
+        </div>
+        <div class="m-alert__text">
+            @if (Model.Type == ConstantHelpers.ENTITIES.LEGAL_CASE.TYPE.NORMAL)
+            {
+                <strong>Caso en Revisi&oacute;n!</strong> <span>
+                    @*Una vez sea validado por nuestros asesores empezar&aacute; a recibir ofertas.*@
+
+                    Una vez sea validado por nuestros asesores empezar&aacute;s a recibir propuestas de Abogados.
+                </span>
+            }
+            else
+            {
+                <strong>Caso en Revisi&oacute;n!</strong> <span>Una vez sea validado el abogado seleccionado podr&aacute; aceptar el caso.</span>
+            }
+        </div>
+    </div>
+}
+else if (Model.Status == ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.REJECTED)
+{
+    <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+        <div class="m-alert__icon">
+            <i class="la la-warning"></i>
+        </div>
+        <div class="m-alert__text">
+            <strong>Caso Rechazado!</strong>
+            <p class="text-justify">@Model.Observation</p>
+        </div>
+        <div class="m-alert__actions">
+            <button id="request_review" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                Solicitar Revisi&oacute;n
+            </button>
+        </div>
+    </div>
+}
+
+<input type="hidden" value="@Model.Id" id="LegalCaseId" />
+<h2 class="toast-title portal-title-left">Detalle del Caso</h2>
+<div class="m--padding-20">
+    <div class="m-portlet m-portlet--mobile ">
+        <div class="m-portlet__body">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <span class="m-badge m-badge--@ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.COLORS[Model.Status] float-left"></span>
+                    <h5 style="margin-top:1px;" class="ml-3 col-11 m--font-boldest2 text-uppercase" id="legal_case_status">@ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALUES[Model.Status]</h5>
+                </div>
+                <div class="title col-12 row">
+                    <h5 class="col-xl-4 col-lg-4 col-md-4 m--font-boldest"><u>Especialidad : @Model.Speciality</u></h5>
+                    <h5 class="col-xl-4 col-lg-4 col-md-4 m--font-boldest2"><u>@Model.Department - @Model.Province</u></h5>
+                    <h5 class="col-xl-4 col-lg-4 col-md-4 text-xl-right text-lg-right text-md-right m--font-boldest2">Publicado @Model.CreatedAt</h5>
+                </div>
+                <div class="col-12 mt-3">
+                    <p class="text-justify">
+                        @Model.Description
+                    </p>
+                </div>
+                @if (!string.IsNullOrEmpty(Model.FileUrl))
+                {
+                    <div class="col-12 mb-3">
+                        <a href="/documentos/@Model.FileUrl" target="_blank" class="m-link m--font-boldest">Descargar Archivo Adjunto</a>
+                    </div>
+                }
+                <div class="col-12">
+                    @foreach (var item in Model.SpecialityThemes)
+                    {
+                        <span class="m-badge m-badge--@(ConstantHelpers.HTML.COLOR.RANDOM_COLOR()) m-badge--wide">@item.Name</span>
+                    }
+                </div>
+                @if (Model.Status == ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALIDATION_PROCCESS || Model.Status == ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.REJECTED || Model.Status == ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.CORRECTED_OBSERVATIONS)
+                {
+                    <div class="col-12 mt-4 text-right">
+                        <button type="button" id="edit_legalcase_btn" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                            <span>
+                                <i class="la la-edit"></i>
+                                <span>Editar</span>
+                            </span>
+                        </button>
+
+                        <button type="button" id="delete_legalcase_btn" class="btn btn-danger btn-sm m-btn m-btn m-btn--icon">
+                            <span>
+                                <i class="la la-close"></i>
+                                <span>Eliminar Caso</span>
+                            </span>
+                        </button>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+    @if (Model.Type == ConstantHelpers.ENTITIES.LEGAL_CASE.TYPE.NORMAL)
+    {
+        if (Model.Status == ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.SELECTING_LAWYER ||
+            Model.Status == ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.PENDING_PAYMENT)
+        {
+
+            <h5>Encontramos los abogados para tu caso. 
+                @*Tienes @Model.MaxHoursToClientAcceptAndPayLawyer horas para seleccionar y pagar a tu abogado, de lo contrario el sistema eliminar&aacute; tu solicitud.*@
+            </h5>
+            <h3 class="m--font-boldest2 m--font-primary">Tu solicitud caduca en: <span id="remaining_time"></span></h3>
+            <br />
+
+            <div id="partial_lawyers"></div>
+            <div id="partial_applicants"></div>
+        }
+        else if (Model.Status == ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.IN_PROGRESS)
+        {
+            <div id="partial_lawyers"></div>
+        }
+    }
+    else if (Model.Type == ConstantHelpers.ENTITIES.LEGAL_CASE.TYPE.DIRECTED)
+    {
+        <div id="partial_lawyers"></div>
+
+        if (Model.Status == ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.AWAITING_CONFIRMATION_FROM_LAWYER)
+        {
+            <div id="partial_applicants"></div>
+        }
+    }
+</div>
+    @await Html.PartialAsync("Partials/Modals/EditLegalCasePartialModal", new LC.WEB.Areas.Client.Models.LegalCase.LegalCaseViewModel() { DescriptionMaxLength = Model.DescriptionMaxLength })
+    @await Html.PartialAsync("Partials/Modals/LawyerInfoPartialModal")
+
+    @section Scripts {
+        <script src="https://checkout.culqi.com/js/v3" asp-append-version="true"></script>
+        <script src="~/js/views/shared/initpayment.js" asp-append-version="true"></script>
+        <script src="~/js/views/shared/online_payment.js" asp-append-version="true"></script>
+        <script src="~/assets/js/countdown/simplyCountdown.min.js" asp-append-version="true"></script>
+        <script src="~/js/areas/client/legalcase/detail.js" asp-append-version="true"></script>
+    }

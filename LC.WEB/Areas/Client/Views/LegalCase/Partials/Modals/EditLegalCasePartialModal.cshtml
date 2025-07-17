@@ -1,0 +1,64 @@
+﻿@model LC.WEB.Areas.Client.Models.LegalCase.LegalCaseViewModel
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="edit_legalCase_modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Caso</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="edit_legalCase_form">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label asp-for="SpecialitySelected">Especialidad</label>
+                            <select class="form-control m-input" required rows="8" asp-for="SpecialitySelected"></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label asp-for="SpecialityThemeId">Asunto</label>
+                            <select class="form-control m-input" required rows="8" asp-for="SpecialityThemeId"></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-6">
+                            <label asp-for="DepartmentId">Departamento</label>
+                            <select class="form-control m-input" required rows="8" asp-for="DepartmentId"></select>
+                        </div>
+                        <div class="form-group m-form__group col-lg-6">
+                            <label asp-for="ProvinceId">Provincia</label>
+                            <select class="form-control m-input" required rows="8" asp-for="ProvinceId"></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12 mb-4">
+                            <label asp-for="Description">Descripci&oacute;n</label>
+                            <textarea asp-for="Description" class="form-control m-input" required rows="8" maxlength="@Model.DescriptionMaxLength"></textarea>
+                            @*<textarea class="form-control m-input" required rows="8" asp-for="Description"></textarea>*@
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label class="form-control-label">¿Alg&uacute;n documento con informaci&oacute;n adicional? (Opcional)</label>
+                            <div class="custom-file">
+                                <input type="file" asp-for="File" accept="application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword" class="custom-file-input" />
+                                <label class="custom-file-label">
+                                    Seleccione un archivo
+                                </label>
+                            </div>
+                            <small>Solo se permite archivos con extensi&oacute;n .pdf, .doc o .docx y con peso m&aacute;ximo de 500kb</small><br />
+                            <small> Este archivo reemplazar&aacute; al archivo anterior. Cambio irreversible.</small>                           
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

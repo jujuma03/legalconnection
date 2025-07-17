@@ -1,0 +1,51 @@
+﻿@model LC.CORE.Structs.PaginationStructs.ReturnedData<LC.ENTITIES.Models.LawyerCard>
+
+@{
+    var result = Model.Data.ToArray();
+}
+
+@if (Model.Data.Any())
+{
+    <div class="m--padding-top-20 pb-5">
+
+        <div class="row">
+            @for (int i = 0; i < Model.Data.Count(); i++)
+            {
+                <div class="col-6">
+                    <div class="card lc-card-card @(result[i].Default?"lc-card-card-selected" : "")">
+                        <table>
+                            <tr>
+                                <td rowspan="2">
+                                    <img src="~/images/general/visa.svg" />
+                                </td>
+                                <td>
+                                    TARJETA @result[i].CardBrand.ToUpper()
+                                </td>
+                                <td rowspan="2">
+                                    <i class="la la-times-circle btn_delete_card" data-id="@result[i].Id" style="cursor:pointer;"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    N° **** **** **** @result[i].LastCardDigits
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    @await Html.PartialAsync("Partials/_PaginationPartial", Model.PaginationData)
+
+}
+else
+{
+    <div class="m-demo__preview col-12 mt-4">
+        <blockquote class="blockquote">
+            <p class="mb-0"> Aún no se han registrado tarjetas</p>
+            <footer class="blockquote-footer"><cite title="Source Title"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to ma</cite></footer>
+        </blockquote>
+    </div>
+}

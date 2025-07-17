@@ -1,0 +1,105 @@
+﻿@model LC.WEB.Areas.Lawyer.Models.YourAccount.PlanDetail
+
+@section Styles{
+    <style>
+        .btn-nav-account {
+            color: #384854;
+            font-weight: bold !important;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-4">
+        <div class="m-portlet m-portlet--mobile">
+            <div class="m-portlet__body">
+                <a class="btn btn btn-outline-secondary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air btn-block p-4 btn-nav-account " asp-action="Index" asp-controller="YourAccount" asp-area="Lawyer">Informací&oacute;n de la Cuenta</a>
+                <a class="btn btn btn-outline-secondary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air btn-block p-4 btn-nav-account " asp-action="PaymentMethods" asp-controller="YourAccount" asp-area="Lawyer">M&eacute;todos de Pago</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="m-portlet m-portlet--mobile">
+            <div class="m-portlet__body">
+                <h2 class="m--font-boldest">Informaci&oacute;n de la Cuenta</h2>
+                <div class="row">
+                    <div class="form-group m-form__group col-lg-6">
+                        <h4 class="m--font-boldest2">@Model.Plan @(Model.Amount != 0M ? $"(S/.{Model.Amount})" : "")</h4>
+                    </div>
+                    <div class="form-group m-form__group col-lg-6  d-flex justify-content-end ">
+                        @if (Model.Amount == 0M)
+                        {
+                            <a asp-action="Index" asp-controller="Plan" asp-area="Lawyer" class="btn btn-primary">
+                                <span>
+                                    <i class="la la-star"></i>
+                                    <span>Hacerme Premium</span>
+                                </span>
+                            </a>
+                        }
+                        else
+                        {
+                            @if (!Model.Canceled)
+                            {
+                                <button id="cancel_subscription" class="btn btn-primary">
+                                    <span>
+                                        <i class="la la-close"></i>
+                                        <span>Cancelar Supscripci&oacute;n</span>
+                                    </span>
+                                </button>
+                            }
+
+                        }
+                    </div>
+                    @if (Model.Amount != 0M)
+                    {
+                        @if (Model.Canceled)
+                        {
+                            <div class="form-group m-form__group col-lg-12">
+                                <h5>Su plan ser&aacute; cancelado en @(Model.NextBillingDateTime.HasValue? (int)(Model.NextBillingDateTime.Value - DateTime.UtcNow).TotalDays : 0) d&iacute;as </h5>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-group m-form__group col-lg-12">
+                                <h5>El pr&oacute;ximo cobro de Premium ser&aacute; el @Model.NextBillingDate</h5>
+                            </div>
+                        }
+                        <div class="form-group m-form__group col-lg-12">
+                            <a href="/terminos-condiciones" class="m-link m--font-boldest">T&eacute;rminos y Condiciones @ConstantHelpers.PROJECT Premium.</a>
+                        </div>
+                    }
+
+                    <div class="m-divider mb-5 mt-4">
+                        <span></span>
+                    </div>
+                    @if (Model.CurrentCard != null)
+                    {
+                        <div class="form-group m-form__group col-lg-6">
+                            <h5>Tarjeta que termina en @Model.CurrentCard.LastCardDigits</h5>
+                            <span>@Model.CurrentCard.Owner - @Model.CurrentCard.CardBrand</span>
+                        </div>
+                        <div class="form-group m-form__group col-lg-6 d-flex justify-content-end align-items-center">
+                            <a asp-action="PaymentMethods" asp-controller="YourAccount" asp-area="Lawyer" class="btn btn-primary">
+                                <span>
+                                    <i class="la la-edit"></i>
+                                    <span>Cambiar Predeterminado</span>
+                                </span>
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group m-form__group col-lg-12">
+                            <h5>No se encontraron tarjetas asociadas a la cuenta.</h5>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/areas/lawyer/youraccount/index.js" asp-append-version="true"></script>
+}

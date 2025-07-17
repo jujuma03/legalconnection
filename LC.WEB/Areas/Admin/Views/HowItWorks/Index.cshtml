@@ -1,0 +1,63 @@
+﻿
+@using LC.WEB.Models
+@model LC.WEB.Areas.Admin.Models.HowItWorks.HowItWorksViewModel
+@{
+    ViewBag.Title =ViewData["Title"]= "Gestión de Cómo funciona";
+    ViewData["Breadcrumbs"] = new[] {
+    new BreadcrumbViewModel { Name = ViewData["Title"].ToString() }
+    };
+}
+
+@section Styles {
+    <link href="~/css/areas/admin/banner/index.css" rel="stylesheet" asp-append-version="true" />
+}
+<div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text m--font-brand">
+                    &emsp;
+                </h3>
+            </div>
+        </div>
+        <div class="m-portlet__head-tools">
+            <button id="btnCreateSlide" class="btn btn-primary btn-sm m-btn m-btn m-btn--icon">
+                <span>
+                    <i class="la la-plus"></i>
+                    <span>Agregar</span>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="m-portlet__body">
+        <div class="m-form--label-align-right m--margin-bottom-20">
+            <div class="row align-items-center">
+                <div class="col-xl-12 order-2 order-xl-1">
+                    <div class="row">
+                        <div class="form-group m-form__group col-12 col-sm-6 col-md-6 col-xl-4">
+                            <div class="m-input m-input-icon m-input-icon--left">
+                                <label asp-for="Headline" class="form-control-label" style="font-weight:bold;"></label>
+                                <input type="text" class="form-control" placeholder="Titular" id="tbHeadline">
+                            </div>
+                        </div>
+
+                        <div class="form-group m-form__group col-12 col-sm-6 col-md-6 col-xl-4">
+                            <div class="m-input m-input-icon m-input-icon--left">
+                                <label asp-for="ListStatus" class="form-control-label" style="font-weight:bold;"></label>
+                                <select class="form-control" asp-for="Status" asp-items="@Model.ListStatus" id="selectStatus">
+                                    <option value="0">Todos</option>
+                                </select>
+                            </div>
+                        </div>
+                        @*<input type="hidden" id="sequence" value="@Model.ListSequenceOrder" />*@
+                    </div>
+                </div>
+            </div>
+            <table class="table table-hover table-bordered m-table m-table--head-bg-primary" id="data-table"> </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/areas/admin/howitworks/index.js" asp-append-version="true"></script>
+}

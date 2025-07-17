@@ -1,0 +1,61 @@
+﻿@model List<LC.WEB.Areas.Lawyer.Models.Profile.QualificationViewModel>
+
+@if (Model.Any())
+{
+    @for (int i = 0; i < Model.Count(); i++)
+    {
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-sm-3 mt-2 text-center">
+                @if (string.IsNullOrEmpty(Model[i].ClientPicture))
+                {
+                    <img src="~/images/general/profile.jpg" class="logo_company_experience" alt="Logo compañia" />
+
+                }
+                else
+                {
+                    <img src="/documentos/@Model[i].ClientPicture" class="logo_company_experience" alt="Logo compañia" />
+                }
+            </div>
+            <div class="mt-2 col-xl-9 col-lg-9 col-sm-9">
+                <div class="col-12 row pr-0">
+                    <p class="col-8 m--font-boldest">
+                        @Model[i].Client
+                    </p>
+                    <div class="col-4 text-right">
+                        @for (int v = 1; v <= 5; v++)
+                        {
+                            @if (v <= Model[i].Qualification)
+                            {
+                                <i class="fa fa-star start-graff"></i>
+                            }
+                            else
+                            {
+                                <i class="fa fa-star"></i>
+                            }
+                        }
+                    </div>
+                </div>
+                <p class="col-12 text-justify pr-0 expandable">
+                    @Model[i].Commentary
+                </p>
+            </div>
+        </div>
+
+
+        if (i < Model.Count() - 1)
+        {
+            <div class="m-divider">
+                <span></span>
+            </div>
+        }
+    }
+}
+else
+{
+    <div class="m-demo__preview col-12">
+        <blockquote class="blockquote">
+            <p class="mb-0"> Aún no se han registrado comentarios</p>
+            <footer class="blockquote-footer"><cite title="Source Title"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to ma</cite></footer>
+        </blockquote>
+    </div>
+}

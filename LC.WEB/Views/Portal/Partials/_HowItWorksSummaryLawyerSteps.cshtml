@@ -1,0 +1,30 @@
+﻿@model List<LC.WEB.Models.Home.SectionItemViewModel>
+
+<div class="m-portlet m-portlet--unair lc-background-light-blue2" style="margin-bottom:unset;opacity:0.9">
+    <div class="container">
+        <h1 class="toast-title portal-title">Trabaja con libertad y aumenta tu reputaci&oacute;n profesional</h1>
+        @if (Model!= null && Model.Count()>0)
+        {
+            <div class="row" style="padding:20px">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4">
+                        <div class="m-card-profile">
+                            <div class="m-card-profile__pic">
+                                <div class="">
+                                    <img src="/documentos/@item.UrlImage" style="width:100%;max-width:200px !important;border-radius:0px"/>
+                                </div>
+                            </div>
+                            <div class="m-card-profile__details">
+                                <span class="m-card-profile__name">@item.Headline</span>
+                                <span class="m-card-profile__email m-link">
+                                    @item.Description
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

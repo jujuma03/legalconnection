@@ -1,0 +1,41 @@
+﻿
+@model List<LC.WEB.Models.Home.SectionItemViewModel>
+
+@if (Model!= null && Model.Count() > 0)
+{
+    <div class="">
+        <div class="container">
+            <h1 class="toast-title portal-title">SERVICIOS</h1>
+            @{
+                var rows = Model.Count() <= 4 ? 1 : Math.Ceiling((decimal)Model.Count()/(decimal)4);
+                var take = Math.Ceiling((decimal)Model.Count()/rows);
+                var size = 12/take;
+                var col_lg = $"col-lg-{size} col-sm-6 col-xs-12";
+            }
+            @for (int i = 0; i < rows; i++)
+            {
+                var taking = Model.Skip((int)take*i).Take((int)take);
+                <div class="row">
+                    <div class="@(taking.Count() ==1 ? "col-lg-6":"col-lg-12")" style="display:contents;margin:@(taking.Count() ==1 ? "auto":"0")">
+                        @foreach (var service in taking)
+                        {
+                            <div class="@col_lg">
+                                <div class="m-portlet m-lc-widget">
+                                    <img src="/documentos/@service.UrlImage" />
+                                    <div class="m--padding-10">
+                                        <span class="lc-headline">
+                                            @service.Headline
+                                        </span>
+                                        <div class="lc-description">
+                                            @service.Description
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

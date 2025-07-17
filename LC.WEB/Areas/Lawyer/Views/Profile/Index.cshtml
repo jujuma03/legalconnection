@@ -1,0 +1,481 @@
+﻿@model LC.WEB.Areas.Lawyer.Models.Profile.ProfileViewModel
+@{
+    ViewBag.Title = "Mi Perfil";
+}
+
+@section Styles{
+    <link href="~/assets/css/croppie/croppie.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/areas/lawyer/profile/index.css" rel="stylesheet" asp-append-version="true" />
+}
+<br /><br />
+@if (Model.Status == ConstantHelpers.ENTITIES.LAWYER.STATUS.PENDING)
+{
+    <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+        <div class="m-alert__icon">
+            <i class="la la-warning"></i>
+        </div>
+        <div class="m-alert__text">
+            Por favor registrar tus datos completos para que el asesor evalue tu perfil y se ponga en contacto contigo.<br />
+            Una vez completado solicitar la revisi&oacute;n de su perfil para poder continuar con el proceso.
+        </div>
+        <div class="m-alert__actions">
+            <button type="button" id="request_validated_profile" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                Solicitar Revisi&oacute;n
+            </button>
+        </div>
+    </div>
+}
+else if (Model.Status == ConstantHelpers.ENTITIES.LAWYER.STATUS.IN_EVALUATION)
+{
+    if (Model.LawyerObservation != null)
+    {
+        <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+            <div class="m-alert__icon">
+                <i class="la la-warning"></i>
+            </div>
+            <div class="m-alert__text">
+                @Model.LawyerObservation.Observation @(Model.LawyerObservation.HasBeenCorrected ? "(Correción enviada)" : "")
+            </div>
+            @if (!Model.LawyerObservation.HasBeenCorrected)
+            {
+                <div class="m-alert__actions">
+                    <button type="button" id="request_review_observations" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                        Solicitar Revisi&oacute;n
+                    </button>
+                </div>
+            }
+        </div>
+    }
+
+}
+else if (Model.Status == ConstantHelpers.ENTITIES.LAWYER.STATUS.PROFILE_VALIDATED)
+{
+    <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+        <div class="m-alert__icon">
+            <i class="la la-warning"></i>
+        </div>
+        <div class="m-alert__text">
+            Tu perfil ha sido validado, pronto te enviaremos un mensaje en el cual solicitaremos una entrevista.
+        </div>
+    </div>
+}
+else if (Model.Status == ConstantHelpers.ENTITIES.LAWYER.STATUS.INTERVIEW_VALIDATED)
+{
+    @if (Model.LawyerInterviews.Any(y => y.Selected))
+    {
+        <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+            <div class="m-alert__icon">
+                <i class="la la-warning"></i>
+            </div>
+            <div class="m-alert__text">
+                Entrevista Seleccionada : @Model.LawyerInterviews.Select(x => x.Date).FirstOrDefault(), @Model.LawyerInterviews.Select(x => x.StartRange).FirstOrDefault() - @Model.LawyerInterviews.Select(x => x.EndRange).FirstOrDefault()
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-secondary alert-dismissible fade show" role="alert">
+            <div class="m-alert__icon">
+            </div>
+            <div class="m-alert__text">
+                <div class="m-form__group form-group">
+                    <label>Seleccionar la entrevista que se acomode mejor a tu horario</label>
+                    <div class="m-radio-list">
+                        @foreach (var item in Model.LawyerInterviews)
+                        {
+                            <label class="m-radio m-radio--state-primary">
+                                <input type="radio" name="lawyer_interview_selected" value="@item.Id"> @item.Date, @item.StartRange - @item.EndRange
+                                <span></span>
+                            </label>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="m-alert__actions">
+                <button type="button" id="btn_select_interview" class="btn btn-primary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                    Seleccionar Horario
+                </button>
+            </div>
+        </div>
+    }
+}
+
+<input type="hidden" id="MaxSpeciality" value="@ViewBag.MaxSpeciality" />
+<input type="hidden" id="MaxThemes" value="@ViewBag.MaxThemes" />
+
+@if (Model.Status == ConstantHelpers.ENTITIES.LAWYER.STATUS.VALIDATED @*&& !Model.FreeUser*@)
+{
+    <div class="form-group m-form__group row mb-4">
+        <div class="col-lg-12 d-flex justify-content-end">
+            <input data-switch="true" type="checkbox" asp-for="PublicProfile" data-on-text="Perfil Público" data-handle-width="100" data-off-text="Perfil Privado" data-on-color="success">
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-xl-4 col-lg-4">
+        <div class="m-portlet m-portlet--full-height  ">
+            <div class="m-portlet__body" id="portlet_lawyer_information">
+                <div class="m-card-profile row">
+                    <div class="m-card-profile__pic col-xl-12">
+                        <div class="m-card-profile__pic-wrapper">
+                            @if (string.IsNullOrEmpty(Model.PersonalInformation.PhotoUrl))
+                            {
+                                <img id="lawyer_img_profile" src="~/images/general/profile.jpg" alt="Foto de Perfil">
+                            }
+                            else
+                            {
+                                <img id="lawyer_img_profile" src="/documentos/@Model.PersonalInformation.PhotoUrl" alt="Foto de Perfil">
+                            }
+                        </div>
+                    </div>
+                    <div class="m-card-profile__details text-xl-left col-xl-12">
+                        <span class="m-card-profile__name pi_fullname text-center lc-profile-username">@Model.PersonalInformation.FullName.ToPascalCaseFormatWithSpaces()</span>
+                        <span class="m-card-profile__email mb-2 text-center bi_specialities" style="width:100%;text-align:center">
+                            @if (!Model.BasicInformation.Specialities.Any())
+                            {
+                                <span>No se han registrado especialidades</span>
+                            }
+                            else
+                            {
+                                <span>@string.Join(", ", Model.BasicInformation.Specialities.Select(x => x.Text))</span>
+                            }
+                        </span>
+                        <strong>Num. de Colegiatura :</strong> <span class="bi_cal">@Model.BasicInformation.CAL</span><br />
+
+                        <span class="m-card-profile__email mb-2" style="width:100%">@Model.PersonalInformation.FeaturedStudy</span><br />
+                        <i class="la la-map-marker f-lawyer"></i><label class="m-card-profile__email card_detail pi_ubigeo">@Model.PersonalInformation.Department.ToUpper() - @Model.PersonalInformation.Province.ToUpper()</label><br />
+                        <i class="la la-book f-lawyer"></i><label class="card_detail">Experiencia : </label><label class="card_detail pt-0 m-card-profile__email" id="total_experience_label"></label><br />
+                        <i class="la la-thumbs-up f-lawyer"></i>
+                        <span class="qualification_label">@Model.PersonalInformation.Qualification.ToString("0.0")</span>
+                        <div class="m-card-profile__email">
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                @if (i <= Model.PersonalInformation.Qualification)
+                                {
+                                    <i class="fa fa-star start-graff"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa fa-star"></i>
+                                }
+                            }
+                        </div>
+                        <br />
+                        <a href="javascript:;" class="on_portlet_qualification m-card-profile__email m-link">@Model.PersonalInformation.QualificationQuantity @(@Model.PersonalInformation.QualificationQuantity > 1 ? "comentarios" : "comentario")</a><br />
+                        <a href="javascript:;" class="m-card-profile__email m-link m--font-boldest m--font-primary edit_link" id="edit_information">Editar</a>
+                    </div>
+                </div>
+                <div class="m-portlet__body-separator separator_lawyer_card"></div>
+                <div class="m-widget1 m-widget1--paddingless">
+                    <div class="m-widget1__item">
+                        <div class="row m-row--no-padding align-items-center">
+                            <div class="row col-12">
+                                <div class="col-10">
+                                    <h3 class="m-widget1__title">Valor de consulta</h3>
+                                
+                                </div>
+                                <div class="col-2">
+                                    <a href="javascript:;" id="edit_fee" class="pull-right m-link m--font-boldest m--font-primary edit_link">Editar</a>
+                                </div>
+                            </div>
+                            <span class="m-widget1__desc">
+                                @if (Model.BasicInformation.FreeFirst)
+                                {
+                                    <span class="m--font-boldest2 h4 lawyer_fee"><span class="bi_fee">Primera Consulta Gratis</span></span><br />
+                                }
+                                else
+                                {
+                                    <span class="m--font-boldest2 h4 lawyer_fee">S./<span class="bi_fee">@Model.BasicInformation.Fee</span> x consulta </span><br />
+                                }
+                                @*<span class="bi_freeFirst">@(Model.BasicInformation.FreeFirst ? "Primera consulta sin costo" : "")</span>*@
+                                @if (Model.Status == ConstantHelpers.ENTITIES.LAWYER.STATUS.VALIDATED)
+                                {
+                                    @Html.Raw("Consultas Gratuitas Disponibles :") @(Model.FreeUser ? Model.BasicInformation.FreeLegalCases.ToString() : "Sin Límite")<br />
+                                }
+                            </span>
+                        </div>
+                    </div>
+                    <div class="m-widget1__item">
+                        <div class="row m-row--no-padding align-items-center">
+                            <div class="row col-12">
+                                <div class="col-10">
+                                    <h3 class="m-widget1__title">Temas</h3>
+                                </div>
+                                <div class="col-2">
+                                    <a class="pull-right m-link m--font-boldest m--font-primary edit_link" id="edit_specialities">Editar</a>
+                                </div>
+                            </div>
+                            <span class="m-widget1__desc mt-3 bi_themes">
+                                @if (!Model.BasicInformation.Specialities.Any())
+                                {
+                                    <span>No se han registrado categorias</span>
+                                }
+                                else
+                                {
+                                    @foreach (var item in Model.BasicInformation.SpecialityThemes)
+                                    {
+                                        <span class="m-badge lc-badge-blue m-badge--wide">@item.Text</span>
+                                    }
+                                }
+                            </span>
+                        </div>
+                    </div>
+                    <div class="m-widget1__item">
+                        <div class="row m-row--no-padding align-items-center">
+                            <div class="row col-12">
+                                <div class="col-10">
+                                    <h3 class="m-widget1__title">Informaci&oacute;n de Contacto</h3>
+                                </div>
+                                <div class="col-2">
+                                    <a href="javascript:;" id="personal_information" class="pull-right m-link m--font-boldest m--font-primary edit_link">Editar</a>
+                                </div>
+                            </div>
+                            <span class="m-widget1__desc">
+                                <span class="m-widget1__desc">
+
+                                    <strong>Fec. Nacimiento : </strong><span class="pi_birthdate">@Model.PersonalInformation.BirthDate</span><br />
+                                    <strong>DNI :</strong><span class="pi_dni"> @Model.PersonalInformation.DNI</span><br />
+                                    <strong>Tel&eacute;fono :</strong><span class="pi_houseNumber">@Model.PersonalInformation.HouseNumber</span><br />
+                                    <strong>Celular :</strong><span class="pi_phoneNumber">@Model.PersonalInformation.PhoneNumber</span> <br />
+                                    <strong>Sexo :</strong><span class="pi_sex">@ConstantHelpers.ENTITIES.USER.SEX.VALUES[Model.PersonalInformation.Sex]</span>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    @if (Model.Status == ConstantHelpers.ENTITIES.LAWYER.STATUS.VALIDATED)
+                    {
+                        <div class="m-widget1__item">
+                            <div class="row m-row--no-padding align-items-center">
+                                <span class="m-widget1__desc">
+                                    Casos contratados : @Model.BasicInformation.HiredCases<br />
+                                </span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-8 col-lg-8 d-none" id="portlet_publications">
+        @*<ul class="nav nav-pills nav-fill profile_nav_pills " role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="javascript:;">Publicaciones</a>
+                </li>
+            </ul>*@
+        <div class="m-portlet">
+            <div class="m-portlet__body">
+                <div class="container-profile-item" id="container_publication_v2">
+                    <div class="row">
+                        <div class="col-9">
+                            <h4 class="m--font-boldest2 lc-profile-title">Publicaciones en el blog</h4>
+                        </div>
+                        <div class="col-3 d-flex justify-content-end">
+                            <div class="col-4">
+                                <a href="javascript:;" class="pull-right m-link m--font-boldest view_add_publication_portlet edit_link">Agregar</a>
+                            </div>
+                            <a class="btn btn-outline-primary m-btn m-btn--icon btn-sm m-btn--icon-only m-btn--pill m-btn--air view_main_portlet">
+                                <i class="la la-close"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="lawyer_publication_v2_div" class="mt-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-8 col-lg-8 d-none" id="portlet_add_publications">
+        @*<ul class="nav nav-pills nav-fill profile_nav_pills " role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="javascript:;">Agregar Publicaci&oacute;n</a>
+                </li>
+            </ul>*@
+        <div class="m-portlet">
+            <div class="m-portlet__body">
+                @await Html.PartialAsync("Partials/Modals/PublicationPartialModal", new LC.WEB.Areas.Lawyer.Models.Profile.PublicationViewModel())
+
+                @*<div class="container-profile-item mt-5" id="container_publication_v2">
+                        <div class="row">
+                            <div class="col-9">
+                                <h4 class="m--font-boldest2">Publicaciones</h4>
+                            </div>
+                            <div class="col-3 d-flex justify-content-end">
+                                <div class="col-4">
+                                    <a href="javascript:;" class="pull-right m-link m--font-boldest view_add_publication_portlet">Agregar</a>
+                                </div>
+                                <a class="btn btn-outline-primary m-btn m-btn--icon btn-sm m-btn--icon-only m-btn--pill m-btn--air view_main_portlet">
+                                    <i class="la la-close"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="lawyer_publication_v2_div" class="mt-5"></div>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-8 col-lg-8 d-none" id="portlet_qualifications">
+        @*<ul class="nav nav-pills nav-fill profile_nav_pills " role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="javascript:;">Comentarios</a>
+                </li>
+            </ul>*@
+        <div class="m-portlet">
+            <div class="m-portlet__body">
+                <div class="container-profile-item " id="container_qualification_v2">
+                    <div class="row">
+                        <div class="col-9">
+                            <h4 class="m--font-boldest2 lc-profile-title">Los clientes de "@Model.PersonalInformation.Name" comentan</h4>
+                        </div>
+                        <div class="col-3 d-flex justify-content-end">
+                            <a class="btn btn-outline-primary m-btn m-btn--icon btn-sm m-btn--icon-only m-btn--pill m-btn--air view_main_portlet">
+                                <i class="la la-close"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="lawyer_qualification_v2_div" class=""></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-8 col-lg-8" id="portlet_main">
+        @*<ul class="nav nav-pills nav-fill profile_nav_pills " role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="javascript:;" id="about_me_link">Acerca de</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="javascript:;" id="labor_experience_link">Experiencia Laboral</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="javascript:;" id="studies_link">Formaci&oacute;n Acad&eacute;mica</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="javascript:;" id="languages_link">Idiomas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="javascript:;" id="publications_link">Publicaciones</a>
+                </li>
+
+            </ul>*@
+        <div class="m-portlet">
+            <div class="m-portlet__body">
+                <div class="container-profile-item" id="container_about_me">
+                    <div class="row">
+                        <div class="col-9">
+                            <h4 class="m--font-boldest2 lc-profile-title">Acerca de @Model.PersonalInformation.FullName.ToPascalCaseFormatWithSpaces()</h4>
+                        </div>
+                        <div class="col-3">
+                            <a href="javascript:;" data-toggle="modal" data-target="#about_me_modal" class="pull-right m-link m--font-boldest edit_link">Editar</a>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12 text-justify">
+                            @if (string.IsNullOrEmpty(Model.AboutMe))
+                            {
+                                <div class="m-demo__preview col-12" id="empty_aboutme">
+                                    <blockquote class="blockquote">
+                                        <p class="mb-0"> Aún no se agrega informaci&oacute;n</p>
+                                        <footer class="blockquote-footer"><cite title="Source Title"> Recuerda que para recibir m&aacute;s ofertas de casos necesitas tener tu perfil completo y asi podr&aacute;s tener m&aacute;s opciones de ser seleccionado.</cite></footer>
+                                    </blockquote>
+                                </div>
+                            }
+
+                            <p id="container_about_me_text" class="expandable">
+                                @Model.AboutMe
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body-separator"></div>
+                <div class="container-profile-item mt-5" id="container_experience">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h4 class="m--font-boldest2 lc-profile-title">Experiencia Laboral</h4>
+                        </div>
+                    </div>
+                    <div id="lawyer_experience_div"></div>
+                    <div class="mt-4">
+                        <button class="btn btn-primary m-btn m-btn--custom m-btn--icon btn-add-option btn-experience-add">
+                            <span>
+                                <span>Agregar</span>
+                                <i class="la la-plus"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="m-portlet__body-separator"></div>
+                <div class="container-profile-item mt-5" id="container_study">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h4 class="m--font-boldest2 lc-profile-title">Formación Académica</h4>
+                        </div>
+                    </div>
+                    <div id="lawyer_study_div"></div>
+                    <div class="mt-4">
+                        <button class="btn btn-primary m-btn m-btn--custom m-btn--icon btn-add-option btn-study-add">
+                            <span>
+                                <span>Agregar</span>
+                                <i class="la la-plus"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="m-portlet__body-separator"></div>
+                <div class="container-profile-item mt-5" id="container_language">
+                    <div class="row mb-4">
+                        <div class="col-9">
+                            <h4 class="m--font-boldest2 lc-profile-title">Idiomas</h4>
+                        </div>
+                        <div class="col-3">
+                            <a href="javascript:;" class="pull-right m-link m--font-boldest btn-study-add edit_link" data-toggle="modal" data-target="#language_modal">Agregar</a>
+                        </div>
+                    </div>
+                    <div id="lawyer_language_div"></div>
+                </div>
+                <div class="m-portlet__body-separator"></div>
+                <div class="container-profile-item mt-5" id="container_qualification">
+                    <div class="row mb-4">
+                        <div class="col-9">
+                            <h4 class="m--font-boldest2 lc-profile-title">Los clientes de "@Model.PersonalInformation.Name" comentan</h4>
+                        </div>
+                        <div class="col-3">
+                            <a href="javascript:;" class="on_portlet_qualification pull-right m-link m--font-boldest edit_link">Ver Todos</a>
+                        </div>
+                    </div>
+                    <div id="lawyer_qualification_div"></div>
+                </div>
+                <div class="m-portlet__body-separator"></div>
+                <div class="container-profile-item mt-5" id="container_publication">
+                    <div class="row mb-4">
+                        <div class="col-9">
+                            <h4 class="m--font-boldest2 lc-profile-title">Publicaciones en el blog</h4>
+                        </div>
+
+                        <div class="col-3">
+                            <a href="javascript:;" class="on_portlet_publication pull-right m-link m--font-boldest edit_link">Ver Todas</a>
+                        </div>
+                    </div>
+                    <div id="lawyer_publication_div"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("Partials/Modals/LawyerInformationPartialModal", Model)
+
+@await Html.PartialAsync("Partials/Modals/SpecialityPartialModal", Model.BasicInformation)
+@await Html.PartialAsync("Partials/Modals/FeePartialModal", Model.BasicInformation)
+@await Html.PartialAsync("Partials/Modals/PersonalInformationPartialModal", Model)
+
+
+@await Html.PartialAsync("Partials/Modals/AboutMePartialModal", Model)
+@await Html.PartialAsync("Partials/Modals/ExperiencePartialModal", new LC.WEB.Areas.Lawyer.Models.Profile.ExperienceViewModel())
+@await Html.PartialAsync("Partials/Modals/StudyPartialModal", new LC.WEB.Areas.Lawyer.Models.Profile.StudyViewModel())
+@await Html.PartialAsync("Partials/Modals/LanguagePartialModal", new LC.WEB.Areas.Lawyer.Models.Profile.LanguageViewModel())
+@await Html.PartialAsync("Partials/_ModalPreview")
+
+@section Scripts{
+    <script src="~/assets/js/expander/jquery.expander.min.js" asp-append-version="true"></script>
+    <script src="~/assets/js/croppie/croppie.js" asp-append-version="true"></script>
+    <script src="~/js/areas/lawyer/profile/index.js" asp-append-version="true"></script>
+}

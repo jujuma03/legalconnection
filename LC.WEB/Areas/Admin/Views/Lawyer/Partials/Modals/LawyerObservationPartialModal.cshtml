@@ -1,0 +1,43 @@
+﻿@model LC.WEB.Areas.Admin.Models.Lawyer.LawyerObservationViewModel
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="send_observation_modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@(Model.HasObservations && !Model.HasBeenCorrected? "Observaciones Enviadas" :"Enviar Observaciones") </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="send_observation_form" autocomplete="off">
+                <input type="hidden" name="LawyerId" value="@Model.LawyerId"/>
+                <div class="modal-body">
+                    <div class="row">
+                        @if (Model.HasBeenCorrected)
+                        {
+                            <div class="form-group m-form__group col-lg-12">
+                                <label>Observaciones</label>
+                                <textarea name="Observations" class="form-control m-input" required rows="5" maxlength="500"></textarea>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-group m-form__group col-lg-12">
+                                <label>Observaciones</label>
+                                <textarea asp-for="Observations" class="form-control m-input" required rows="5" maxlength="500"></textarea>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+                @if (!Model.HasObservations || (Model.HasObservations && Model.HasBeenCorrected))
+                {
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Enviar Observaciones</button>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+﻿@model LC.ENTITIES.Custom.NotificationCustomModel
+
+@foreach (var item in Model.Details)
+{
+    @if (item.IsRead)
+    {
+        <div class="m-list-timeline__item m-list-timeline__item--read">
+            <span class="m-list-timeline__badge"></span>
+            <span class="m-list-timeline__text">@item.Text</span>
+            <span class="m-list-timeline__time">@item.CreatedAt</span>
+        </div>
+    }
+    else
+    {
+        <div class="m-list-timeline__item">
+            <span class="m-list-timeline__badge"></span>
+            <span class="m-list-timeline__text"><a href="javascript:;" data-url="@item.Url" data-id="@item.Id" class="m-link m--font-primary m_link_user_notification">@item.Text</a><span class="ml-2 m-badge m-badge--info m-badge--wide">Nuevo</span></span>
+            <span class="m-list-timeline__time">@item.CreatedAt</span>
+        </div>
+    }
+}
+
+<script>
+    $(".count_notification_topbar").text(@Model.Pending);
+</script>

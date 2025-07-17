@@ -1,0 +1,33 @@
+﻿
+@model List<LC.WEB.Models.Home.SectionItemViewModel>
+
+@if (Model != null && Model.Count() > 0)
+{
+    @foreach (var item in Model)
+    {
+        <div class="lc-background-gradient m--margin-top-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-5 col-sm-6">
+                        <img class="m--img-rounded" src="/documentos/@item.UrlImage" style="height:250px; width:250px;margin-top:-70px;margin-bottom:40px" />
+                    </div>
+                    <div class="col-lg-9 col-md-7 col-sm-6">
+                        <h1 class="toast-title portal-title text-white">@item.Headline</h1>
+                        <h6 class="text-white text-center m--padding-bottom-20">
+                            @item.Description
+                        </h6>
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <div class="" style="height: 70px;text-align:center">
+                                <a class="btn btn-lg btn-lc-transparent-white m-btn--pill" href="/registrar-abogado" target="_blank">
+                                    REGISTRARME COMO ABOGADO
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    }
+}

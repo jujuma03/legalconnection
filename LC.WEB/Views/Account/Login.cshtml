@@ -1,0 +1,100 @@
+﻿@model LC.WEB.Models.Account.LoginViewModel
+@{
+    ViewData["Title"] = "Log in";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+@section Styles{
+    <link href="~/css/views/account/login.css" rel="stylesheet" />
+}
+<div class="m--padding-100-desktop m--padding-50-tablet m--padding-10-mobile m--padding-top-10" style="padding-top:0px !important;padding-bottom:0px !important;">
+    <div class="m--padding-100-desktop m--padding-50-tablet m--padding-10-mobile m--padding-top-10" style="padding-bottom: 0px !important;">
+        <div class="m-portlet m-portlet--mobile m-portlet--body-progress lc-background-gradient lc-border-radius-gradient-side" style="">
+            <div class="m-portlet__body d-lg-flex d-md-flex d-sm-block" style="padding:0px !important;">
+                <div class="col-lg-6 col-md-6 col-sm-12 bg-white lc-border-radius-white-side" style="padding:0px !important;">
+                    <div class="m-login__signin m--padding-50-desktop m--padding-20-tablet m--padding-20-mobile">
+                        <div class="m-login__head text-center">
+                            <h3 class="m-login__title">INGRESA A LEGAL CONNECTION</h3>
+                        </div>
+                        <div class="text-center m--padding-15-desktop" id="external_div_logins">
+                            <a class="google-button " id="google" asp-controller="Account" asp-action="ExternalLogin" asp-route-provider="Google" asp-route-returnurl="@ViewData["ReturnUrl"]">
+                                <span class="google-button__icon">
+                                    <svg viewBox="0 0 366 372" xmlns="http://www.w3.org/2000/svg"><path d="M125.9 10.2c40.2-13.9 85.3-13.6 125.3 1.1 22.2 8.2 42.5 21 59.9 37.1-5.8 6.3-12.1 12.2-18.1 18.3l-34.2 34.2c-11.3-10.8-25.1-19-40.1-23.6-17.6-5.3-36.6-6.1-54.6-2.2-21 4.5-40.5 15.5-55.6 30.9-12.2 12.3-21.4 27.5-27 43.9-20.3-15.8-40.6-31.5-61-47.3 21.5-43 60.1-76.9 105.4-92.4z" id="Shape" fill="#EA4335" /><path d="M20.6 102.4c20.3 15.8 40.6 31.5 61 47.3-8 23.3-8 49.2 0 72.4-20.3 15.8-40.6 31.6-60.9 47.3C1.9 232.7-3.8 189.6 4.4 149.2c3.3-16.2 8.7-32 16.2-46.8z" id="Shape" fill="#FBBC05" /><path d="M361.7 151.1c5.8 32.7 4.5 66.8-4.7 98.8-8.5 29.3-24.6 56.5-47.1 77.2l-59.1-45.9c19.5-13.1 33.3-34.3 37.2-57.5H186.6c.1-24.2.1-48.4.1-72.6h175z" id="Shape" fill="#4285F4" /><path d="M81.4 222.2c7.8 22.9 22.8 43.2 42.6 57.1 12.4 8.7 26.6 14.9 41.4 17.9 14.6 3 29.7 2.6 44.4.1 14.6-2.6 28.7-7.9 41-16.2l59.1 45.9c-21.3 19.7-48 33.1-76.2 39.6-31.2 7.1-64.2 7.3-95.2-1-24.6-6.5-47.7-18.2-67.6-34.1-20.9-16.6-38.3-38-50.4-62 20.3-15.7 40.6-31.5 60.9-47.3z" fill="#34A853" /></svg>
+                                </span>
+                                <span class="google-button__text">Ingresar con Google</span>
+                            </a>
+                        </div>
+                        <form class="m-login__form m-form" id="login_form" asp-action="Login" asp-controller="Account" asp-route-returnUrl="@(ViewData["ReturnUrl"])">
+                            <div class="form-group m-form__group">
+                                <strong class="label-error-validate @(string.IsNullOrEmpty(ViewBag.Error)? "d-none":"") " id="response_login">@(string.IsNullOrEmpty(ViewBag.Error) ? "" : ViewBag.Error.ToString())</strong>
+                            </div>
+                            <div class="form-group m-form__group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="la la-user"></i></span></div>
+                                    <input type="text" class="form-control m-input" asp-for="UserName" placeholder="Correo Electónico" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text"><i class="la la-unlock"></i></span></div>
+                                    <input type="password" class="form-control m-input" id="Password" asp-for="Password" placeholder="Contraseña" autocomplete="off" required>
+                                    <div class="input-group-append"><span class="input-group-text"><i class="la la-eye"></i></span></div>
+                                </div>
+                            </div>
+                            <div class="row m-login__form-sub m--padding-10">
+                                <div class="col m--align-left">
+                                    <label class="m-checkbox m-checkbox--focus">
+                                        <input type="checkbox" asp-for="RememberMe"> Recuerdame
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <div class="col m--align-right">
+                                    <a asp-action="ForgotPassword" asp-controller="Account" class="m-link">¿Olvidaste tu contraseña?</a>
+                                </div>
+                            </div>
+
+                            <div class="m-login__form-action text-center m--padding-10">
+                                <div class="col-8 " style="margin:auto">
+                                    <button type="submit" class="btn btn-lc-green m-btn m-btn--pill m-btn--custom m-btn--air">Ingresar</button>
+                                </div>
+                            </div>
+                            @*<div class="m-login__form-action m--padding-10">
+                                <label>¿A&uacute;n no tienes una cuenta?</label>&emsp;<a id="register_link" asp-controller="Account" asp-action="Register" class="m-link">REGISTRAR AHORA</a>
+                            </div>*@
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12" style="padding:0px !important">
+                    <div class="m-login__signin m--padding-50-desktop m--padding-20-tablet m--padding-20-mobile">
+                        <a href="/">
+                            <img src="/images/logo/logo_horizontal_blanco.png" alt="Alternate Text" class="lc-logo-login" />
+                        </a>
+                        <div class="row">
+                            <span class="lc-welcome-text text-center m--padding-20-desktop">
+                                Bienvenido a Legal Connection
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="text-white text-center m--padding-20-desktop">
+                                Si buscas un abogado, registrate y envíanos tu caso para ayudarte a encontrar al abogado que necesitas.
+                                <br />
+                                <br />
+                                Si eres abogado, registra tu perfil y postula
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-8 text-center" style="margin:auto">
+                                <a id="register_link" asp-controller="Account" asp-action="Register" class="btn btn-lc-transparent-white m-btn m-btn--pill m-btn--custom m-btn--air">REGISTRARME</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/views/account/login.js"></script>
+}
+

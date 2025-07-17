@@ -1,0 +1,502 @@
+﻿@model LC.WEB.Models.Regiser.LawyerViewModel
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+@section Styles{
+    <link href="~/css/views/account/registeraslawyer.css" rel="stylesheet" />
+    <link href="~/css/views/account/login.css" rel="stylesheet" />
+}
+
+<input type="hidden" asp-for="MaxSpecialities" />
+<input type="hidden" asp-for="MaxThemesBySpeciality" />
+
+<div class="m--padding-100-desktop m--padding-50-tablet m--padding-10-mobile m--padding-top-10" style="padding-top:0px !important;padding-bottom:0px !important;">
+    <div class="m--padding-50-desktop m--padding-50-tablet m--padding-10-mobile m--padding-top-10" style="padding-bottom: 0px !important;">
+        <div class="m-portlet m-portlet--mobile m-portlet--body-progress lc-background-gradient lc-border-radius-gradient-side-right" style="">
+            <div class="m-portlet__body d-lg-flex d-md-flex d-sm-block" style="padding:0px !important;">
+                <div class="col-lg-6 col-md-6 col-sm-12 " style="padding:0px !important">
+                    <div class="m-login__signin m--padding-50-desktop m--padding-20-tablet m--padding-20-mobile">
+                        <a href="/">
+                            <img src="/images/logo/logo_horizontal_blanco.png" alt="Alternate Text" class="lc-logo-login" />
+                        </a>
+                        <div class="row">
+                            <span class="lc-welcome-text text-center m--padding-20-desktop">
+                                ¿Ya estas registrado en LegalConnection?
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="text-white text-center m--padding-20-desktop">
+                                ¿Que esperas?, contamos con un repertorio de abogados amplio que están dispuestos a solucionar tu caso.
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-8 text-center" style="margin:auto">
+                                <a id="register_link" asp-controller="Account" asp-action="Login" class="btn btn-lc-transparent-white m-btn m-btn--pill m-btn--custom m-btn--air">INGRESAR</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 bg-white lc-border-radius-white-side-right" style="padding:0px !important">
+                    <div class="m-login__signin m--padding-50-desktop m--padding-20-tablet m--padding-20-mobile">
+                        <h1 class="text-center" style="font-weight:bold">
+                            Soy usuario nuevo
+                        </h1>
+
+                        <div class="m--padding-10">
+                            <div class="col-lg-12 col-md-12 text-center m--padding-5" style="margin:auto;display:flex;border-radius: 60px;background-color:white;border:1px solid #0f7f97">
+                                <div class="col-lg-6 col-md-6" style="padding:unset;">
+                                    <a asp-action="Register" asp-controller="Account" style="" class="btn m-btn--pill btn-secondary btn-block">BUSCO ABOGADO</a>
+                                </div>
+                                <div class="col-lg-6 col-md-6" style="padding:unset;">
+                                    <a href="#" style="" class="btn m-btn--pill btn-lc-green btn-block text-white">SOY ABOGADO</a>
+                                </div>
+                            </div>
+                        </div>
+                        @* INIICO *@
+                        <div class="m-wizard m-wizard--1 m-wizard--success m-wizard--step-first" id="m_wizard">
+                            <div class="m-portlet__padding-x">
+                            </div>
+
+                            <div class="m-wizard__head m-portlet__padding-x " style="margin:unset;">
+                                <div class="m-wizard__progress d-none">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+
+                                <div class="m-wizard__nav col-lg-8" style="margin:auto">
+                                    <div class="m-wizard__steps">
+                                        <div class="m-wizard__step m-wizard__step--current" m-wizard-target="m_wizard_form_step_1">
+                                            <div class="m-wizard__step-info">
+                                                <a href="#" class="m-wizard__step-number">
+                                                    <span><span>1</span></span>
+                                                </a>
+                                                <div class="m-wizard__step-line">
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="m-wizard__step" m-wizard-target="m_wizard_form_step_2">
+                                            <div class="m-wizard__step-info">
+                                                <a href="#" class="m-wizard__step-number">
+                                                    <span><span>2</span></span>
+                                                </a>
+                                                <div class="m-wizard__step-line">
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="m-wizard__step" m-wizard-target="m_wizard_form_step_3" style="width:52px">
+                                            <div class="m-wizard__step-info">
+                                                <a href="#" class="m-wizard__step-number">
+                                                    <span><span>3</span></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="m-wizard__form">
+
+                                <form class="m-form m-form--label-align-left- m-form--state-" id="m_form">
+
+                                    <div class="m-portlet__body">
+
+                                        <div class="m-wizard__form-step" id="m_wizard_form_step_2">
+                                            <div class="row">
+                                                <div class="form-group m-form__group">
+                                                    <div class="col-lg-12">
+                                                        <p class="h5 text-justify mb-4">
+                                                            Queremos saber a que especialidad te encuentras m&aacute;s orientado, esto nos ayudar&aacute; a tomarte en cuenta en casos que
+                                                            est&eacute;n acorde a tu perfil. @(Model.MaxSpecialities==0?"": $"Podrás seleccionar hasta {Model.MaxSpecialities} especialidades como máximo.")
+                                                        </p>
+                                                        <h4 class="m-portlet__head-text m--font-boldest2">
+                                                            ¿Cu&aacute;l es la especialidad que dominas mejor?
+                                                        </h4>
+                                                        <div class="row">
+                                                            @for (var i = 0; i < Model.SpecialitiesData.Count(); i++)
+                                                            {
+                                                                <div class="col-lg-6 ">
+                                                                    <label>&emsp;</label>
+                                                                    <div class="m-checkbox-inline">
+                                                                        <label class="m-checkbox m-checkbox--solid m-checkbox--brand valiate-label">
+                                                                            <input name="Specialities" value="@Model.SpecialitiesData[i].Id" type="checkbox" required class="form-control m-input valiate-input">@Model.SpecialitiesData[i].Specialty
+                                                                            <span></span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="m-wizard__form-step" id="m_wizard_form_step_3">
+                                            <div class="row">
+                                                <div class="form-group m-form__group">
+                                                    <div class="col-lg-12">
+                                                        <p class="h5 text-justify mb-4">
+                                                            Queremos saber a que especialidad te encuentras m&aacute;s orientado, esto nos ayudar&aacute; a tomarte en cuenta en casos que
+                                                            est&eacute;n acorde a tu perfil. Podr&aacute;s seleccionar hasta <span id="max_themes_span">0</span> temas como m&aacute;ximo (@Model.MaxThemesBySpeciality por Especialidad).
+                                                        </p>
+                                                        <h4 class="m-portlet__head-text m--font-boldest2">
+                                                            ¿Cu&aacute;les son los temas que dominas mejor?
+                                                        </h4>
+                                                        <div class="row" id="themes-container">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="m-wizard__form-step m-wizard__form-step--current" id="m_wizard_form_step_1">
+                                            <div class="row">
+                                                <div class="form-group m-form__group">
+                                                    <div class="col-lg-12">
+                                                        <h4 class="m-portlet__head-text m--font-boldest2">
+                                                            Por favor, dejanos tus datos.
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group m-form__group col-lg-6">
+                                                    <label asp-for="NameOrOffice"></label>
+                                                    <input asp-for="NameOrOffice" class="form-control m-input" required maxlength="100">
+                                                </div>
+                                                <div class="form-group m-form__group col-lg-6">
+                                                    <label asp-for="Surnames"></label>
+                                                    <input asp-for="Surnames" class="form-control m-input" required maxlength="100">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group m-form__group col-lg-6">
+                                                    <label asp-for="Email"></label>
+                                                    <input asp-for="Email" class="form-control m-input" required maxlength="150">
+                                                </div>
+                                                <div class="form-group m-form__group col-lg-6">
+                                                    <label asp-for="Dni"></label>
+                                                    <input asp-for="Dni" class="form-control m-input" required maxlength="8">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group m-form__group col-lg-6">
+                                                    <label asp-for="Password"></label>
+                                                    <input asp-for="Password" type="password" class="form-control m-input" required maxlength="100">
+                                                </div>
+                                                <div class="form-group m-form__group col-lg-6">
+                                                    <label asp-for="ConfirmPassword"></label>
+                                                    <input asp-for="ConfirmPassword" type="password" class="form-control m-input" required maxlength="100">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group m-form__group col-lg-6">
+                                                    <label asp-for="PhoneNumber"></label>
+                                                    <input asp-for="PhoneNumber" class="form-control m-input" required maxlength="9">
+                                                </div>
+                                                <div class="form-group m-form__group col-lg-6">
+                                                    <label asp-for="DepartmentId"></label>
+                                                    <select asp-for="DepartmentId" class="form-control m-input" required></select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group m-form__group col-lg-6">
+                                                    <label asp-for="ProvinceId"></label>
+                                                    <select asp-for="ProvinceId" class="form-control m-input" required></select>
+                                                </div>
+                                                <div class="form-group m-form__group col-lg-6">
+                                                    <label asp-for="DistrictId"></label>
+                                                    <select asp-for="DistrictId" class="form-control m-input" required></select>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-4">
+                                                <div class="form-group m-form__group col-lg-12">
+                                                    <div class="m-checkbox-list">
+                                                        <label class="m-checkbox m-checkbox--bold">
+                                                            <input type="checkbox" required asp-for="TermsAndConditions"> Acepto la <a class="m-link m--font-boldest" target="_blank" asp-action="PolicyAndPrivacy" asp-controller="Portal">Política de Privacidad y Protección de datos Personales</a>
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    @*<div class="m-portlet__foot m-portlet__foot--fit m--margin-top-40">
+                                        <div class="m-form__actions m-form__actions">*@
+                                    <div class="row">
+                                        <div class="col-lg-2"></div>
+                                        <div class="col-lg-4 m--align-left">
+                                            <button class="btn btn-secondary m-btn m-btn--pill m-btn--icon" data-wizard-action="prev" style="width:100%">
+                                                <span>
+                                                    <i class="la la-arrow-left"></i>&nbsp;&nbsp;
+                                                    <span>Atr&aacute;s</span>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="col-lg-4 m--align-right">
+                                            <button class="btn btn-lc-transparent m-btn m-btn--pill m-btn--icon" data-wizard-action="submit">
+                                                <span>
+                                                    <i class="la la-check"></i>&nbsp;&nbsp;
+                                                    <span>Enviar Registro</span>
+                                                </span>
+                                            </button>
+                                            <button class="btn btn-lc-green m-btn m-btn--pill m-btn--icon" data-wizard-action="next" style="width:100%">
+                                                <span>
+                                                    <span>Siguiente</span>&nbsp;&nbsp;
+                                                    <i class="la la-arrow-right"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="col-lg-2"></div>
+                                    </div>
+                                    @*</div>
+                                        </div>*@
+
+                                </form>
+                            </div>
+                        </div>
+                        @* FIIIN *@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@*<div class="container  m--padding-top-90 m--padding-bottom-90">
+        <div class="col-lg-12 mt-5" style="margin: auto">
+            <div class="m-portlet">
+                <div class="m-wizard m-wizard--1 m-wizard--success" id="m_wizard">
+                    <div class="m-portlet__padding-x">
+                    </div>
+
+                    <div class="m-wizard__head m-portlet__padding-x d-none">
+                        <div class="m-wizard__progress">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+
+                        <div class="m-wizard__nav">
+                            <div class="m-wizard__steps">
+                                <div class="m-wizard__step m-wizard__step--current" m-wizard-target="m_wizard_form_step_1">
+                                    <div class="m-wizard__step-info">
+                                        <a href="#" class="m-wizard__step-number">
+                                            <span><span>1</span></span>
+                                        </a>
+                                        <div class="m-wizard__step-line">
+                                            <span></span>
+                                        </div>
+                                        <div class="m-wizard__step-label">
+                                            Client Information
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-wizard__step" m-wizard-target="m_wizard_form_step_2">
+                                    <div class="m-wizard__step-info">
+                                        <a href="#" class="m-wizard__step-number">
+                                            <span><span>2</span></span>
+                                        </a>
+                                        <div class="m-wizard__step-line">
+                                            <span></span>
+                                        </div>
+                                        <div class="m-wizard__step-label">
+                                            Account Setup
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-wizard__step" m-wizard-target="m_wizard_form_step_3">
+                                    <div class="m-wizard__step-info">
+                                        <a href="#" class="m-wizard__step-number">
+                                            <span><span>3</span></span>
+                                        </a>
+                                        <div class="m-wizard__step-line">
+                                            <span></span>
+                                        </div>
+                                        <div class="m-wizard__step-label">
+                                            Billing Setup
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="m-wizard__form">
+
+                        <form class="m-form m-form--label-align-left- m-form--state-" id="m_form">
+
+                            <div class="m-portlet__body">
+
+                                <div class="m-wizard__form-step m-wizard__form-step--current" id="m_wizard_form_step_1">
+                                    <div class="row">
+                                        <div class="form-group m-form__group">
+                                            <div class="col-lg-12">
+                                                <p class="h5 text-justify mb-4">
+                                                    Queremos saber a que especialidad te encuentras m&aacute;s orientado, esto nos ayudar&aacute; a tomarte en cuenta en casos que
+                                                    est&eacute;n acorde a tu perfil. @(Model.MaxSpecialities==0?"": $"Podrás seleccionar hasta {Model.MaxSpecialities} especialidades como máximo.")
+                                                </p>
+                                                <h4 class="m-portlet__head-text m--font-boldest2">
+                                                    ¿Cu&aacute;l es la especialidad que dominas mejor?
+                                                </h4>
+                                                <div class="row">
+                                                    @for (var i = 0; i < Model.SpecialitiesData.Count(); i++)
+                                                    {
+                                                        <div class="col-lg-6 ">
+                                                            <label>&emsp;</label>
+                                                            <div class="m-checkbox-inline">
+                                                                <label class="m-checkbox m-checkbox--solid m-checkbox--brand valiate-label">
+                                                                    <input name="Specialities" value="@Model.SpecialitiesData[i].Id" type="checkbox" required class="form-control m-input valiate-input">@Model.SpecialitiesData[i].Specialty
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="m-wizard__form-step" id="m_wizard_form_step_2">
+                                    <div class="row">
+                                        <div class="form-group m-form__group">
+                                            <div class="col-lg-12">
+                                                <p class="h5 text-justify mb-4">
+                                                    Queremos saber a que especialidad te encuentras m&aacute;s orientado, esto nos ayudar&aacute; a tomarte en cuenta en casos que
+                                                    est&eacute;n acorde a tu perfil. Podr&aacute;s seleccionar hasta <span id="max_themes_span">0</span> temas como m&aacute;ximo (@Model.MaxThemesBySpeciality por Especialidad).
+                                                </p>
+                                                <h4 class="m-portlet__head-text m--font-boldest2">
+                                                    ¿Cu&aacute;les son los temas que dominas mejor?
+                                                </h4>
+                                                <div class="row" id="themes-container">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="m-wizard__form-step" id="m_wizard_form_step_3">
+                                    <div class="row">
+                                        <div class="form-group m-form__group">
+                                            <div class="col-lg-12">
+                                                <h4 class="m-portlet__head-text m--font-boldest2">
+                                                    Por favor, dejanos tus datos.
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group m-form__group col-lg-6">
+                                            <label asp-for="NameOrOffice"></label>
+                                            <input asp-for="NameOrOffice" class="form-control m-input" required maxlength="100">
+                                        </div>
+                                        <div class="form-group m-form__group col-lg-6">
+                                            <label asp-for="Surnames"></label>
+                                            <input asp-for="Surnames" class="form-control m-input" required maxlength="100">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group m-form__group col-lg-6">
+                                            <label asp-for="Email"></label>
+                                            <input asp-for="Email" class="form-control m-input" required maxlength="150">
+                                        </div>
+                                        <div class="form-group m-form__group col-lg-6">
+                                            <label asp-for="Dni"></label>
+                                            <input asp-for="Dni" class="form-control m-input" required maxlength="8">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group m-form__group col-lg-6">
+                                            <label asp-for="Password"></label>
+                                            <input asp-for="Password" type="password" class="form-control m-input" required maxlength="100">
+                                        </div>
+                                        <div class="form-group m-form__group col-lg-6">
+                                            <label asp-for="ConfirmPassword"></label>
+                                            <input asp-for="ConfirmPassword" type="password" class="form-control m-input" required maxlength="100">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group m-form__group col-lg-6">
+                                            <label asp-for="PhoneNumber"></label>
+                                            <input asp-for="PhoneNumber" class="form-control m-input" required maxlength="9">
+                                        </div>
+                                        <div class="form-group m-form__group col-lg-6">
+                                            <label asp-for="DepartmentId"></label>
+                                            <select asp-for="DepartmentId" class="form-control m-input" required></select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group m-form__group col-lg-6">
+                                            <label asp-for="ProvinceId"></label>
+                                            <select asp-for="ProvinceId" class="form-control m-input" required></select>
+                                        </div>
+                                        <div class="form-group m-form__group col-lg-6">
+                                            <label asp-for="DistrictId"></label>
+                                            <select asp-for="DistrictId" class="form-control m-input" required></select>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="form-group m-form__group col-lg-12">
+                                            <div class="m-checkbox-list">
+                                                <label class="m-checkbox m-checkbox--bold">
+                                                    <input type="checkbox" required asp-for="TermsAndConditions"> Acepto los <a class="m-link m--font-boldest" href="javascript:;">T&eacute;rminos y Condiciones</a>
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="m-portlet__foot m-portlet__foot--fit m--margin-top-40">
+                                <div class="m-form__actions m-form__actions">
+                                    <div class="row">
+                                        <div class="col-lg-2"></div>
+                                        <div class="col-lg-4 m--align-left">
+                                            <button class="btn btn-secondary m-btn m-btn--custom m-btn--icon" data-wizard-action="prev">
+                                                <span>
+                                                    <i class="la la-arrow-left"></i>&nbsp;&nbsp;
+                                                    <span>Atr&aacute;s</span>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="col-lg-4 m--align-right">
+                                            <button class="btn btn-primary m-btn m-btn--custom m-btn--icon" data-wizard-action="submit">
+                                                <span>
+                                                    <i class="la la-check"></i>&nbsp;&nbsp;
+                                                    <span>Enviar Registro</span>
+                                                </span>
+                                            </button>
+                                            <button class="btn btn-warning m-btn m-btn--custom m-btn--icon" data-wizard-action="next">
+                                                <span>
+                                                    <span>Siguiente</span>&nbsp;&nbsp;
+                                                    <i class="la la-arrow-right"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div class="col-lg-2"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+@section Scripts{
+    <script src="~/js/views/account/registeraslawyer.js" asp-append-version="true"></script>
+}

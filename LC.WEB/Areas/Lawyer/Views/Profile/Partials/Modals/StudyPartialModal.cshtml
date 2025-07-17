@@ -1,0 +1,71 @@
+﻿@model LC.WEB.Areas.Lawyer.Models.Profile.StudyViewModel
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="study_modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Formaci&oacute;n Acad&eacute;mica</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="study_form" autocomplete="off">
+                <input type="hidden" name="Id" />
+                <div class="modal-body">
+                    <input type="hidden" name="Id" value="@Model.Id" />
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label asp-for="Grade">Grado</label>
+                            <select asp-for="Grade" class="form-control m-select2" required>
+                                <option selected disabled>Seleccionar grado acad&eacute;mico</option>
+                                @foreach (var item in ConstantHelpers.ENTITIES.LAWYER_STUDY.GRADE.VALUES)
+                                {
+                                    <option value="@item.Key">@item.Value</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label asp-for="Mention">Menci&oacute;n</label>
+                            <input asp-for="Mention" class="form-control m-input" required />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label asp-for="Ubication">Centro de Estudio</label>
+                            <input asp-for="Ubication" class="form-control m-input" required />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-5">
+                            <label asp-for="StartDate">Fec. Inicio</label>
+                            <input asp-for="StartDate" class="form-control m-input datepicker_input_2010" required />
+                        </div>
+                        <div class="form-group m-form__group col-lg-5">
+                            <label asp-for="EndDate">Fec. Fin</label>
+                            <input asp-for="EndDate" class="form-control m-input datepicker_input_2010" />
+                        </div>
+                        <div class="form-group m-form__group col-lg-2">
+                            <label>&emsp;</label>
+                            <label class="mt-2 m-checkbox m-checkbox--bold m-checkbox--state-brand">
+                                <input id="present_study" type="checkbox"> Actualidad
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label asp-for="Description">Descripci&oacute;n</label>
+                            <textarea asp-for="Description" class="form-control m-input" required rows="10" maxlength="1000"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

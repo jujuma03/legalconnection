@@ -1,0 +1,45 @@
+﻿@model LC.WEB.Areas.Lawyer.Models.Profile.BasicInformationViewModel
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="fee_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Valor de Consulta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="fee_form" autocomplete="off">
+                <div class="modal-body">
+                    <div class="alert alert-primary m-alert m-alert--icon m-alert--air m-alert--square m--margin-bottom-30" role="alert">
+                        <div class="m-alert__icon">
+                            <i class="flaticon-exclamation-1"></i>
+                        </div>
+                        <div class="m-alert__text">
+                            La empresa cobra el @(ConstantHelpers.PROFIT_PERCENTAGE_PER_LEGALCASE)% del costo registrado en esta secci&oacute;n, sin incluir el IGV.
+                        </div>
+                    </div>
+                    <input type="hidden" name="LawyerId" value="@Model.LawyerId" />
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label asp-for="Fee">Honorarios / Consulta</label>
+                            <input asp-for="Fee" min="10" class="form-control m-input" type="number" required />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label asp-for="FreeFirst">¿Primera consulta gratuita?</label>
+                            <select asp-for="FreeFirst" class="m-select2 form-control m-input" required>
+                                <option value="true">Sí</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

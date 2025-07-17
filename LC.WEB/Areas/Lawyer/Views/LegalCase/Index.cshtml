@@ -1,0 +1,148 @@
+﻿@model LC.ENTITIES.Custom.InboxCustomModel
+
+@section Styles {
+    <style>
+        .m-body {
+            margin-right: 0px !important;
+            margin-left: 0px !important;
+            width: 100% !important;
+        }
+
+        .item_legal_case:hover {
+            background-color: #2970ca33;
+        }
+
+        .legal_case_portlet {
+            -webkit-transition-duration: 0.5s;
+            transition-duration: 0.5s;
+        }
+
+            .legal_case_portlet:hover {
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+                -webkit-transform: scale(1.03);
+            }
+
+        .legal_case_portlet {
+            z-index: 100;
+            -webkit-transition-property: transform;
+            transition-property: transform;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            cursor: pointer;
+        }
+
+        .portal-title-left {
+            text-align: left;
+            padding: 0 20px;
+            font-family: 'SourceSansProBlack';
+            color: #384854;
+        }
+
+        .lc-menu {
+            padding: 15px !important
+        }
+
+        .m-nav.m-nav--active-bg .nav_item_legal_cases.m-nav__item--active > .m-nav__link {
+            background-color: #0f7f97;
+        }
+        .m-nav .nav_item_legal_cases > .m-nav__link {
+            padding-right: 30px !important;
+        }
+        .m-nav.m-nav--active-bg:hover .m-nav__item.m-nav__item--active > .m-nav__link {
+            opacity: 0.8;
+        }
+
+        .m-nav .nav_item_legal_cases:hover:not(.m-nav__item--disabled) > .m-nav__link .m-nav__link-icon,
+        .m-nav .nav_item_legal_cases:hover:not(.m-nav__item--disabled) > .m-nav__link .m-nav__link-text,
+        .m-nav .nav_item_legal_cases:hover:not(.m-nav__item--disabled) > .m-nav__link .m-nav__link-arrow{
+            color: #6f727d;
+        }
+        .m-nav .nav_item_legal_cases.m-nav__item--active > .m-nav__link .m-nav__link-icon,
+        .m-nav .nav_item_legal_cases.m-nav__item--active > .m-nav__link .m-nav__link-text,
+        .m-nav .nav_item_legal_cases.m-nav__item--active > .m-nav__link .m-nav__link-arrow {
+            color: white
+        }
+
+        .m-nav.m-nav--active-bg .m-nav__item.m-nav__item--active > .m-nav__link .m-nav__link-text {
+            color: white
+        }
+
+        .nav_item_legal_cases {
+            padding: 5px
+        }
+
+            .nav_item_legal_cases > a {
+                background-color: white;
+                border-radius: 2rem;
+                font-family: 'SourceSansProBold';
+            }
+            .nav_item_legal_cases .m-badge.m-badge--wide{
+                padding:unset;
+            }
+        .m-badge--blue {
+            background-color: #1e5c8b;
+            color:white
+        }
+       
+    </style>
+}
+<div class="progress" id="progress_bar">
+    <div class="progress-bar progress-bar-striped progress-bar-animated  bg-primary" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"></div>
+</div>
+<input type="hidden" id="DefaultSearchType" value="@ViewBag.DefaultSearchType" />
+
+<div class="container">
+    <div class="m--padding-20">
+        <h2 class="toast-title portal-title-left">Bandeja de casos</h2>
+        <div class="row">
+            <div class="col-xl-4">
+                <div class="m-portlet m-portlet--full-height m-portlet--unair bg-transparent">
+                    <div class="m-portlet__body lc-menu">
+                        <ul class="m-nav m-nav--active-bg" id="m_nav" role="tablist">
+                            @foreach (var item in ConstantHelpers.ENTITIES.LEGAL_CASE.SEARCH_TYPE.VALUES)
+                            {
+                                <li class="m-nav__item nav_item_legal_cases" data-id="@item.Key">
+                                    <a href="javascript:;" class="m-nav__link">
+                                        <i class="m-nav__link-icon @ConstantHelpers.ENTITIES.LEGAL_CASE.SEARCH_TYPE.FLATICON[item.Key]"></i>
+                                        <span class="m-nav__link-text m--icon-font-size-sm2">@item.Value</span>
+                                        <span class="m-nav__link-badge">
+                                            <span class="m-badge m-badge--blue m-badge--wide">
+                                                @switch (item.Key)
+                                                {
+                                                    case ConstantHelpers.ENTITIES.LEGAL_CASE.SEARCH_TYPE.SEARCH_LEGALCASES:
+                                                        @Html.Raw(Model.Search);
+                                                        break;
+                                                    case ConstantHelpers.ENTITIES.LEGAL_CASE.SEARCH_TYPE.INCOMING_REQUESTS:
+                                                        @Html.Raw(Model.IncomingRequest);
+                                                        break;
+                                                    case ConstantHelpers.ENTITIES.LEGAL_CASE.SEARCH_TYPE.LEGAL_CASE_IN_COURSE:
+                                                        @Html.Raw(Model.InCourse);
+                                                        break;
+                                                    case ConstantHelpers.ENTITIES.LEGAL_CASE.SEARCH_TYPE.POSTULATED_CASES:
+                                                        @Html.Raw(Model.Postulated);
+                                                        break;
+                                                    case ConstantHelpers.ENTITIES.LEGAL_CASE.SEARCH_TYPE.ARCHIVED:
+                                                        @Html.Raw(Model.Archived);
+                                                        break;
+                                                }
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8" id="main_portlet_legal_cases">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/areas/lawyer/legalcase/index.js" asp-append-version="true"></script>
+}

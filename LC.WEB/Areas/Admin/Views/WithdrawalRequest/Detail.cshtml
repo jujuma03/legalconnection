@@ -1,0 +1,168 @@
+﻿@model LC.WEB.Areas.Admin.Models.WithdrawalRequest.WithdrawalRequestViewModel
+@{
+    ViewData["Title"] = "Revisar Solicitud de Retiro";
+    ViewData["Breadcrumbs"] = new[] {
+    new BreadcrumbViewModel { Name = "Listado de Solicitudes de Retiro" , Action = "Index" , Area="Admin", Controller="WithdrawalRequest"},
+    new BreadcrumbViewModel { Name = ViewData["Title"].ToString() }
+    };
+}
+
+<div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text m--font-brand">
+                    &emsp;
+                </h3>
+            </div>
+        </div>
+        <div class="m-portlet__head-tools">
+            <a href="/documentos/@Model.UlrReceiptFileForFees" target="_blank" class="btn btn-primary btn-sm m-btn m-btn m-btn--icon">
+                <span>
+                    <i class="la la-download"></i>
+                    <span>Recibo por Honorarios</span>
+                </span>
+            </a>
+            @if (Model.Status == ConstantHelpers.ENTITIES.WITHDRAWAL_REQUEST.STATUS.DEPOSIT_DONE)
+            {
+                <a href="/documentos/@Model.UrlDepositReceipt" target="_blank" class="ml-1 btn btn-primary btn-sm m-btn m-btn m-btn--icon">
+                    <span>
+                        <i class="la la-download"></i>
+                        <span>Constancia de Pago</span>
+                    </span>
+                </a>
+            }
+        </div>
+    </div>
+    <form id="main_form" autocomplete="off">
+        <input type="hidden" asp-for="Id" />
+        <div class="m-portlet__body">
+            <div class="row">
+                <div class="form-group m-form__group col-lg-6">
+                    <label asp-for="CreatedAt">Fec. Solicitud:</label>
+                    <input class="form-control m-input" asp-for="CreatedAt" readonly>
+                </div>
+                <div class="form-group m-form__group col-lg-6">
+                    <label asp-for="Amount">Monto a Retirar:</label>
+                    <input class="form-control m-input" asp-for="Amount" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group m-form__group col-lg-6">
+                    <label asp-for="LawyerWithdrawalInfo.FinancialEntity">Banco Seleccionado:</label>
+                    <input class="form-control m-input" value="@ConstantHelpers.ENTITIES.LAWYER_WITHDRAWAL_INFO.FINANCIAL_ENTITY.VALUES[Model.LawyerWithdrawalInfo.FinancialEntity]" readonly>
+                </div>
+                <div class="form-group m-form__group  col-lg-6">
+                    <label asp-for="Status">Estado:</label>
+                    <input class="form-control m-input" value="@ConstantHelpers.ENTITIES.WITHDRAWAL_REQUEST.STATUS.VALUES[Model.Status]" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group m-form__group col-lg-6">
+                    <label asp-for="LawyerWithdrawalInfo.Dni">DNI:</label>
+                    <input class="form-control m-input" asp-for="LawyerWithdrawalInfo.Dni" readonly>
+                </div>
+                <div class="form-group m-form__group  col-lg-6">
+                    <label asp-for="LawyerWithdrawalInfo.FullName">Nombre Completo:</label>
+                    <input class="form-control m-input" asp-for="LawyerWithdrawalInfo.FullName" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group m-form__group col-lg-6">
+                    <label asp-for="LawyerWithdrawalInfo.BankAccount">Cuenta Bancaria:</label>
+                    <input class="form-control m-input" asp-for="LawyerWithdrawalInfo.BankAccount" readonly>
+                </div>
+                <div class="form-group m-form__group  col-lg-6">
+                    <label asp-for="LawyerWithdrawalInfo.InterbankAccount">Cuenta Interbancaria:</label>
+                    <input class="form-control m-input" asp-for="LawyerWithdrawalInfo.InterbankAccount" readonly>
+                </div>
+            </div>
+
+            @if (Model.Status == ConstantHelpers.ENTITIES.WITHDRAWAL_REQUEST.STATUS.DENIED)
+            {
+                <div class="row">
+                    <div class="form-group m-form__group col-lg-12">
+                        <label asp-for="Observation">Observaciones:</label>
+                        <textarea class="form-control m-input" asp-for="Observation" rows="5"></textarea>
+                    </div>
+                </div>
+
+            }
+
+            @if (Model.Status == ConstantHelpers.ENTITIES.WITHDRAWAL_REQUEST.STATUS.IN_PROCESS)
+            {
+                <div class="row">
+                    <div class="form-group m-form__group col-lg-12">
+                        <label class="form-control-label">Constancia de Dep&oacute;sito</label>
+                        <div class="custom-file">
+                            <input type="file" asp-for="DepositReceiptFile" accept="image/png ,application/pdf" class="custom-file-input" required />
+                            <label class="custom-file-label">
+                                Seleccione un archivo
+                            </label>
+                        </div>
+                        <small>Solo se permite archivos con extensi&oacute;n .pdf o .png</small>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (Model.Status == ConstantHelpers.ENTITIES.WITHDRAWAL_REQUEST.STATUS.IN_PROCESS)
+        {
+            <div class="m-portlet__foot">
+                <div class="row align-items-center">
+                    <div class="col-lg-12 text-right">
+
+                        <button type="button" data-toggle="modal" data-target="#modal_denied" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                            <span>
+                                <i class="la la-close"></i>
+                                <span>Denegado</span>
+                            </span>
+                        </button>
+
+                        <button type="submit" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                            <span>
+                                <i class="la la-save"></i>
+                                <span>Dep&oacute;sito Hecho</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </form>
+</div>
+
+<div class="modal fade" id="modal_denied" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Deposito con Observaciones</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="denied_form">
+                <input type="hidden" value="@Model.Id" name="Id" />
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group m-form__group col-lg-12">
+                            <label asp-for="Observation">Observaciones:</label>
+                            <textarea required class="form-control m-input" asp-for="Observation" rows="5" maxlength="250"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Denegar</button>
+                </div>
+            </form>
+         
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/areas/admin/withdrawalrequest/detail.js" asp-append-version="true"></script>
+}

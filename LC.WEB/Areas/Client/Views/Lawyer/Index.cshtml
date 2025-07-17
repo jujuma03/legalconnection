@@ -1,0 +1,178 @@
+﻿@{
+    Layout = "_TransparentLayout";
+}
+@section Styles{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="~/css/views/portal/index.css" rel="stylesheet" asp-append-version="true" />
+    <style>
+        .fa-star.checked {
+            color: orange;
+        }
+
+        .m-portlet--hover:hover {
+            background-color: lightgray
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            min-height: 37.19px;
+            color: #152c3d;
+            font-family: SourceSansProBold;
+            font-weight: bold;
+        }
+    </style>
+}
+<div class="bg-dark" style="background-image: url('../images/general/banner-directory.png'); background-size: cover; height:300px;">
+    <div class="m--margin-top-90">
+        <div class="container">
+            <div class="col-lg-6 text-center">
+                <h2 class="m--font-boldest3 toast-title portal-title text-white" style="text-align:left;padding-bottom:0;padding-left:15px;font-size:30px;">ENCUENTRA TU ABOGADO IDEAL PARA RESOLVER TU CASO</h2>
+            </div>
+            <div class="col-lg-6 text-left">
+                <div class="m--padding-10">
+                    <a class="m--font-boldest3 btn btn-lg btn-lc-transparent bg-white m-btn--pill" style="text-align:left;font-size:18px;" href="/casos-legales/agregar" target="_blank">
+                        REGISTRA TU CASO AHORA
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container m--padding-top-20">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="m-portlet m-portlet--bordered m-portlet--bordered-semi m-portlet--rounded lc-div-transparent">
+                <div class="input-group lc-search-input-group md-form form-sm form-2 pl-0">
+                    <input class="form-control my-0 py-1" style="font-size:15px;font-family: 'SourceSansPro';height: 50px;padding-left:25px;" type="text" placeholder="Escribe el nombre del abogado que buscas" aria-label="Search" id="search">
+                    <div class="input-group-append">
+                        <span class="input-group-text  lighten-3" id="basic-text1"><i class="fas fa-search text-grey" aria-hidden="true"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="m-portlet m-portlet--bordered m-portlet--bordered-semi m-portlet--rounded lc-div-transparent">
+                <div class="m-portlet__body">
+                    <div class="m--padding-6">
+                        <h5 class="m--font-boldest3 m-portlet__head-text" style="color:#152c3d;font-size:20px;">
+                            FILTRO DE ABOGADO
+                        </h5>
+                    </div>
+
+                    <div class="m--padding-5">
+                        <select class="form-control specialties-select">
+                            <option value="value">Todas las Especialidades</option>
+                        </select>
+                    </div>
+                    <div class="m--padding-5">
+                        <select class="form-control departaments-select">
+                            <option value="value">Todos los Departamentos</option>
+                        </select>
+                    </div>
+                    <div class="m--padding-5 ">
+                        <select class="form-control provinces-select">
+                            <option value="value">Todas las Provincias</option>
+                        </select>
+                    </div>
+                    @*<div class="m--padding-5">
+                            <label>Tipo</label>
+                            <select class="form-control types-select">
+                                <option value="value">Todos</option>
+                            </select>
+                        </div>*@
+                    <div class="m--padding-6 mt-4">
+                        <h5 class="m--font-boldest3 m--padding-top-10 m--padding-bottom-5" style="color:#152c3d;font-size:20px;">RANGO DE PRECIO POR</h5>
+                        <div class="d-flex">
+                            <div class="col-lg-6">
+                                Min.
+                                <div class="input-group mb-2 mr-sm-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text lc-prepend-text">S/.</div>
+                                    </div>
+                                    <input type="number" class="form-control range-change min lc-input-range" id="" placeholder="0.00">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                M&aacute;x.
+                                <div class="input-group mb-2 mr-sm-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text lc-prepend-text">S/.</div>
+                                    </div>
+                                    <input type="number" class="form-control range-change max lc-input-range" id="" placeholder="0.00">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m--padding-6 mt-4">
+                        <h5 class="m--font-boldest3" style="color:#152c3d;font-size:20px;">CALIFICACIÓN</h5>
+                        <div class="pl-4">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1" value="5">
+                                <label class="custom-control-label" for="customCheck1">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                </label>
+                            </div>
+                            <br />
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck2" value="4">
+                                <label class="custom-control-label" for="customCheck2">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                </label>
+                            </div>
+                            <br />
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck3" value="3">
+                                <label class="custom-control-label" for="customCheck3">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </label>
+                            </div>
+                            <br />
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck4" value="2">
+                                <label class="custom-control-label" for="customCheck4">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </label>
+                            </div>
+                            <br />
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck5" value="1">
+                                <label class="custom-control-label" for="customCheck5">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8" id="lawyers-cards">
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/assets/js/expander/jquery.expander.min.js" asp-append-version="true"></script>
+    <script src="~/js/areas/client/lawyer/index.js"></script>
+}

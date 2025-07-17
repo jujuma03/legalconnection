@@ -1,0 +1,59 @@
+﻿@model LC.CORE.VIEW.Services.Models.Email.ReceiptEmailModel
+
+<div class='example-emails margin-bottom-50'>
+    <div width='100%' style='background:#006494; padding: 50px 20px; color: #514d6a;'>
+        <div style='max-width: 1000px; margin: 0px auto; font-size: 14px'>
+            <table border='0' cellpadding='0' cellspacing='0' style='width: 100%; margin-bottom: 20px'>
+                <tr>
+                    <td style='vertical-align: top;'>
+                        <img src='@ConstantHelpers.URL_EMAIL_LOGO' style='height:65px; margin-top:-17px' />
+                    </td>
+                </tr>
+            </table>
+            <div style='padding: 40px 40px 20px 40px; background: #fff;'>
+                <table border='0' cellpadding='0' cellspacing='0' style='width: 100%;'>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div style='text-align: center'>
+                                    <h4 style='margin-bottom: 20px; color: #24222f; font-weight: 600;font-size: 24px;margin-top: 15px;'>
+                                        @Model.Title
+                                    </h4>
+                                </div>
+                                <div style='text-align: center ; margin-top:27px ; margin-bottom:20px'>
+                                    @Model.Message
+                                </div>
+
+                                <div style='margin-top:27px ; margin-bottom:20px'>
+                                    <div style="padding:8px; border:2px solid #514d6a">
+                                        <span style="font-weight: 400">Tipo de Documento : </span> @Model.DocumentType <br />
+                                        <span style="font-weight: 400">Serie y N&uacute;mero : </span> @Model.NumberSerie<br />
+                                        <span style="font-weight: 400">RUC del Emisor : </span> @Model.RUC<br />
+                                        <span style="font-weight: 400">RUC o DNI del Usuario : </span> @Model.ClientDNI<br />
+                                        <span style="font-weight: 400">Fecha de Emisi&oacute;n : </span> @Model.IssueDate<br />
+                                        <span style="font-weight: 400">Moneda : </span> @Model.Currency<br />
+                                        <span style="font-weight: 400">Monto Total : </span> @Model.TotalAmount<br />
+                                    </div>
+                                </div>
+                                <div style="text-align:center; margin-top:20px;">
+                                    <span class="font-weight: 400">Puedes visualizar los datos del Abogado</span>
+                                </div>
+                                <div style="margin-top:10px;">
+                                    <span style="font-weight: 400">Nombre y Apellidos: </span> @Model.LawyerName<br />
+                                    <span style="font-weight: 400">Correo : </span> @Model.LawyerEmail<br />
+                                    <span style="font-weight: 400">Celular : </span> @Model.LawyerPhoneNumber<br />
+                                </div>
+                                <div style='text-align: center ; margin-top:27px ; margin-bottom:20px'>
+                                    @Model.GoodbyeMessage
+                                </div>
+                                <div style='text-align: center; color:#bdbdbd'>
+                                    <p style='line-height:17px;margin:0px'> Powered by @ConstantHelpers.PROJECT.ToUpper()</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

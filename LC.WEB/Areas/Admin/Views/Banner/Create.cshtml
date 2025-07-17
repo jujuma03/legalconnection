@@ -1,0 +1,180 @@
+﻿@model LC.WEB.Areas.Admin.Models.Banner.BannerViewModel
+@{
+    ViewData["Title"] = "Añadir banner";
+
+            ViewData["Breadcrumbs"] = new[] {
+                new BreadcrumbViewModel { Name = "Gestión de banner",Controller="Banner",Action="Index",Area = "Admin" },
+    new BreadcrumbViewModel { Name = ViewData["Title"].ToString() }
+    };
+}
+
+@section Styles {
+    <link href="~/css/areas/admin/banner/create.css" rel="stylesheet" />
+    @*<link href="~/assets/css/croppie/demo.css" rel="stylesheet" />*@
+    <link href="~/assets/css/croppie/prism.css" rel="stylesheet" />
+    <link href="~/assets/css/croppie/croppie.css" rel="stylesheet" />
+}
+
+<div class="m-portlet">
+    <div class="form-group m-form__group row m-form__group--first m--padding-10">
+        <div class="m-form__group-sub col-lg-12 col-xs-12 upload-demo-wrap">
+            <div id="upload-demo" style="overflow-x: auto;">
+                <p style="font-weight:bold; text-align:center">Resolución de la imagen recomendada: <span style="color:#8b0404;">aprox 1920px x 950px</span></p>
+            </div>
+            <div id="upload-offi" style="padding-bottom:30px;">
+                <p style="font-weight:bold; text-align:center">Resolución de la imagen recomendada: <span style="color:#8b0404;">aprox 1920px x 950px</span></p>
+                <img id="img-offi" style="width: 100%;" src="" />
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <form class="m-form m-form--state m-form--fit m-form--label-align-right" id="createForm" asp-action="Create" asp-area="Admin" asp-controller="Banner" enctype="multipart/form-data">
+            <div class="modal-body">
+                <div class="m-alert m-alert--icon alert alert-danger m--hide" role="alert" id="modal-form-alert">
+                    <div class="m-alert__icon">
+                        <i class="la la-warning"></i>
+                    </div>
+                    <div class="m-alert__text" id="msg_txt">
+                        @ViewBag.ErrorMessage
+                    </div>
+                    <div class="m-alert__close">
+                        <button type="button" class="close" data-close="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+                <input type="hidden" asp-for="urlCropImg" value="" />
+                <div class="form-group m-form__group row m-form__group--first">
+                    <div class="m-form__group-sub col-lg-12 col-xs-12 text-center">
+                        <button type="button" class="btn btn-md btn-primary upload-result" disabled>Previsualizar</button>
+                    </div>
+                    <div class="m-form__group-sub col-lg-12 col-xs-12 actions">
+                        <label asp-for="Image" class="required-form-label"></label>
+                        <div class="m-input-icon m-input-icon--right">
+                            <div class="custom-file">
+                                <input id="Image" asp-for="Image" type="file" class="custom-file-input" accept="image/*" required/>
+                                <label class="custom-file-label" for="customFile">Adjuntar imagen</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*<div class="form-group m-form__group row m-form__group--first">
+            <div class="m-form__group-sub col-lg-4 col-xs-12">
+                <label asp-for="Image" class="required-form-label"></label>
+                <div class="m-input-icon m-input-icon--right">
+                    <div class="custom-file">
+                        <input asp-for="Image" type="file" class="custom-file-input" required />
+                        <label class="custom-file-label" for="customFile">Adjuntar imagen</label>
+                    </div>
+                </div>
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+        </div>*@
+
+
+                <input type="hidden" asp-for="Id" />
+
+                <div class="form-group m-form__group row">
+                    <div class="col-md-12 m-form__group-sub  mb-5">
+                        <label asp-for="Headline" class="required-form-label"></label>
+                        <input asp-for="Headline" type="text" class="form-control m-input" required maxlength="300">
+                    </div>
+                    <div class="col-md-12 m-form__group-sub  mb-5">
+                        <label asp-for="Description" class="required-form-label"></label>
+                        <input asp-for="Description" type="text" class="form-control m-input" required maxlength="400">
+                    </div>
+                    <div class="col-md-12 m-form__group-sub mb-5">
+                        <div class="row align-items-center">
+                            <div class="col-4">
+                                <label asp-for="Status" class="required-form-label"></label>
+                            </div>
+                            <div class="col-2">
+                                <label class="switch" style="margin-left:10px;">
+                                    <input id="togBtn" asp-for="Status" type="checkbox">
+                                    <div class="slider round">
+                                        <span class="on" style="color:black; font-weight:bold;">ACTIVO</span>
+                                        <span class="off" style="color:black; font-weight:bold;">OCULTO</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 m-form__group-sub mb-2">
+                        <label asp-for="UrlDirection" class="required-form-label"></label>
+                        <input asp-for="NameDirection" type="text" class="form-control m-input" required>
+                    </div>
+
+                    <div class="col-md-12 m-form__group-sub mb-5">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">https://</span>
+                            </div>
+                            <input asp-for="UrlDirection" type="text" class="form-control m-input" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12 m-form__group-sub mb-5">
+                        <div class="row align-items-center">
+                            <div class="col-4">
+                                <label asp-for="RouteType" class="required-form-label"></label>
+                            </div>
+                            <div class="col-2">
+                                <label class="switch" style="margin-left:10px;">
+                                    <input id="togBtn" asp-for="RouteType" type="checkbox">
+                                    <div class="slider round">
+                                        <span class="on" style="color:black; font-weight:bold;">INTERNA</span>
+                                        <span class="off" style="color:black; font-weight:bold;">EXTERNA</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12 m-form__group-sub mb-5">
+
+                        <div class="row align-items-center">
+                            <div class="col-2">
+                                <label asp-for="StatusDirection" class="required-form-label"></label>
+                            </div>
+                            <div class="col-2">
+                                <label class="switch" style="margin-left:10px;">
+                                    <input id="togBtn2" asp-for="StatusDirection" type="checkbox" checked>
+                                    <div class="slider round">
+                                        <span class="on" style="color:black; font-weight:bold;">ACTIVO</span>
+                                        <span class="off" style="color:black; font-weight:bold;">OCULTO</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+
+                        @*<select class="form-control" asp-for="Status" asp-items="@Model.ListStatus" id="Status"></select>*@
+
+                    </div>
+
+                    <div id="order" class="col-md-12 m-form__group-sub mb-5">
+                        <label asp-for="SequenceOrder" class="required-form-label"></label>
+                        <select class="form-control" asp-for="SequenceOrder" asp-items="@Model.ListSequenceOrder" id="SequenceOrder"></select>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="btnRegresar" type="button" class="btn btn-secondary">
+                        REGRESAR
+                    </button>
+                    <button type="submit" class="btn btn-primary btn-save" id="btnSave">Guardar</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("Partials/_ModalPreview")
+
+@section Scripts {
+    <script src="~/js/areas/admin/banner/create.js" asp-append-version="true"></script>
+    <script src="~/assets/js/croppie/croppie.js" asp-append-version="true"></script>
+    <script src="~/assets/js/croppie/demo.js" asp-append-version="true"></script>
+    <script src="~/assets/js/croppie/prism.js" asp-append-version="true"></script>
+}

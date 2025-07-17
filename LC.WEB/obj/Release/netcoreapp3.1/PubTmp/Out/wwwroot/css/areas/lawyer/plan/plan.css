@@ -1,0 +1,45 @@
+﻿
+.lc-plan .m-portlet__head {
+    height: unset !important
+}
+
+.lc-plan-title {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.lc-plan-time {
+    font-weight: bold;
+}
+
+.lc-plan-list {
+    list-style: none;
+    padding: 0;
+}
+
+
+    .lc-plan-list li {
+        padding-left: 1.3em;
+    }
+
+        .lc-plan-list li > i {
+            margin-left: -15px;
+            margin-right: 15px;
+            color: #25d62b
+        }
+/*******************************/
+.lc-plan-icon-blue {
+    color: #13bee2;
+}
+.portal-title {
+    text-align: center;
+    padding: 25px;
+    color: #152c3d;
+}
+.popover-body {
+    color: #ffd21d;
+    background-color: #152c3d;
+}
+.bs-popover-right .arrow::after, .bs-popover-auto[x-placement^="right"] .arrow::after {
+    border-right-color: #152c3d;
+}

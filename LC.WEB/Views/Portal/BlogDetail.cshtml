@@ -1,0 +1,141 @@
+﻿@model LC.WEB.Models.Portal.BlogDetailViewModel
+@{
+    Layout = "~/Views/Shared/_TransparentLayout.cshtml";
+}
+@section Styles{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="~/css/views/portal/index.css" rel="stylesheet" />
+}
+
+<div class="bg-dark" style="background-image: url('../images/general/blog.png'); background-size: cover; height:400px;">
+    <div class="m--margin-top-90">
+        <div class="container">
+        </div>
+    </div>
+</div>
+
+@*<div class="lc-background-green">
+        <div class="" style="margin-top: 45vh;">
+            <div class="container">
+              </div>
+        </div>
+    </div>*@
+<div class="lc-background-light-blue">
+    <div class="container m--padding-30" style=" margin-top: -35vh;">
+        @*<div class="m--padding-5">
+                <a asp-controller="Portal" asp-action="Blog" class="btn btn-circle btn-lg back-arrow-detail bg-dark">
+                    <i class="fa fa-chevron-left"></i>
+                </a>
+            </div>*@
+        <div class="m-portlet">
+            <div class="m-portlet__body">
+                <div class="m-widget19">
+                    <div class="m-widget19__pic m-portlet-fit--top m-portlet-fit--sides " style="margin-top: -30px;">
+                        <img class="m-widget19__img" src="/documentos/@Model.PhotoUrl" />
+
+                        <div class="m-widget19__shadow"></div>
+                    </div>
+                    <div class="m-widget19__content">
+                        <h3 class="m-widget19__title m--padding-20">
+                            @Model.Title
+                        </h3>
+                        <div class="m-widget19__header">
+                            <div class="m-widget19__user-img">
+                                <img class="m-widget19__img" src="/documentos/@Model.LawyerPictureUrl" alt="">
+                            </div>
+                            <div class="m-widget19__info">
+                                <span class="m-widget19__username">
+                                    @Model.LawyerFullName
+                                </span><br>
+                                <span class="m-widget19__time">
+                                    Publicado el: @Model.PublicationDate.ToLocalDateFormat()
+                                </span>
+                            </div>
+                        </div>
+                        <div class="m-widget19__body">
+                            @Html.Raw(Model.Description)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (ConstantHelpers.ENTITIES.BLOG.TYPES.LAWYERPUBLICATION == Model.Type)
+        {
+            <div class="m-portlet m-portlet--bordered m-portlet--bordered-semi m-portlet--rounded m-portlet--hover complete-card" data-id="@Model.LawyerId">
+                <div class="m-portlet__body">
+                    <div style="padding:20px 0;float:right">
+                        @if (!User.Identity.IsAuthenticated || !User.IsInRole(ConstantHelpers.ROLES.LAWYER))
+                        {
+                            <a asp-controller="LegalCase" asp-action="AddDirected" asp-area="Client" asp-route-lawyerId="@Model.LawyerId" class="btn btn-lc-green m-btn--pill">
+                                CONTACTAR ABOGADO
+                            </a>
+                        }
+                        @*else
+                            {
+                                <a href="javascript:;" class="btn btn-primary">
+                                    CONTACTAR ABOGADO
+                                </a>
+                            }*@
+                    </div>
+                    <div class="row">
+                        <div class="m-portlet__head" style="height: 150px;padding: 0">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <span class="m-portlet__head-icon">
+                                        <img class="" style="border-radius:50px;border:3px solid slategray;height:100px" src="/documentos/@Model.LawyerPictureUrl" />
+                                    </span>
+                                    <div class="m-portlet__head-label">
+                                        <h2>
+                                            @Model.LawyerFullName
+                                        </h2>
+                                        <h6 style="text-align:left;width:100%">Especialidad: @Model.SpecialtyName</h6>
+                                        <h6 style="text-align:left;width:100%">
+                                            @for (int i = 1; i <= Convert.ToInt32(Model.Qualification); i++)
+                                            {
+                                                <span class="fa fa-star checked"></span>
+                                            }
+                                            @for (int i = 1; i <= (5-Convert.ToInt32(Model.Qualification)); i++)
+                                            {
+                                                <span class="fa fa-star"></span>
+                                            }
+                                            <span></span>
+                                            <i class="la la-map-marker" style="margin:0 0 0 10px;"></i>
+                                            @Model.Department @Model.Disctrict
+                                            <img src="~/images/general/certificate-medal.svg" style="max-height: 20px;margin:0 0 0 10px;width:20px" />
+                                            Destacado
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <p>
+                                @Model.AboutLawyer
+                            </p>
+                        </div>
+                        <div class="col-lg-12">
+                            @foreach (var theme in Model.Themes)
+                            {
+                                <span class="m-badge m-badge--wide lc-badge-blue" style="margin: 10px 0;">@theme</span>
+                            }
+                        </div>
+                        <div class="col-lg-12">
+                            <h4><a asp-action="Index" asp-controller="LawyerProfile" asp-route-lawyerId="@Model.LawyerId" style="text-decoration: underline;color: #575962;">VER DETALLE</a></h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(".complete-card").on("click", function () {
+            var id = $(this).data("id");
+            window.location.href = `/lc/abogado/perfil/${id}`
+        });
+    </script>
+}

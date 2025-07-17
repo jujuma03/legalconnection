@@ -1,0 +1,71 @@
+﻿@model LC.WEB.Areas.Admin.Models.LegalCase.LegalCaseViewModel
+@{
+    ViewData["Title"] = "Preguntas para el Caso";
+    ViewData["Breadcrumbs"] = new[] {
+    new BreadcrumbViewModel { Name = "Listado de Casos",Action="Index",Controller="Legalcase",Area="Admin" },
+    new BreadcrumbViewModel { Name = "Detalle del Caso", Url=$"/admin/casos-legales/{Model.Id}/detalles" },
+    new BreadcrumbViewModel { Name = ViewData["Title"].ToString() }
+    };
+
+    var canEdit = Model.Status == ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.VALIDATION_PROCCESS || Model.Status == ConstantHelpers.ENTITIES.LEGAL_CASE.STATUS.CORRECTED_OBSERVATIONS;
+}
+
+@if (canEdit && Model.Completed)
+{
+    <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+        <div class="m-alert__icon">
+            <i class="la la-warning"></i>
+        </div>
+        <div class="m-alert__text">
+            <strong>Caso en Revisi&oacute;n!</strong> Este caso no podr&aacute; recibir postulaciones hasta que sea v&aacute;lidado.
+        </div>
+        <div class="m-alert__actions">
+            <button type="button" id="accept_legal_case" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                Validar
+            </button>
+        </div>
+    </div>
+
+}
+
+<div class="m-portlet m-portlet--mobile ">
+    <form id="question_form">
+        <div class="m-portlet__body">
+            <div class="row">
+                <div class="alert m-alert m-alert--default w-100" role="alert">
+                    Preguntas propuestas por el administrador. Una vez completado y guardado el formulario se podr&aacute; validar el caso.
+                </div>
+                <div class="row col-12">
+                    <input type="hidden" asp-for="Id" />
+
+                    @{
+                        var index = 0;
+                    }
+                    @foreach (var question in Model.LegalCaseQuestions)
+                    {
+                        <div class="form-group m-form__group col-12">
+                            <label for="example_input_full_name">@question.Description</label>
+                            <input type="hidden" name="LegalCaseQuestions[@index].QuestionId" value="@question.QuestionId" />
+                            <input type="hidden" name="LegalCaseQuestions[@index].ResponseId" value="@question.ResponseId" />
+                            <textarea rows="8" maxlength="5000" class="form-control" required name="LegalCaseQuestions[@index].Response" @(!canEdit ? "readonly" : "") placeholder="Ingresar comentarios">@question.Response</textarea>
+                        </div>
+                        index++;
+                    }
+                </div>
+            </div>
+        </div>
+        @if (canEdit)
+        {
+            <div class="m-portlet__foot">
+                <div class="m-form__actions m-form__actions--solid m-form__actions--right">
+                    <a asp-action="Detail" asp-controller="LegalCase" asp-area="Admin" asp-route-LegalCaseId="@Model.Id" class="btn btn-secondary">Atrás</a>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        }
+    </form>
+</div>
+
+@section Scripts{
+    <script src="~/js/areas/admin/legalcase/question.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,97 @@
+﻿@model LC.WEB.Models.LawyerProfile.LawyerInfoViewModel
+@{
+    if (User.IsInRole(ConstantHelpers.ROLES.ADMIN) || User.IsInRole(ConstantHelpers.ROLES.ADVISER))
+    {
+        Layout = "_AdminLayout";
+        ViewData["Title"] = "Perfil de Abogado";
+        ViewData["Breadcrumbs"] = new[] {
+        new BreadcrumbViewModel { Name = ViewData["Title"].ToString() }
+        };
+    }
+}
+
+@section Styles{
+    @*<link href="~/css/views/lawyerprofile/index.css" rel="stylesheet" type="text/css" />*@
+    <link href="~/css/areas/lawyer/profile/index.css" rel="stylesheet" asp-append-version="true" />
+}
+
+<input type="hidden" id="LawyerId" value="@ViewBag.LawyerId" />
+<input type="hidden" id="LegalCaseId" value="@ViewBag.LegalCaseId" />
+
+
+<div class="m--margin-top-50-desktop ">
+
+    @if (User.IsInRole(ConstantHelpers.ROLES.ADMIN) || User.IsInRole(ConstantHelpers.ROLES.ADVISER))
+    {
+
+        @if (Model.Status == ConstantHelpers.ENTITIES.LAWYER.STATUS.PENDING)
+        {
+            <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+                <div class="m-alert__icon">
+                    <i class="la la-warning"></i>
+                </div>
+                <div class="m-alert__text">
+                    <strong>Nuevo Abogado!</strong> El registro fue realizado el @Model.RegisterDate. El usuario podr&aacute; acceder a todas las funcionalidades una vez sea v&aacute;lidado.
+                </div>
+                <div class="m-alert__actions">
+                    <button type="button" id="validate_lawyer" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                        Aceptar
+                    </button>
+                    <button type="button" id="reject_lawyer" class="btn btn-danger btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                        Denegar
+                    </button>
+                </div>
+            </div>
+        }
+
+        @if (Model.Status == ConstantHelpers.ENTITIES.LAWYER.STATUS.REJECTED)
+        {
+            <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+                <div class="m-alert__icon">
+                    <i class="la la-warning"></i>
+                </div>
+                <div class="m-alert__text">
+                    <strong>Perfil Rechazado!</strong> La validaci&oacute;n del usuario fue el @Model.ValidationDate.
+                </div>
+                <div class="m-alert__actions">
+                    <button type="button" id="view_observations" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                        Ver Observaciones
+                    </button>
+                </div>
+            </div>
+        }
+
+        @*@if (Model.Status == ConstantHelpers.ENTITIES.LAWYER.STATUS.CORRECTED_OBSERVATIONS)
+            {
+                <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-primary alert-dismissible fade show" role="alert">
+                    <div class="m-alert__icon">
+                        <i class="la la-warning"></i>
+                    </div>
+                    <div class="m-alert__text">
+                        <strong>Observaciones Corregidas!</strong>
+                    </div>
+                    <div class="m-alert__actions">
+                        <button type="button" id="validate_lawyer" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                            Aceptar
+                        </button>
+                        <button type="button" id="reject_lawyer" class="btn btn-danger btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                            Denegar
+                        </button>
+                        <button type="button" id="view_observations" class="btn btn-secondary btn-sm m-btn m-btn--pill m-btn--wide m--font-boldest2">
+                            Ver Observaciones
+                        </button>
+                    </div>
+                </div>
+            }*@
+    }
+
+    <div id="container_lawyer_profile"></div>
+</div>
+
+@*@await Html.PartialAsync("Partials/Modals/RejectPartialModal", new LC.WEB.Models.LawyerProfile.RejectViewModel())
+    @await Html.PartialAsync("Partials/Modals/ObservationPartialModal")*@
+
+@section Scripts {
+    <script src="~/assets/js/expander/jquery.expander.min.js" asp-append-version="true"></script>
+    <script src="~/js/views/lawyerprofile/index.js" asp-append-version="true"></script>
+}
