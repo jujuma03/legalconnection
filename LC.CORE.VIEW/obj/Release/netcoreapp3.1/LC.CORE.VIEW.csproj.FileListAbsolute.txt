@@ -30,3 +30,42 @@ D:\ING-SW\Legal Connection\Proyecto\LC.CORE.VIEW\obj\Release\netcoreapp3.1\stati
 D:\ING-SW\Legal Connection\Proyecto\LC.CORE.VIEW\obj\Release\netcoreapp3.1\staticwebassets\LC.CORE.VIEW.StaticWebAssets.xml
 D:\ING-SW\Legal Connection\Proyecto\LC.CORE.VIEW\obj\Release\netcoreapp3.1\LC.CORE.VIEW.dll
 D:\ING-SW\Legal Connection\Proyecto\LC.CORE.VIEW\obj\Release\netcoreapp3.1\LC.CORE.VIEW.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\bin\Release\netcoreapp3.1\LC.CORE.VIEW.StaticWebAssets.xml
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\bin\Release\netcoreapp3.1\LC.CORE.VIEW.deps.json
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\bin\Release\netcoreapp3.1\LC.CORE.VIEW.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\bin\Release\netcoreapp3.1\LC.CORE.VIEW.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\bin\Release\netcoreapp3.1\LC.CORE.VIEW.Views.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\bin\Release\netcoreapp3.1\LC.CORE.VIEW.Views.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\bin\Release\netcoreapp3.1\LC.CORE.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\bin\Release\netcoreapp3.1\LC.CORE.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\LC.CORE.VIEW.csproj.AssemblyReference.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\LC.CORE.VIEW.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\LC.CORE.VIEW.AssemblyInfoInputs.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\LC.CORE.VIEW.AssemblyInfo.cs
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\LC.CORE.VIEW.csproj.CoreCompileInputs.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\LC.CORE.VIEW.RazorAssemblyInfo.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\LC.CORE.VIEW.RazorAssemblyInfo.cs
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\LC.CORE.VIEW.sourcelink.json
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\LC.CORE.VIEW.TagHelpers.input.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\LC.CORE.VIEW.TagHelpers.output.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\LC.CORE.VIEW.RazorCoreGenerate.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\Razor\Views\Email\ConfirmationEmailView.cshtml.g.cs
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\Razor\Views\Email\LawyerInterviewEmailView.cshtml.g.cs
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\Razor\Views\Email\LawyerPostulantToCaseEmailView.cshtml.g.cs
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\Razor\Views\Email\LawyerRejectedEmailView.cshtml.g.cs
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\Razor\Views\Email\NewLawyerPaymentEmailView.cshtml.g.cs
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\Razor\Views\Email\ReceiptEmailView.cshtml.g.cs
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\Razor\Views\Email\StandardEmailView.cshtml.g.cs
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\LC.CORE.VIEW.RazorTargetAssemblyInfo.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\LC.CORE.VIEW.RazorTargetAssemblyInfo.cs
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\LC.CORE.VIEW.Views.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\staticwebassets\LC.CORE.VIEW.StaticWebAssets.Manifest.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\staticwebassets\LC.CORE.VIEW.StaticWebAssets.Pack.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\staticwebassets\msbuild.LC.CORE.VIEW.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\staticwebassets\msbuild.build.LC.CORE.VIEW.props
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\staticwebassets\msbuild.buildMultiTargeting.LC.CORE.VIEW.props
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\staticwebassets\msbuild.buildTransitive.LC.CORE.VIEW.props
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\LC.CORE..9F13C560.Up2Date
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\LC.CORE.VIEW.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.CORE.VIEW\obj\Release\netcoreapp3.1\LC.CORE.VIEW.pdb

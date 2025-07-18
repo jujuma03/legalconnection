@@ -6,3 +6,14 @@ D:\ING-SW\Legal Connection\Proyecto\LC.PAYMENT\obj\Release\netcoreapp3.1\LC.PAYM
 D:\ING-SW\Legal Connection\Proyecto\LC.PAYMENT\obj\Release\netcoreapp3.1\LC.PAYMENT.csproj.CoreCompileInputs.cache
 D:\ING-SW\Legal Connection\Proyecto\LC.PAYMENT\obj\Release\netcoreapp3.1\LC.PAYMENT.dll
 D:\ING-SW\Legal Connection\Proyecto\LC.PAYMENT\obj\Release\netcoreapp3.1\LC.PAYMENT.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.PAYMENT\bin\Release\netcoreapp3.1\LC.PAYMENT.deps.json
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.PAYMENT\bin\Release\netcoreapp3.1\LC.PAYMENT.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.PAYMENT\bin\Release\netcoreapp3.1\LC.PAYMENT.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.PAYMENT\obj\Release\netcoreapp3.1\LC.PAYMENT.csproj.AssemblyReference.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.PAYMENT\obj\Release\netcoreapp3.1\LC.PAYMENT.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.PAYMENT\obj\Release\netcoreapp3.1\LC.PAYMENT.AssemblyInfoInputs.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.PAYMENT\obj\Release\netcoreapp3.1\LC.PAYMENT.AssemblyInfo.cs
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.PAYMENT\obj\Release\netcoreapp3.1\LC.PAYMENT.csproj.CoreCompileInputs.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.PAYMENT\obj\Release\netcoreapp3.1\LC.PAYMENT.sourcelink.json
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.PAYMENT\obj\Release\netcoreapp3.1\LC.PAYMENT.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.PAYMENT\obj\Release\netcoreapp3.1\LC.PAYMENT.pdb

@@ -1,5 +1,8 @@
 is_global = true
 build_property.RootNamespace = LC.HANGFIRE
-build_property.ProjectDir = D:\Ing Software\Legal Connection\Proyecto\legalconnection\LC.HANGFIRE\
+build_property.ProjectDir = C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.HANGFIRE\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 
+build_property.EnableCodeStyleSeverity = 

@@ -10,3 +10,17 @@ D:\ING-SW\Legal Connection\Proyecto\LC.ENTITIES\obj\Release\netcoreapp3.1\LC.ENT
 D:\ING-SW\Legal Connection\Proyecto\LC.ENTITIES\obj\Release\netcoreapp3.1\LC.ENTITIES.csproj.CopyComplete
 D:\ING-SW\Legal Connection\Proyecto\LC.ENTITIES\obj\Release\netcoreapp3.1\LC.ENTITIES.dll
 D:\ING-SW\Legal Connection\Proyecto\LC.ENTITIES\obj\Release\netcoreapp3.1\LC.ENTITIES.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.ENTITIES\bin\Release\netcoreapp3.1\LC.ENTITIES.deps.json
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.ENTITIES\bin\Release\netcoreapp3.1\LC.ENTITIES.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.ENTITIES\bin\Release\netcoreapp3.1\LC.ENTITIES.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.ENTITIES\bin\Release\netcoreapp3.1\LC.CORE.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.ENTITIES\bin\Release\netcoreapp3.1\LC.CORE.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.ENTITIES\obj\Release\netcoreapp3.1\LC.ENTITIES.csproj.AssemblyReference.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.ENTITIES\obj\Release\netcoreapp3.1\LC.ENTITIES.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.ENTITIES\obj\Release\netcoreapp3.1\LC.ENTITIES.AssemblyInfoInputs.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.ENTITIES\obj\Release\netcoreapp3.1\LC.ENTITIES.AssemblyInfo.cs
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.ENTITIES\obj\Release\netcoreapp3.1\LC.ENTITIES.csproj.CoreCompileInputs.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.ENTITIES\obj\Release\netcoreapp3.1\LC.ENTITIES.sourcelink.json
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.ENTITIES\obj\Release\netcoreapp3.1\LC.ENTIT.5770548A.Up2Date
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.ENTITIES\obj\Release\netcoreapp3.1\LC.ENTITIES.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.ENTITIES\obj\Release\netcoreapp3.1\LC.ENTITIES.pdb

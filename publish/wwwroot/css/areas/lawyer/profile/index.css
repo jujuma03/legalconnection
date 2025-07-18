@@ -1,0 +1,151 @@
+﻿.profile_nav_pills .nav-item .active {
+    background-color: black !important;
+}
+
+.profile_nav_pills .nav-link {
+    box-shadow: 0px 1px 15px 1px rgba(81, 77, 92, 0.08);
+}
+
+.m-demo .m-demo__preview {
+    border: unset !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.fa-star {
+    font-weight: normal !important;
+}
+
+.start-graff {
+    color: #f9cf03;
+    font-weight: 900 !important;
+}
+
+#lawyer_img_profile {
+    text-align: center;
+    max-width: 100px !important;
+    margin: 0 auto !important;
+    border-radius: 100%;
+}
+
+.m-card-profile__pic-wrapper {
+    margin-top: 12px !important;
+}
+
+.alert.m-alert--outline.alert-primary.m-alert--icon-solid .m-alert__icon {
+    position: relative;
+    background: #006494;
+}
+
+    .alert.m-alert--outline.alert-primary.m-alert--icon-solid .m-alert__icon span {
+        border-left-color: #ffffff;
+    }
+
+.alert.m-alert--outline.alert-primary {
+    color: white;
+    background-color: #ffffff;
+    border-color: #ffffff;
+    font-weight: 400;
+}
+
+.logo_company_experience {
+    border-radius: 50%;
+    width: 120px;
+    height: 130px;
+}
+
+.more-link {
+    color: #006494;
+    font-weight: 900;
+}
+
+    .more-link:hover {
+        color: black;
+        font-weight: 900;
+    }
+
+.less-link {
+    color: #006494;
+    font-weight: 900;
+}
+
+    .less-link:hover {
+        color: black;
+        font-weight: 900;
+    }
+
+    p{
+        font-size:15px;
+    }
+
+.qualification_label{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.m-card-profile__name{
+    font-weight:bold;
+    font-size:25px;
+}
+
+.card_detail{
+    font-size:15px;
+    font-weight:bold;
+}
+
+.f-lawyer {
+    color: #1e5c8b;
+    margin-right: 5px;
+    font-weight: 900 !important;
+}
+
+.lawyer_fee {
+    font-size: 22px;
+    color: #2a2a2a;
+}
+
+.m-widget1__title {
+    font-size: 15px !important;
+    color: #2a2a2a !important;
+}
+
+.options_partialview{
+    margin:3px;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.btn-add-option {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 66px;
+    font-size: 25px !important;
+    font-weight: normal !important;
+    color: #384854 !important;
+    background-color: #dfe8ef !important;
+    border-color: #dfe8ef !important;
+}
+
+    .btn-add-option i {
+        padding-top: 4px;
+        padding-left: 3px;
+    }
+.lc-profile-title {
+    color :#384854;
+}
+
+.logo_company_experience {
+    width: 120px;
+    height: 120px;
+}
+@media (min-width: 1025px) {
+    .m-header--fixed .m-body {
+        padding-top: 70px !important;
+    }
+}
+
+.edit_link{
+    font-size:18px !important;
+}

@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: legal_sql
+    environment:
+      - SA_PASSWORD=Banbif.2025#
+      - ACCEPT_EULA=Y
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: legal_app
+    ports:
+      - "5000:80"
+    depends_on:
+      - sqlserver
+    volumes:
+      - ./LC.WEB/wwwroot/documentos:/app/wwwroot/documentos
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    working_dir: /app
+
+volumes:
+  sql_data:

@@ -1,20 +1,22 @@
 {
   "version": 2,
-  "dgSpecHash": "t4wt2etXHbU=",
+  "dgSpecHash": "XGUpvnpQR4s=",
   "success": true,
-  "projectFilePath": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.PAYMENT\\LC.PAYMENT.csproj",
+  "projectFilePath": "C:\\Users\\Junior.Delacruz\\Documents\\Personal\\legalconnection\\legalconnection\\LC.PAYMENT\\LC.PAYMENT.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\JuMa\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.7\\microsoft.extensions.dependencyinjection.abstractions.3.1.7.nupkg.sha512",
-    "C:\\Users\\JuMa\\.nuget\\packages\\microsoft.extensions.options\\3.1.7\\microsoft.extensions.options.3.1.7.nupkg.sha512",
-    "C:\\Users\\JuMa\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.7\\microsoft.extensions.primitives.3.1.7.nupkg.sha512",
-    "C:\\Users\\JuMa\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+    "C:\\Users\\Junior.Delacruz\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.7\\microsoft.extensions.dependencyinjection.abstractions.3.1.7.nupkg.sha512",
+    "C:\\Users\\Junior.Delacruz\\.nuget\\packages\\microsoft.extensions.options\\3.1.7\\microsoft.extensions.options.3.1.7.nupkg.sha512",
+    "C:\\Users\\Junior.Delacruz\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.7\\microsoft.extensions.primitives.3.1.7.nupkg.sha512",
+    "C:\\Users\\Junior.Delacruz\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
   ],
   "logs": [
     {
       "code": "NU1903",
       "level": "Warning",
-      "warningLevel": 1,
       "message": "Package 'Newtonsoft.Json' 12.0.3 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
+      "projectPath": "C:\\Users\\Junior.Delacruz\\Documents\\Personal\\legalconnection\\legalconnection\\LC.PAYMENT\\LC.PAYMENT.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Junior.Delacruz\\Documents\\Personal\\legalconnection\\legalconnection\\LC.PAYMENT\\LC.PAYMENT.csproj",
       "libraryId": "Newtonsoft.Json",
       "targetGraphs": [
         ".NETCoreApp,Version=v3.1"

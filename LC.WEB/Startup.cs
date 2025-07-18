@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AKDEMIC.LC.WEB.Profiles;
 using AutoMapper;
 using LC.CORE.Services.Models;
 using LC.DATABASE.Data;
+using LC.DATABASE.Data.Seeds;
 using LC.ENTITIES.Models;
 using LC.PAYMENT.Models;
 using LC.WEB.Extensions;
@@ -21,6 +18,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace LC.WEB
 {

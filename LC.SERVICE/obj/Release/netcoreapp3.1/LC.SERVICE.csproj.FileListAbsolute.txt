@@ -20,3 +20,28 @@ D:\ING-SW\Legal Connection\Proyecto\LC.SERVICE\obj\Release\netcoreapp3.1\LC.SERV
 D:\ING-SW\Legal Connection\Proyecto\LC.SERVICE\obj\Release\netcoreapp3.1\LC.SERVICE.csproj.CopyComplete
 D:\ING-SW\Legal Connection\Proyecto\LC.SERVICE\obj\Release\netcoreapp3.1\LC.SERVICE.dll
 D:\ING-SW\Legal Connection\Proyecto\LC.SERVICE\obj\Release\netcoreapp3.1\LC.SERVICE.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\bin\Release\netcoreapp3.1\LC.CORE.VIEW.Views.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\bin\Release\netcoreapp3.1\LC.CORE.VIEW.Views.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\bin\Release\netcoreapp3.1\LC.CORE.VIEW.StaticWebAssets.xml
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\bin\Release\netcoreapp3.1\LC.SERVICE.deps.json
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\bin\Release\netcoreapp3.1\LC.SERVICE.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\bin\Release\netcoreapp3.1\LC.SERVICE.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\bin\Release\netcoreapp3.1\LC.CORE.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\bin\Release\netcoreapp3.1\LC.CORE.VIEW.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\bin\Release\netcoreapp3.1\LC.DATABASE.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\bin\Release\netcoreapp3.1\LC.ENTITIES.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\bin\Release\netcoreapp3.1\LC.REPOSITORY.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\bin\Release\netcoreapp3.1\LC.REPOSITORY.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\bin\Release\netcoreapp3.1\LC.CORE.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\bin\Release\netcoreapp3.1\LC.CORE.VIEW.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\bin\Release\netcoreapp3.1\LC.DATABASE.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\bin\Release\netcoreapp3.1\LC.ENTITIES.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\obj\Release\netcoreapp3.1\LC.SERVICE.csproj.AssemblyReference.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\obj\Release\netcoreapp3.1\LC.SERVICE.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\obj\Release\netcoreapp3.1\LC.SERVICE.AssemblyInfoInputs.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\obj\Release\netcoreapp3.1\LC.SERVICE.AssemblyInfo.cs
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\obj\Release\netcoreapp3.1\LC.SERVICE.csproj.CoreCompileInputs.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\obj\Release\netcoreapp3.1\LC.SERVICE.sourcelink.json
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\obj\Release\netcoreapp3.1\LC.SERVICE.csproj.Up2Date
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\obj\Release\netcoreapp3.1\LC.SERVICE.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.SERVICE\obj\Release\netcoreapp3.1\LC.SERVICE.pdb

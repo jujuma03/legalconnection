@@ -15,3 +15,22 @@ D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DAT
 D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.dll
 D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.pdb
 D:\ING-SW\Legal Connection\Proyecto\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.genruntimeconfig.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.DATABASE\bin\Release\netcoreapp3.1\LC.DATABASE.deps.json
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.DATABASE\bin\Release\netcoreapp3.1\LC.DATABASE.runtimeconfig.json
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.DATABASE\bin\Release\netcoreapp3.1\LC.DATABASE.runtimeconfig.dev.json
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.DATABASE\bin\Release\netcoreapp3.1\LC.DATABASE.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.DATABASE\bin\Release\netcoreapp3.1\LC.DATABASE.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.DATABASE\bin\Release\netcoreapp3.1\LC.CORE.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.DATABASE\bin\Release\netcoreapp3.1\LC.ENTITIES.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.DATABASE\bin\Release\netcoreapp3.1\LC.ENTITIES.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.DATABASE\bin\Release\netcoreapp3.1\LC.CORE.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.csproj.AssemblyReference.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.AssemblyInfoInputs.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.AssemblyInfo.cs
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.csproj.CoreCompileInputs.cache
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.sourcelink.json
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATAB.AA3A7E1D.Up2Date
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.dll
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.pdb
+C:\Users\Junior.Delacruz\Documents\Personal\legalconnection\legalconnection\LC.DATABASE\obj\Release\netcoreapp3.1\LC.DATABASE.genruntimeconfig.cache

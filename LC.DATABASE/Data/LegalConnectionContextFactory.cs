@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace LC.DATABASE.Data
@@ -15,15 +17,20 @@ namespace LC.DATABASE.Data
 
         public LegalConnectionContext CreateDbContext(string[] args)
         {
-            DbContextOptionsBuilder<LegalConnectionContext> builder = new DbContextOptionsBuilder<LegalConnectionContext>();
-            builder.UseSqlServer(
-                "Server=209.151.152.37;Initial Catalog=LEGALCONNECTION;Persist Security Info=False;User ID=sa;Password=lc2020++;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;Connection Timeout=300;",
-                //"Server=localhost;Database=TEST;Trusted_Connection=True;MultipleActiveResultSets=true",
-                options =>
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true)
+                .Build();
+
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+            var builder = new DbContextOptionsBuilder<LegalConnectionContext>();
+            builder.UseSqlServer(connectionString, options =>
             {
                 options.CommandTimeout((int)TimeSpan.FromMinutes(20).TotalSeconds);
                 options.EnableRetryOnFailure();
-            }); ;
+            });
 
             return new LegalConnectionContext(builder.Options);
         }

@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.CORE.VIEW\\LC.CORE.VIEW.csproj": {}
+    "C:\\Users\\Junior.Delacruz\\Documents\\Personal\\legalconnection\\legalconnection\\LC.CORE.VIEW\\LC.CORE.VIEW.csproj": {}
   },
   "projects": {
-    "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.CORE.VIEW\\LC.CORE.VIEW.csproj": {
+    "C:\\Users\\Junior.Delacruz\\Documents\\Personal\\legalconnection\\legalconnection\\LC.CORE.VIEW\\LC.CORE.VIEW.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.CORE.VIEW\\LC.CORE.VIEW.csproj",
+        "projectUniqueName": "C:\\Users\\Junior.Delacruz\\Documents\\Personal\\legalconnection\\legalconnection\\LC.CORE.VIEW\\LC.CORE.VIEW.csproj",
         "projectName": "LC.CORE.VIEW",
-        "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.CORE.VIEW\\LC.CORE.VIEW.csproj",
-        "packagesPath": "C:\\Users\\JuMa\\.nuget\\packages\\",
-        "outputPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.CORE.VIEW\\obj\\",
+        "projectPath": "C:\\Users\\Junior.Delacruz\\Documents\\Personal\\legalconnection\\legalconnection\\LC.CORE.VIEW\\LC.CORE.VIEW.csproj",
+        "packagesPath": "C:\\Users\\Junior.Delacruz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Junior.Delacruz\\Documents\\Personal\\legalconnection\\legalconnection\\LC.CORE.VIEW\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\JuMa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Junior.Delacruz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,15 +26,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.CORE\\LC.CORE.csproj": {
-                "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.CORE\\LC.CORE.csproj"
+              "C:\\Users\\Junior.Delacruz\\Documents\\Personal\\legalconnection\\legalconnection\\LC.CORE\\LC.CORE.csproj": {
+                "projectPath": "C:\\Users\\Junior.Delacruz\\Documents\\Personal\\legalconnection\\legalconnection\\LC.CORE\\LC.CORE.csproj"
               }
             }
           }
@@ -44,7 +47,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "netcoreapp3.1": {
@@ -68,21 +72,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.CORE\\LC.CORE.csproj": {
+    "C:\\Users\\Junior.Delacruz\\Documents\\Personal\\legalconnection\\legalconnection\\LC.CORE\\LC.CORE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.CORE\\LC.CORE.csproj",
+        "projectUniqueName": "C:\\Users\\Junior.Delacruz\\Documents\\Personal\\legalconnection\\legalconnection\\LC.CORE\\LC.CORE.csproj",
         "projectName": "LC.CORE",
-        "projectPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.CORE\\LC.CORE.csproj",
-        "packagesPath": "C:\\Users\\JuMa\\.nuget\\packages\\",
-        "outputPath": "D:\\Ing Software\\Legal Connection\\Proyecto\\legalconnection\\LC.CORE\\obj\\",
+        "projectPath": "C:\\Users\\Junior.Delacruz\\Documents\\Personal\\legalconnection\\legalconnection\\LC.CORE\\LC.CORE.csproj",
+        "packagesPath": "C:\\Users\\Junior.Delacruz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Junior.Delacruz\\Documents\\Personal\\legalconnection\\legalconnection\\LC.CORE\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\JuMa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Junior.Delacruz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -90,7 +98,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -108,7 +115,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "netcoreapp3.1": {
@@ -171,7 +179,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

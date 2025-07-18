@@ -1,0 +1,48 @@
+﻿.nav-item .active {
+    background-color: black !important;
+}
+
+.nav-link {
+    box-shadow: 0px 1px 15px 1px rgba(81, 77, 92, 0.08);
+}
+
+.m-demo .m-demo__preview {
+    border: unset !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.fa-star {
+    font-weight: normal !important;
+}
+
+.start-graff {
+    color: #f9cf03;
+    font-weight: 900 !important;
+}
+
+.logo_company_experience {
+    border-radius: 50%;
+    max-width: 120px;
+    max-height: 120px;
+}
+
+.more-link {
+    color: #006494;
+    font-weight: 900;
+}
+
+    .more-link:hover {
+        color: black;
+        font-weight: 900;
+    }
+
+.less-link {
+    color: #006494;
+    font-weight: 900;
+}
+
+    .less-link:hover {
+        color: black;
+        font-weight: 900;
+    }

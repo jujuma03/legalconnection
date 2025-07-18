@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LC.HANGFIRE")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e93cb3bbf7b7e8f5a6e7ec66028ac904c977b9a9")]
 [assembly: System.Reflection.AssemblyProductAttribute("LC.HANGFIRE")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LC.HANGFIRE")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
